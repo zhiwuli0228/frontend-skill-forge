@@ -12,7 +12,7 @@
 | 98f1cd4 | harness: add frontend mcp evidence templates |
 | 96e2f30 | harness: add frontend e2e and evolution templates |
 | 77af859 | docs: update governance index for frontend agent layer |
-| (pending) | evidence: add phase 1 frontend agent foundation verification |
+| 8fcf2cf | evidence: add phase 1 frontend agent foundation verification |
 
 ## Changed Files Summary
 
@@ -72,8 +72,8 @@
 
 | Command | Result | Notes |
 |---------|--------|-------|
-| `npm run build` | (pending) | |
-| `npm run test:e2e` | (pending) | |
+| `npm run build` | ✓ Success | Built in 708ms |
+| `npm run test:e2e` | ✓ 1 passed | 5.1s execution time |
 
 ## Frontend Agent Governance Check
 
