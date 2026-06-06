@@ -1,0 +1,17 @@
+{
+  "status": "draft",
+  "purpose": "Describe the minimal shape of a Skill evolution record.",
+  "fields": {
+    "evolutionId": "string",
+    "type": "string (skill|rule|knowledge)",
+    "candidateId": "string",
+    "evidenceIds": "array of strings",
+    "pattern": "string",
+    "rootCause": "string",
+    "decision": "string (accept|reject|defer)",
+    "reviewer": "string",
+    "reviewDate": "string (ISO-8601)",
+    "verificationPassed": "boolean",
+    "artifactPath": "string"
+  }
+}

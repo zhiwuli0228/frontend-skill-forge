@@ -1,0 +1,15 @@
+{
+  "status": "draft",
+  "purpose": "Describe the minimal shape of a frontend MCP exploration session record.",
+  "fields": {
+    "sessionId": "string",
+    "route": "string",
+    "goal": "string",
+    "timestamp": "string (ISO-8601)",
+    "operator": "string (agent|human)",
+    "observations": "array",
+    "evidenceRefs": "array",
+    "nextActions": "array",
+    "status": "string (completed|failed|partial)"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "status": "draft",
+  "purpose": "Describe the minimal shape of a UI evidence artifact.",
+  "fields": {
+    "evidenceId": "string",
+    "type": "string (route-snapshot|page-screenshot|dom-observation|selector-candidate|interaction-trace|network-observation|console-observation|test-result|failure-diagnosis|human-feedback|skill-evolution-decision)",
+    "route": "string",
+    "timestamp": "string (ISO-8601)",
+    "source": "string (agent|human)",
+    "confidence": "number (0-1)",
+    "tags": "array of strings",
+    "artifactPath": "string",
+    "metadata": "object"
+  }
+}

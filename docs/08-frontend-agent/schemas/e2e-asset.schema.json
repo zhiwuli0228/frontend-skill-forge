@@ -1,0 +1,17 @@
+{
+  "status": "draft",
+  "purpose": "Describe the minimal shape of an E2E test asset.",
+  "fields": {
+    "assetId": "string",
+    "name": "string",
+    "route": "string",
+    "type": "string (smoke|regression)",
+    "status": "string (active|retired|flaky)",
+    "priority": "string (high|medium|low)",
+    "createdAt": "string (ISO-8601)",
+    "lastRunAt": "string (ISO-8601)",
+    "passRate": "number (0-1)",
+    "evidenceRefs": "array of strings",
+    "selectors": "array of objects"
+  }
+}
