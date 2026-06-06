@@ -1,0 +1,3 @@
+# OpenSpec / SuperSpec
+
+Status: Draft

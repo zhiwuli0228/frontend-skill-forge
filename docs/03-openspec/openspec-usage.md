@@ -1,0 +1,3 @@
+# OpenSpec Usage
+
+Status: Draft
