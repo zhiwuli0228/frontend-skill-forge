@@ -15,6 +15,7 @@ Track pending Knowledge evolution candidates. A knowledge evolution is a change 
 | KE-002 | Add "test the behavior the user is testing" anti-pattern to knowledge map conventions | FD-2026-06-07-001, RETRO-V2.6-V2.10.md | high | pending | 2026-06-07 |
 | KE-003 | Add "derive state from URL, don't mirror via useEffect" pattern to `state-flow-map.md` | V2.10 hotfix code review, RETRO-V2.6-V2.10.md | high | pending | 2026-06-07 |
 | KE-004 | Add "Ant Design 6 deprecation warnings" inventory to knowledge map | V2.6-V2.10 retro open items | medium | pending | 2026-06-07 |
+| KE-005 | Update component-map: Button.Group → Space.Compact migration in SkillFilterBar | V7 drift diagnosis (phase-7-drift-diagnosis.md) | high | accepted (V7.2) | 2026-06-07 |
 
 ## Decision Records
 
@@ -46,6 +47,14 @@ Track pending Knowledge evolution candidates. A knowledge evolution is a change 
 - **Evidence:** V2.6-V2.10 retro lists: `Drawer width` (use `size`), `Alert message` (use `title`), `Space direction` (use `orientation`).
 - **Decision:** Defer to V5 AntD 6→7 migration. Track as open items in V3.4 issues.
 - **Outcome:** TBD in V5.
+
+### KE-005 (accepted 2026-06-07)
+
+- **Candidate:** Update component-map with Button.Group → Space.Compact migration
+- **Evidence:** V7 drift diagnosis (phase-7-drift-diagnosis.md) — AntD migration changed SkillFilterBar DOM structure and testids.
+- **Decision:** Accept. Update component-map.md to reflect Space.Compact usage and new testids.
+- **Action taken:** component-map.md updated with new component structure and testid mapping.
+- **Outcome:** Knowledge updated.
 
 ## Process
 

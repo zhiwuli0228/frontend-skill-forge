@@ -70,20 +70,20 @@ export function SkillFilterBar({
         ]}
         data-testid="skill-sort-by"
       />
-      <Button.Group data-testid="skill-view-toggle">
+      <Space.Compact data-testid="skill-view-mode">
         <Button
           type={viewMode === 'grid' ? 'primary' : 'default'}
           icon={<AppstoreOutlined />}
           onClick={() => onViewModeChange('grid')}
-          data-testid="skill-view-grid"
+          data-testid="skill-grid-btn"
         />
         <Button
           type={viewMode === 'list' ? 'primary' : 'default'}
           icon={<UnorderedListOutlined />}
           onClick={() => onViewModeChange('list')}
-          data-testid="skill-view-list"
+          data-testid="skill-list-btn"
         />
-      </Button.Group>
+      </Space.Compact>
     </Space>
   );
 }

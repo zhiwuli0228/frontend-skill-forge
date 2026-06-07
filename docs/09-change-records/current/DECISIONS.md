@@ -51,6 +51,12 @@ This ledger stores user-confirmed decisions that affect scope, release semantics
 | D041 | 2026-06-07 | V4.4: `skill-evolution-maintainer` v1 accepted. 8-step procedure validated against V3.4 evolution queues (KE-001, RE-001 through RE-005). |
 | D042 | 2026-06-07 | V4 is closed. All 7 functional requirements met. All 4 Skills have v1 procedures with validation examples. evidence-to-skill-promotion updated with 4 accepted promotions. |
 | D043 | 2026-06-07 | V5 is approved as the next major version after V4. V5 = "Benchmark Demo Expansion" corresponding to architecture blueprint Phase 5. V5 will add more complex demo pages to the V2 surface, expanding the evidence loop to cover more interaction patterns. |
+| D044 | 2026-06-07 | V5 is closed. All 5 domain modules enhanced with complex interactions (20+ pages). 183/184 e2e tests passing. Phase 5 verification report passes. V5 release record created. |
+| D045 | 2026-06-07 | V6 is approved as the next major version after V5. V6 = "MCP-Assisted Exploration" corresponding to architecture blueprint Phase 6. V6 will integrate practical Playwright MCP exploration workflow with real browser evidence, replacing the V3 fallback approach. |
+| D046 | 2026-06-07 | V6 is closed. 3 real MCP sessions completed (/task/list, /skill/list, /workflow/editor). 7 screenshots, 10+ snapshots, 4 interaction traces, 28 selectors evaluated. Drift diagnosis confirms V3 fallback accuracy with 6 evidence gaps identified. Knowledge maps updated. |
+| D047 | 2026-06-07 | User accepted V6. V6 is formally closed as the MCP-Assisted Exploration baseline. All Phase 6 deliverables complete. |
+| D048 | 2026-06-07 | V7 is approved as the next major version after V6. V7 = "Self-Evolution Validation" corresponding to architecture blueprint Phase 7. V7 will prove the Skill/Rule/Knowledge evolution loop works end-to-end through a controlled UI drift scenario, completing the first full Evidence → Diagnosis → Candidate → Patch → Verification → Archive cycle. |
+| D049 | 2026-06-07 | V7 is closed. Self-evolution cycle validated: 1 controlled drift (AntD Button.Group → Space.Compact) → 1 test failure → 3 evolution candidates (KE-005, RE-006, SE-001) → 2-line minimal patch → 183/184 e2e tests pass. Full cycle archived in phase-7-self-evolution-validation.md. |
 
 ## Pending Confirmations
 

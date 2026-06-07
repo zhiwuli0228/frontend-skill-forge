@@ -1,6 +1,6 @@
 # Component Map
 
-Status: Populated (V3.1)
+Status: Populated (V3.1) + MCP Verified (V6)
 Last Updated: 2026-06-07
 
 ## Purpose
@@ -48,6 +48,20 @@ Catalog all page and sub-components in the V2 surface, with their data-testid ro
 | --- | --- | --- | --- | --- | --- | --- |
 | S1 | `TaskFilterBar` | `src/domains/task/components/TaskFilterBar.tsx` | TaskListPage | `TaskFilterBarProps` | `task-filter-bar` | status / priority / category selects |
 | S2 | `TaskTable` | `src/domains/task/components/TaskTable.tsx` | TaskListPage | `TaskTableProps` | `task-table` | row click → drawer |
+
+## MCP Verification (V6)
+
+The following components were verified with real Playwright MCP browser tools on 2026-06-07:
+
+| Component | Route | MCP Finding |
+|-----------|-------|-------------|
+| `TaskListPage` | `/task/list` | Scenario selector has 4 states (Loaded/Loading/Empty/Error). Empty shows AntD Empty with "No tasks match the current filter". Drawer uses `dialog` role (480px width). |
+| `TaskTable` | `/task/list` | 5 columns with sort indicators (Title, Priority, Created). Checkbox column for batch select. Status filter button in column header. |
+| `TaskDetailDrawer` | `/task/list` | Opens on row click. Shows detail table: Status, Priority, Assignee, Category, Created, Updated, Description. Close button top-right. |
+| `SkillListPage` | `/skill/list` | 20 skills in 4-column grid. Search input, category filter, tags filter, sort selector, grid/list toggle. |
+| `SkillDetailModal` | `/skill/list` | Opens on card click. Shows: Description, Category, Version, Status, Author, Downloads, Tags. |
+| `WorkflowEditorPage` | `/workflow/editor` | Node Palette (4 types) + Canvas (6 nodes). Node Properties dialog: Node ID, Type, Label, X/Y Position, Delete button. |
+| `WorkflowNode` | `/workflow/editor` | 6 nodes: Webhook Trigger, Validate Payload, Is Valid?, Transform Data, Send to Queue, Log Error. Click opens properties dialog. |
 | S3 | `TaskDetailDrawer` | `src/domains/task/components/TaskDetailDrawer.tsx` | TaskListPage | `TaskDetailDrawerProps` | `task-detail-drawer` | open/close, edit |
 | S4 | `TaskCreateForm` | `src/domains/task/components/TaskCreateForm.tsx` | TaskCreatePage | `TaskCreateFormProps` | `task-create-form` | 3 steps (basic → details → review) |
 | S5 | `TaskPreview` | `src/domains/task/components/TaskPreview.tsx` | TaskCreatePage | `TaskPreviewProps` | `task-preview` | live preview of form values |
@@ -58,7 +72,7 @@ Catalog all page and sub-components in the V2 surface, with their data-testid ro
 | S10 | `BoardContainer` | `src/domains/task/components/BoardContainer.tsx` | TaskBoardPage | `BoardContainerProps` | `board-container` | drag-drop container |
 | S11 | `BoardColumn` | `src/domains/task/components/BoardColumn.tsx` | BoardContainer | `BoardColumnProps` | `board-column-{status}` | drop target |
 | S12 | `BoardTaskCard` | `src/domains/task/components/BoardTaskCard.tsx` | BoardColumn | `BoardTaskCardProps` | `board-task-card-{id}` | drag source |
-| S13 | `SkillFilterBar` | `src/domains/skill/components/SkillFilterBar.tsx` | SkillListPage | `SkillFilterBarProps` | `skill-filter-bar` | search + category + view toggle |
+| S13 | `SkillFilterBar` | `src/domains/skill/components/SkillFilterBar.tsx` | SkillListPage | `SkillFilterBarProps` | `skill-filter-bar` | search + category + view toggle (Space.Compact, V7 migrated) |
 | S14 | `SkillGrid` | `src/domains/skill/components/SkillGrid.tsx` | SkillListPage, SkillMarketPage | `SkillGridProps` | `skill-grid` | renders `SkillCard[]` |
 | S15 | `SkillList` | `src/domains/skill/components/SkillList.tsx` | SkillListPage | `SkillListProps` | `skill-list-view` | list view of skills |
 | S16 | `SkillCard` | `src/domains/skill/components/SkillCard.tsx` | SkillGrid, SkillList | `SkillCardProps` | `skill-card-{id}` | click → modal |
@@ -115,3 +129,17 @@ The testids follow the convention `{page-name}-{scenario}` (loading, error, retr
 ## Pattern: Sidebar-Filter Indicator
 
 The 4 pages that read `useParams().filter` (TaskListPage, SkillListPage, WorkflowListPage, InsightOverviewPage) render a `data-testid="sidebar-filter-indicator"` element when the filter is set to something other than `all`. This gives the user visible feedback that they are looking at a filtered view.
+
+## Migration Notes (V7)
+
+### AntD Button.Group → Space.Compact (V7.2)
+
+Component `SkillFilterBar` (S13) migrated from `Button.Group` to `Space.Compact`. Testid changes:
+
+| Old testid | New testid | Element |
+| --- | --- | --- |
+| `skill-view-toggle` | `skill-view-mode` | View mode toggle wrapper |
+| `skill-view-grid` | `skill-grid-btn` | Grid view button |
+| `skill-view-list` | `skill-list-btn` | List view button |
+
+Source: V7 drift diagnosis (phase-7-drift-diagnosis.md), KE-005.

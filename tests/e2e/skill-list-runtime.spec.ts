@@ -16,12 +16,12 @@ test.describe('Skill List Runtime Baseline', () => {
     await expect(page.getByTestId('skill-grid')).toBeVisible();
 
     // Switch to list view
-    await page.getByTestId('skill-view-list').click();
+    await page.getByTestId('skill-list-btn').click();
     await expect(page.getByTestId('skill-list-view')).toBeVisible();
     await expect(page.getByTestId('skill-grid')).not.toBeVisible();
 
     // Switch back to grid view
-    await page.getByTestId('skill-view-grid').click();
+    await page.getByTestId('skill-grid-btn').click();
     await expect(page.getByTestId('skill-grid')).toBeVisible();
     await expect(page.getByTestId('skill-list-view')).not.toBeVisible();
   });

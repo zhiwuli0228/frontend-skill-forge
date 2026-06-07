@@ -16,6 +16,7 @@ Track pending Rule evolution candidates. A rule is a hard constraint that future
 | RE-003 | Every testable element must have a `data-testid` attribute | All 23 spec files, 181 tests, 216 unique testids | high | accepted (de facto) | 2026-06-07 |
 | RE-004 | E2E tests must assert on URL change when navigation is the goal | FD-2026-06-07-001 | high | pending | 2026-06-07 |
 | RE-005 | Mock data interfaces must include all filter values referenced by sidebar items | V2.10 hotfix (task "archived" not in `TaskItem.status` originally) | high | pending | 2026-06-07 |
+| RE-006 | Library migration PRs must update all referencing e2e test selectors | V7 drift diagnosis (phase-7-drift-diagnosis.md) | high | accepted (V7.2) | 2026-06-07 |
 
 ## Decision Records
 
@@ -64,6 +65,16 @@ Track pending Rule evolution candidates. A rule is a hard constraint that future
 - **Rule text:**
   > When adding a new sidebar item, the corresponding data interface must include the field that the item filters on. If the field doesn't exist yet, add it before adding the sidebar item. If the field is added, populate at least 2-3 mock items with the new value to surface the change in tests.
 - **Outcome:** Accepted.
+
+### RE-006 (accepted 2026-06-07)
+
+- **Candidate:** Library migration PRs must update all referencing e2e test selectors.
+- **Evidence:** V7 drift diagnosis — AntD Button.Group → Space.Compact migration renamed testids without updating the referencing e2e test, causing a test timeout.
+- **Decision:** Accept.
+- **Rule text:**
+  > When migrating a library API that changes DOM structure or `data-testid` attributes, the PR must grep for all e2e test references to affected selectors and update them. A migration PR that breaks existing e2e tests is incomplete.
+- **Action taken:** Documented in this queue. Future migration PRs must include a selector audit step.
+- **Outcome:** Rule accepted.
 
 ## Process
 

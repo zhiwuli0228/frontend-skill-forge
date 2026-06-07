@@ -8,11 +8,11 @@ This document is the single authority for current version status, active iterati
 
 | Item | Status |
 | --- | --- |
-| Current version | V2 first code-bearing frontend validation baseline |
-| Closed versions | V0, V1 |
-| Active iteration | V2.4 task create runtime baseline |
+| Current version | V7 Self-Evolution Validation |
+| Closed versions | V0, V1, V2, V3, V4, V5, V6 |
+| Active iteration | V7.1 Controlled drift scenario |
 | Default release mode | Internal agent-validation baseline, not product release |
-| Primary objective | Replace the task create placeholder with the third complex runtime surface on top of the accepted V1 control plane |
+| Primary objective | Prove Skill/Rule/Knowledge evolution loop works end-to-end through controlled UI drift |
 
 ## Version Policy
 
@@ -63,6 +63,18 @@ This document is the single authority for current version status, active iterati
 | V2.2 dashboard design | [baselines/V2/V2.2-DASHBOARD-RUNTIME-DESIGN.md](./baselines/V2/V2.2-DASHBOARD-RUNTIME-DESIGN.md) |
 | V2.2 gate contract | [baselines/V2/V2.2-GATE-CONTRACT.md](./baselines/V2/V2.2-GATE-CONTRACT.md) |
 | V2.2 dispatch contract | [baselines/V2/V2.2-DISPATCH-CONTRACT.md](./baselines/V2/V2.2-DISPATCH-CONTRACT.md) |
+| V4 baseline | [baselines/V4/README.md](./baselines/V4/README.md) |
+| V4 IR/SR bundle | [baselines/V4/V4-IR-SR-PLANNING-BUNDLE.md](./baselines/V4/V4-IR-SR-PLANNING-BUNDLE.md) |
+| V4 release record | [releases/V4.md](./releases/V4.md) |
+| V5 release record | [releases/V5.md](./releases/V5.md) |
+| Phase 5 verification | [../07-evidence/phase-5-benchmark-demo-expansion-verification.md](../07-evidence/phase-5-benchmark-demo-expansion-verification.md) |
+| V6 baseline | [baselines/V6/README.md](./baselines/V6/README.md) |
+| V6 IR/SR bundle | [baselines/V6/V6-IR-SR-PLANNING-BUNDLE.md](./baselines/V6/V6-IR-SR-PLANNING-BUNDLE.md) |
+| V7 baseline | [baselines/V7/README.md](./baselines/V7/README.md) |
+| V7 IR/SR bundle | [baselines/V7/V7-IR-SR-PLANNING-BUNDLE.md](./baselines/V7/V7-IR-SR-PLANNING-BUNDLE.md) |
+| V7 release record | [releases/V7.md](./releases/V7.md) |
+| V7 aggregate summary | [summaries/V7-AGGREGATE-SUMMARY.md](./summaries/V7-AGGREGATE-SUMMARY.md) |
+| Phase 7 self-evolution validation | [../07-evidence/phase-7-self-evolution-validation.md](../07-evidence/phase-7-self-evolution-validation.md) |
 | Architecture blueprint | [../01-architecture/frontend-skill-forge-architecture-blueprint.md](../01-architecture/frontend-skill-forge-architecture-blueprint.md) |
 | Project status | [../00-project/current-status.md](../00-project/current-status.md) |
 | Decision ledger | [current/DECISIONS.md](./current/DECISIONS.md) |
