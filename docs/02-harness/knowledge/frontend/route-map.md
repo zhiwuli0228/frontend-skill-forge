@@ -1,6 +1,6 @@
 # Route Map
 
-Status: Populated (V3.1)
+Status: Populated (V3.1) + MCP Verified (V6)
 Last Updated: 2026-06-07
 
 ## Purpose
@@ -32,6 +32,18 @@ Single source of truth for all runtime routes in the frontend-skill-forge projec
 | 11 | `/skill/versions` | skill | `SkillVersionsPage` | `skill-version-table`, `skill-rollback-btn-{version}` | `skill-versions-runtime.spec.ts`, `full-functional-verification.spec.ts` | (no sidebar item) |
 | 12 | `/workflow/list/:filter?` | workflow | `WorkflowListPage` | `workflow-table`, `workflow-status-toggle-{id}`, `workflow-edit-{id}` | `workflow-list-runtime.spec.ts`, `sidebar-filter-navigation.spec.ts`, `full-functional-verification.spec.ts` | `/workflow/list/all` (and 3 siblings) |
 | 13 | `/workflow/editor` | workflow | `WorkflowEditorPage` | `workflow-editor-canvas`, `workflow-node-palette`, `workflow-node-{id}`, `workflow-editor-save`, `workflow-editor-run` | `workflow-editor-runtime.spec.ts`, `full-functional-verification.spec.ts` | (no sidebar item) |
+
+## MCP Verification (V6)
+
+The following routes were verified with real Playwright MCP browser tools on 2026-06-07:
+
+| Route | MCP Session | Status | Key Findings |
+|-------|-------------|--------|--------------|
+| `/task/list` | `2026-06-07-V6-task-list-exploration` | ✅ Verified | 4 scenario states confirmed, row-click drawer works, pagination (10 tasks, 2 pages, 5/page), 1 console warning |
+| `/skill/list` | `2026-06-07-V6-skill-list-exploration` | ✅ Verified | 20 skill cards, grid/list toggle, search/filter/sort, skill detail modal, 2 console warnings |
+| `/workflow/editor` | `2026-06-07-V6-workflow-editor-exploration` | ✅ Verified | 6 nodes in graph, node palette (4 types), node properties dialog, save/run buttons |
+
+Selector stability: 18 High (64%), 8 Medium (29%), 2 Low (7%). See `evidence/selector-stability-v6.md`.
 | 14 | `/workflow/history` | workflow | `WorkflowHistoryPage` | `workflow-history-table`, `workflow-history-status-filter` | `workflow-history-runtime.spec.ts`, `full-functional-verification.spec.ts` | (no sidebar item) |
 | 15 | `/workflow/schedule` | workflow | `WorkflowSchedulePage` | `workflow-schedule-table`, `workflow-schedule-toggle-{id}`, `workflow-add-schedule` | `workflow-schedule-runtime.spec.ts`, `full-functional-verification.spec.ts` | (no sidebar item) |
 | 16 | `/insight/overview/:filter?` | insight | `InsightOverviewPage` | `insight-stat-cards`, `insight-chart`, `insight-overview-scenario-select` | `insight-overview-runtime.spec.ts`, `sidebar-filter-navigation.spec.ts`, `full-functional-verification.spec.ts` | `/insight/overview/all` (and 4 siblings) |
