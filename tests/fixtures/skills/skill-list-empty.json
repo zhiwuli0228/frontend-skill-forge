@@ -1,0 +1,13 @@
+{
+  "scenarioId": "skill-list-empty",
+  "page": "/skill/list/all",
+  "purpose": "验证 Skill 列表空状态渲染",
+  "data": {
+    "skills": []
+  },
+  "expected": {
+    "visibleTexts": ["No skills found"],
+    "roles": [],
+    "actions": []
+  }
+}

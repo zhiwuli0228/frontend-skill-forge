@@ -1,0 +1,13 @@
+{
+  "scenarioId": "task-templates-empty",
+  "page": "/task/templates",
+  "purpose": "验证 Task 模板空状态渲染",
+  "data": {
+    "templates": []
+  },
+  "expected": {
+    "visibleTexts": ["No templates match the current search criteria"],
+    "roles": [],
+    "actions": []
+  }
+}

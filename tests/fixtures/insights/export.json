@@ -1,0 +1,19 @@
+{
+  "scenarioId": "insight-export-loaded",
+  "page": "/insight/export",
+  "purpose": "验证 Insight 导出页面格式选择与导出历史渲染能力",
+  "data": {
+    "exports": [
+      { "id": "1", "format": "CSV", "dateRange": "2026-05-01 to 2026-05-31", "createdAt": "2026-06-01 10:30", "status": "ready", "downloadUrl": "#1" },
+      { "id": "2", "format": "JSON", "dateRange": "2026-04-01 to 2026-04-30", "createdAt": "2026-05-02 14:15", "status": "ready", "downloadUrl": "#2" },
+      { "id": "3", "format": "PDF", "dateRange": "2026-03-01 to 2026-03-31", "createdAt": "2026-04-01 09:00", "status": "processing", "downloadUrl": "" },
+      { "id": "4", "format": "CSV", "dateRange": "2026-02-01 to 2026-02-28", "createdAt": "2026-03-01 16:45", "status": "failed", "downloadUrl": "" },
+      { "id": "5", "format": "JSON", "dateRange": "2026-01-01 to 2026-01-31", "createdAt": "2026-02-01 11:20", "status": "ready", "downloadUrl": "#5" }
+    ]
+  },
+  "expected": {
+    "visibleTexts": ["Export", "Format", "Date Range", "CSV", "JSON", "PDF", "Download"],
+    "roles": ["combobox", "button", "table", "row"],
+    "actions": ["format-select", "date-range-select", "export-click", "download"]
+  }
+}

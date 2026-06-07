@@ -1,0 +1,23 @@
+{
+  "scenarioId": "skill-market-loaded",
+  "page": "/skill/market",
+  "purpose": "验证 Skill 市场页面推荐与安装能力",
+  "data": {
+    "featured": [
+      { "id": "s6", "name": "Image Generator", "description": "Creates photorealistic images from text prompts using diffusion-based generative models.", "category": "image", "version": "4.2.0", "status": "active", "icon": "PictureOutlined", "author": "VisionAI", "downloads": 22100, "tags": ["generation", "diffusion", "creative"] },
+      { "id": "s16", "name": "API Caller", "description": "Makes HTTP requests to external APIs with retry logic, rate limiting, and response caching.", "category": "tool", "version": "3.5.0", "status": "active", "icon": "ApiOutlined", "author": "DevTools", "downloads": 19400, "tags": ["api", "http", "integration"] },
+      { "id": "s7", "name": "Background Remover", "description": "Automatically removes backgrounds from images and replaces them with transparent or custom backgrounds.", "category": "image", "version": "2.0.3", "status": "active", "icon": "BgColorsOutlined", "author": "PhotoTools", "downloads": 18700, "tags": ["background", "removal", "editing"] }
+    ],
+    "recommended": [
+      { "id": "s13", "name": "Chart Generator", "description": "Generates interactive charts and visualizations from structured data in multiple formats.", "category": "data", "version": "3.2.0", "status": "active", "icon": "BarChartOutlined", "author": "VizLab", "downloads": 16200, "tags": ["charts", "visualization", "graphs"] },
+      { "id": "s3", "name": "Grammar Checker", "description": "Detects and corrects grammatical errors, spelling mistakes, and style issues in written content.", "category": "text", "version": "3.0.1", "status": "active", "icon": "CheckSquareOutlined", "author": "WriteTools", "downloads": 15300, "tags": ["grammar", "spelling", "writing"] },
+      { "id": "s12", "name": "CSV Parser", "description": "Parses CSV files with automatic delimiter detection, encoding handling, and schema inference.", "category": "data", "version": "1.8.0", "status": "active", "icon": "TableOutlined", "author": "DataWorks", "downloads": 14500, "tags": ["csv", "parsing", "import"] },
+      { "id": "s17", "name": "Web Scraper", "description": "Extracts structured data from web pages with CSS selector support and pagination handling.", "category": "tool", "version": "2.3.0", "status": "active", "icon": "CloudOutlined", "author": "ScrapeAI", "downloads": 13600, "tags": ["scraping", "web", "extraction"] }
+    ]
+  },
+  "expected": {
+    "visibleTexts": ["Featured", "Recommended", "Install", "Uninstall"],
+    "roles": ["heading", "button", "list"],
+    "actions": ["install-toggle", "card-click"]
+  }
+}

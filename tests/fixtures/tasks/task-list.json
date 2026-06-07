@@ -1,0 +1,27 @@
+{
+  "scenarioId": "task-list-loaded",
+  "page": "/task/list/all",
+  "purpose": "验证 Task 列表页面基础渲染、筛选与分页能力",
+  "data": {
+    "tasks": [
+      { "id": "t1", "title": "Upgrade database connection pooling", "status": "in-progress", "priority": "critical", "assignee": "Alice", "category": "infrastructure", "createdAt": "2026-06-01T10:00:00Z", "updatedAt": "2026-06-07T09:00:00Z", "description": "Migrate from HikariCP 5.x to 6.x to resolve connection leak under high concurrency." },
+      { "id": "t2", "title": "Implement rate limiting for public API", "status": "open", "priority": "high", "assignee": "Bob", "category": "security", "createdAt": "2026-06-02T14:00:00Z", "updatedAt": "2026-06-05T11:00:00Z", "description": "Add token-bucket rate limiting to /api/v2/* endpoints." },
+      { "id": "t3", "title": "Fix timezone handling in scheduler", "status": "completed", "priority": "medium", "assignee": "Charlie", "category": "bugfix", "createdAt": "2026-05-28T08:00:00Z", "updatedAt": "2026-06-03T16:00:00Z", "description": "Scheduled jobs were running at wrong times for non-UTC tenants." },
+      { "id": "t4", "title": "Add observability dashboard for queue depth", "status": "open", "priority": "medium", "assignee": "Alice", "category": "observability", "createdAt": "2026-06-04T09:00:00Z", "updatedAt": "2026-06-04T09:00:00Z", "description": "Create Grafana dashboard panels showing message queue depth." },
+      { "id": "t5", "title": "Migrate auth tokens to JWT RS256", "status": "blocked", "priority": "high", "assignee": "Diana", "category": "security", "createdAt": "2026-06-03T11:00:00Z", "updatedAt": "2026-06-06T15:00:00Z", "description": "Replace HS256 symmetric tokens with RS256 asymmetric keys." },
+      { "id": "t6", "title": "Optimize image thumbnail generation", "status": "in-progress", "priority": "low", "assignee": "Eve", "category": "performance", "createdAt": "2026-06-05T13:00:00Z", "updatedAt": "2026-06-07T08:00:00Z", "description": "Switch from server-side resizing to edge CDN transformation." },
+      { "id": "t7", "title": "Write migration for user preferences schema", "status": "open", "priority": "medium", "assignee": "Bob", "category": "infrastructure", "createdAt": "2026-06-06T10:00:00Z", "updatedAt": "2026-06-06T10:00:00Z", "description": "Add nullable JSONB column for user preferences." },
+      { "id": "t8", "title": "Investigate memory leak in worker pods", "status": "in-progress", "priority": "critical", "assignee": "Charlie", "category": "bugfix", "createdAt": "2026-06-07T07:00:00Z", "updatedAt": "2026-06-07T10:00:00Z", "description": "Worker pods OOM-killed after ~6 hours." },
+      { "id": "t9", "title": "Decommission legacy v1 API endpoints", "status": "archived", "priority": "low", "assignee": "Frank", "category": "infrastructure", "createdAt": "2025-11-15T09:00:00Z", "updatedAt": "2026-01-20T14:00:00Z", "description": "Legacy v1 endpoints retired after v2 GA." },
+      { "id": "t10", "title": "Pilot GraphQL gateway experiment", "status": "archived", "priority": "medium", "assignee": "Grace", "category": "infrastructure", "createdAt": "2025-12-01T10:00:00Z", "updatedAt": "2026-02-15T16:00:00Z", "description": "GraphQL gateway pilot concluded in February." }
+    ],
+    "statuses": ["open", "in-progress", "completed", "blocked", "archived"],
+    "priorities": ["critical", "high", "medium", "low"],
+    "categories": ["infrastructure", "security", "bugfix", "observability", "performance"]
+  },
+  "expected": {
+    "visibleTexts": ["Task List", "Title", "Status", "Priority", "Assignee", "Category", "Created"],
+    "roles": ["table", "columnheader", "row", "checkbox", "combobox", "listitem"],
+    "actions": ["row-click", "status-filter", "priority-filter", "category-filter", "sort", "pagination", "select-all"]
+  }
+}

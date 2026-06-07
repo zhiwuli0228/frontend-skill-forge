@@ -1,0 +1,31 @@
+{
+  "scenarioId": "workflow-history-loaded",
+  "page": "/workflow/history",
+  "purpose": "验证 Workflow 历史记录与执行日志渲染能力",
+  "data": {
+    "executionLogs": [
+      { "id": "el1", "workflowId": "wf1", "workflowName": "Deploy Staging", "startTime": "2026-06-07T08:30:00Z", "duration": "3m 12s", "status": "success", "trigger": "manual" },
+      { "id": "el2", "workflowId": "wf2", "workflowName": "Nightly Data Sync", "startTime": "2026-06-07T02:00:00Z", "duration": "47m 5s", "status": "success", "trigger": "schedule" },
+      { "id": "el3", "workflowId": "wf1", "workflowName": "Deploy Staging", "startTime": "2026-06-06T17:45:00Z", "duration": "2m 58s", "status": "failed", "trigger": "manual" },
+      { "id": "el4", "workflowId": "wf3", "workflowName": "User Onboarding Email", "startTime": "2026-06-06T18:00:00Z", "duration": "15s", "status": "success", "trigger": "webhook" },
+      { "id": "el5", "workflowId": "wf5", "workflowName": "Invoice Generation", "startTime": "2026-06-01T06:00:00Z", "duration": "12m 30s", "status": "success", "trigger": "schedule" },
+      { "id": "el6", "workflowId": "wf4", "workflowName": "Error Alert Escalation", "startTime": "2026-06-05T14:22:00Z", "duration": "8s", "status": "success", "trigger": "webhook" },
+      { "id": "el7", "workflowId": "wf7", "workflowName": "Backup Verification", "startTime": "2026-06-06T03:00:00Z", "duration": "25m 10s", "status": "success", "trigger": "schedule" },
+      { "id": "el8", "workflowId": "wf9", "workflowName": "PR Auto-Label", "startTime": "2026-06-07T07:15:00Z", "duration": "2s", "status": "success", "trigger": "webhook" },
+      { "id": "el9", "workflowId": "wf2", "workflowName": "Nightly Data Sync", "startTime": "2026-06-06T02:00:00Z", "duration": "1h 2m", "status": "failed", "trigger": "schedule" },
+      { "id": "el10", "workflowId": "wf1", "workflowName": "Deploy Staging", "startTime": "2026-06-05T10:00:00Z", "duration": "3m 5s", "status": "success", "trigger": "manual" }
+    ],
+    "schedules": [
+      { "id": "sch1", "workflowId": "wf2", "workflowName": "Nightly Data Sync", "cron": "0 2 * * *", "nextRun": "2026-06-08T02:00:00Z", "enabled": true },
+      { "id": "sch2", "workflowId": "wf5", "workflowName": "Invoice Generation", "cron": "0 6 1 * *", "nextRun": "2026-07-01T06:00:00Z", "enabled": true },
+      { "id": "sch3", "workflowId": "wf7", "workflowName": "Backup Verification", "cron": "0 3 * * 0", "nextRun": "2026-06-08T03:00:00Z", "enabled": true },
+      { "id": "sch4", "workflowId": "wf4", "workflowName": "Error Alert Escalation", "cron": "*/5 * * * *", "nextRun": "2026-06-07T10:05:00Z", "enabled": false },
+      { "id": "sch5", "workflowId": "wf8", "workflowName": "Slack Standup Bot", "cron": "0 10 * * 1-5", "nextRun": "2026-06-09T10:00:00Z", "enabled": false }
+    ]
+  },
+  "expected": {
+    "visibleTexts": ["Execution History", "Workflow", "Start Time", "Duration", "Status", "Trigger"],
+    "roles": ["table", "columnheader", "row"],
+    "actions": ["status-filter"]
+  }
+}

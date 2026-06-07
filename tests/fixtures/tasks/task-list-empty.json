@@ -1,0 +1,13 @@
+{
+  "scenarioId": "task-list-empty",
+  "page": "/task/list/all",
+  "purpose": "验证 Task 列表空状态渲染",
+  "data": {
+    "tasks": []
+  },
+  "expected": {
+    "visibleTexts": ["No tasks match the current filter"],
+    "roles": [],
+    "actions": []
+  }
+}

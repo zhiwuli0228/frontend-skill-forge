@@ -1,0 +1,28 @@
+{
+  "scenarioId": "workflow-editor-loaded",
+  "page": "/workflow/editor",
+  "purpose": "验证 Workflow 编辑器节点画布与属性编辑能力",
+  "data": {
+    "nodes": [
+      { "id": "n1", "type": "trigger", "label": "Webhook Trigger", "x": 50, "y": 200 },
+      { "id": "n2", "type": "process", "label": "Validate Payload", "x": 250, "y": 200 },
+      { "id": "n3", "type": "condition", "label": "Is Valid?", "x": 450, "y": 200 },
+      { "id": "n4", "type": "process", "label": "Transform Data", "x": 650, "y": 120 },
+      { "id": "n5", "type": "output", "label": "Send to Queue", "x": 850, "y": 120 },
+      { "id": "n6", "type": "output", "label": "Log Error", "x": 650, "y": 300 }
+    ],
+    "edges": [
+      { "id": "e1", "source": "n1", "target": "n2" },
+      { "id": "e2", "source": "n2", "target": "n3" },
+      { "id": "e3", "source": "n3", "target": "n4" },
+      { "id": "e4", "source": "n4", "target": "n5" },
+      { "id": "e5", "source": "n3", "target": "n6" }
+    ],
+    "nodeTypes": ["trigger", "process", "condition", "output"]
+  },
+  "expected": {
+    "visibleTexts": ["Node Palette", "Canvas", "Save", "Run", "Webhook Trigger", "Validate Payload", "Is Valid?"],
+    "roles": ["button", "dialog"],
+    "actions": ["node-click", "save", "run", "node-properties-edit"]
+  }
+}

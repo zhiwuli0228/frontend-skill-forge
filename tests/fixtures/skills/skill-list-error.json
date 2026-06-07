@@ -1,0 +1,11 @@
+{
+  "scenarioId": "skill-list-error",
+  "page": "/skill/list/all",
+  "purpose": "验证 Skill 列表错误状态渲染与重试能力",
+  "data": {},
+  "expected": {
+    "visibleTexts": ["Skill library failed to load", "Retry"],
+    "roles": ["alert"],
+    "actions": ["retry"]
+  }
+}

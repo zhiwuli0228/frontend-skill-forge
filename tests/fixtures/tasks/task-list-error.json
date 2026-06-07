@@ -1,0 +1,11 @@
+{
+  "scenarioId": "task-list-error",
+  "page": "/task/list/all",
+  "purpose": "验证 Task 列表错误状态渲染与重试能力",
+  "data": {},
+  "expected": {
+    "visibleTexts": ["Task list failed to load", "An unexpected error occurred while loading the task list. Please try again.", "Retry"],
+    "roles": ["alert"],
+    "actions": ["retry"]
+  }
+}

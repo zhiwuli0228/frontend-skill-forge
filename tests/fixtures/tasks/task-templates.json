@@ -1,0 +1,27 @@
+{
+  "scenarioId": "task-templates-loaded",
+  "page": "/task/templates",
+  "purpose": "验证 Task 模板页面分类筛选、搜索与预览能力",
+  "data": {
+    "templates": [
+      { "id": "tpl1", "name": "Bug Fix", "description": "Standard bug fix workflow with reproduction, fix, and verification steps.", "category": "development", "icon": "bug", "tags": ["bug", "fix"] },
+      { "id": "tpl2", "name": "Feature Implementation", "description": "Full feature implementation from design to deployment.", "category": "development", "icon": "rocket", "tags": ["feature", "implementation"] },
+      { "id": "tpl3", "name": "Code Review", "description": "Structured code review checklist and process.", "category": "development", "icon": "eye", "tags": ["review", "code"] },
+      { "id": "tpl4", "name": "UI Design Review", "description": "Design review with accessibility and usability checks.", "category": "design", "icon": "skin", "tags": ["design", "accessibility"] },
+      { "id": "tpl5", "name": "Wireframe Task", "description": "Create wireframes for new page or feature.", "category": "design", "icon": "edit", "tags": ["wireframe", "design"] },
+      { "id": "tpl6", "name": "Design System Update", "description": "Update design tokens and component library.", "category": "design", "icon": "appstore", "tags": ["design-system", "tokens"] },
+      { "id": "tpl7", "name": "Unit Test Suite", "description": "Create comprehensive unit test suite for a module.", "category": "testing", "icon": "check-circle", "tags": ["testing", "unit"] },
+      { "id": "tpl8", "name": "E2E Test Plan", "description": "End-to-end test plan with Playwright scenarios.", "category": "testing", "icon": "play-circle", "tags": ["testing", "e2e", "playwright"] },
+      { "id": "tpl9", "name": "Performance Test", "description": "Load testing and performance benchmark setup.", "category": "testing", "icon": "thunderbolt", "tags": ["testing", "performance"] },
+      { "id": "tpl10", "name": "Deployment Checklist", "description": "Pre-deployment verification and rollback plan.", "category": "operations", "icon": "cloud-upload", "tags": ["deployment", "operations"] },
+      { "id": "tpl11", "name": "Incident Response", "description": "Incident response playbook with escalation paths.", "category": "operations", "icon": "alert", "tags": ["incident", "response"] },
+      { "id": "tpl12", "name": "Monitoring Setup", "description": "Set up monitoring dashboards and alerts.", "category": "operations", "icon": "dashboard", "tags": ["monitoring", "alerts"] }
+    ],
+    "categories": ["all", "development", "design", "testing", "operations"]
+  },
+  "expected": {
+    "visibleTexts": ["Templates", "All", "Development", "Design", "Testing", "Operations"],
+    "roles": ["heading", "textbox", "combobox"],
+    "actions": ["search", "category-filter", "card-click"]
+  }
+}

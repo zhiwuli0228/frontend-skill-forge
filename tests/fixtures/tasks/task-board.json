@@ -1,0 +1,34 @@
+{
+  "scenarioId": "task-board-loaded",
+  "page": "/task/board",
+  "purpose": "验证 Task 看板页面拖拽与状态分列能力",
+  "data": {
+    "columns": {
+      "open": [
+        { "id": "t2", "title": "Implement rate limiting for public API", "priority": "high", "assignee": "Bob", "category": "security" },
+        { "id": "t4", "title": "Add observability dashboard for queue depth", "priority": "medium", "assignee": "Alice", "category": "observability" },
+        { "id": "t7", "title": "Write migration for user preferences schema", "priority": "medium", "assignee": "Bob", "category": "infrastructure" }
+      ],
+      "in-progress": [
+        { "id": "t1", "title": "Upgrade database connection pooling", "priority": "critical", "assignee": "Alice", "category": "infrastructure" },
+        { "id": "t6", "title": "Optimize image thumbnail generation", "priority": "low", "assignee": "Eve", "category": "performance" },
+        { "id": "t8", "title": "Investigate memory leak in worker pods", "priority": "critical", "assignee": "Charlie", "category": "bugfix" }
+      ],
+      "completed": [
+        { "id": "t3", "title": "Fix timezone handling in scheduler", "priority": "medium", "assignee": "Charlie", "category": "bugfix" }
+      ],
+      "blocked": [
+        { "id": "t5", "title": "Migrate auth tokens to JWT RS256", "priority": "high", "assignee": "Diana", "category": "security" }
+      ],
+      "archived": [
+        { "id": "t9", "title": "Decommission legacy v1 API endpoints", "priority": "low", "assignee": "Frank", "category": "infrastructure" },
+        { "id": "t10", "title": "Pilot GraphQL gateway experiment", "priority": "medium", "assignee": "Grace", "category": "infrastructure" }
+      ]
+    }
+  },
+  "expected": {
+    "visibleTexts": ["Open", "In Progress", "Completed", "Blocked", "Archived"],
+    "roles": ["list", "listitem"],
+    "actions": ["drag-drop", "card-click"]
+  }
+}

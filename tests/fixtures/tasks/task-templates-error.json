@@ -1,0 +1,11 @@
+{
+  "scenarioId": "task-templates-error",
+  "page": "/task/templates",
+  "purpose": "验证 Task 模板错误状态渲染与重试能力",
+  "data": {},
+  "expected": {
+    "visibleTexts": ["Template library failed to load", "An unexpected error occurred while loading templates. Please try again.", "Retry"],
+    "roles": ["alert"],
+    "actions": ["retry"]
+  }
+}

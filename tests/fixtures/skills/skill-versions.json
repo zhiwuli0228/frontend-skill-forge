@@ -1,0 +1,25 @@
+{
+  "scenarioId": "skill-versions-loaded",
+  "page": "/skill/versions",
+  "purpose": "验证 Skill 版本管理页面渲染与回滚能力",
+  "data": {
+    "versions": [
+      { "version": "2.1.0", "date": "2026-05-20", "changes": "Added multi-document summarization support and improved accuracy by 15%.", "status": "current" },
+      { "version": "2.0.0", "date": "2026-03-10", "changes": "Migrated to new summarization engine with abstractive mode.", "status": "previous" },
+      { "version": "1.5.0", "date": "2025-11-15", "changes": "Added language detection and auto-language selection.", "status": "previous" },
+      { "version": "1.2.0", "date": "2025-07-01", "changes": "Performance improvements and reduced latency by 40%.", "status": "deprecated" },
+      { "version": "1.0.0", "date": "2025-03-01", "changes": "Initial release with basic extractive summarization.", "status": "deprecated" }
+    ],
+    "config": {
+      "skillId": "s1",
+      "connection": { "endpoint": "https://api.ailabs.io/v2/summarizer", "apiKey": "sk-****-****-****", "timeout": 30000 },
+      "parameters": { "maxSentences": 5, "language": "auto", "mode": "abstractive" },
+      "permissions": ["read:documents", "write:summaries", "access:models"]
+    }
+  },
+  "expected": {
+    "visibleTexts": ["Version", "Date", "Changes", "Rollback", "current", "previous", "deprecated"],
+    "roles": ["table", "button"],
+    "actions": ["rollback"]
+  }
+}

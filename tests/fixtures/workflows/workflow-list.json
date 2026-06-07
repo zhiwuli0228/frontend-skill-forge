@@ -1,0 +1,24 @@
+{
+  "scenarioId": "workflow-list-loaded",
+  "page": "/workflow/list/all",
+  "purpose": "验证 Workflow 列表页面基础渲染与状态切换能力",
+  "data": {
+    "workflows": [
+      { "id": "wf1", "name": "Deploy Staging", "description": "Automated staging deployment pipeline with health checks and rollback support.", "status": "active", "nodeCount": 5, "lastRun": "2026-06-07T08:30:00Z", "createdAt": "2026-05-15T10:00:00Z" },
+      { "id": "wf2", "name": "Nightly Data Sync", "description": "Sync production data to analytics warehouse every night at 2 AM UTC.", "status": "active", "nodeCount": 8, "lastRun": "2026-06-07T02:00:00Z", "createdAt": "2026-04-20T14:00:00Z" },
+      { "id": "wf3", "name": "User Onboarding Email", "description": "Send welcome email series to new users over their first 7 days.", "status": "active", "nodeCount": 4, "lastRun": "2026-06-06T18:00:00Z", "createdAt": "2026-05-01T09:00:00Z" },
+      { "id": "wf4", "name": "Error Alert Escalation", "description": "Monitor error rates and escalate to PagerDuty when thresholds are breached.", "status": "inactive", "nodeCount": 6, "lastRun": "2026-06-05T14:22:00Z", "createdAt": "2026-03-10T11:00:00Z" },
+      { "id": "wf5", "name": "Invoice Generation", "description": "Generate and email monthly invoices for active subscriptions.", "status": "active", "nodeCount": 7, "lastRun": "2026-06-01T06:00:00Z", "createdAt": "2026-02-28T16:00:00Z" },
+      { "id": "wf6", "name": "Cache Invalidation", "description": "Invalidate CDN and application caches when content is published.", "status": "inactive", "nodeCount": 3, "lastRun": "2026-06-04T11:45:00Z", "createdAt": "2026-04-15T08:00:00Z" },
+      { "id": "wf7", "name": "Backup Verification", "description": "Verify database backups are restorable by performing trial restores weekly.", "status": "active", "nodeCount": 5, "lastRun": "2026-06-06T03:00:00Z", "createdAt": "2026-01-20T10:00:00Z" },
+      { "id": "wf8", "name": "Slack Standup Bot", "description": "Collect standup updates from team members and post summary at 10 AM.", "status": "draft", "nodeCount": 4, "lastRun": "", "createdAt": "2026-06-07T09:00:00Z" },
+      { "id": "wf9", "name": "PR Auto-Label", "description": "Automatically label pull requests based on changed file paths and labels.", "status": "active", "nodeCount": 3, "lastRun": "2026-06-07T07:15:00Z", "createdAt": "2026-05-10T12:00:00Z" },
+      { "id": "wf10", "name": "Compliance Report", "description": "Generate quarterly compliance reports from audit logs and access records.", "status": "draft", "nodeCount": 9, "lastRun": "", "createdAt": "2026-06-06T15:00:00Z" }
+    ]
+  },
+  "expected": {
+    "visibleTexts": ["Workflow List", "Name", "Status", "Node Count", "Last Run"],
+    "roles": ["table", "columnheader", "row"],
+    "actions": ["status-toggle", "edit-link"]
+  }
+}
