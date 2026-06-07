@@ -45,6 +45,12 @@ This ledger stores user-confirmed decisions that affect scope, release semantics
 | D035 | 2026-06-07 | V3 first-accepts 5 rules: RE-001 (sidebar items must have unique `path`), RE-003 (every testable element must have `data-testid`), RE-004 (e2e tests must assert on URL change for navigation), RE-005 (mock data interfaces must include all filter values). RE-002 (scenario selector on every page) is deferred to V4 for re-evaluation. |
 | D036 | 2026-06-07 | V3 is closed. All 19 functional requirements, 6 non-functional requirements, and 12 of 13 exit-gate criteria are met. The 13th (user acceptance) is the final step. |
 | D037 | 2026-06-07 | V4 is approved as the next major version after V3. V4 = "Skill v1 implementation" corresponding to architecture blueprint Phase 4. V4 will convert the 4 skeleton Skills (frontend-project-reader, frontend-incremental-coder, frontend-e2e-explorer, skill-evolution-maintainer) into usable v1, using V3's evidence (knowledge maps, e2e registry, MCP session, drift diagnosis) as the validation set. |
+| D038 | 2026-06-07 | V4.1: `frontend-project-reader` v1 accepted. 9-step procedure validated against V3.1 knowledge maps (route-map, component-map, project-map, state-flow-map, api-contract-map). |
+| D039 | 2026-06-07 | V4.2: `frontend-incremental-coder` v1 accepted. 9-step procedure validated against V3.4 failure-diagnosis (V2.10 sidebar hotfix). |
+| D040 | 2026-06-07 | V4.3: `frontend-e2e-explorer` v1 accepted. 9-step procedure validated against V3.3 MCP session (12 evidence records). |
+| D041 | 2026-06-07 | V4.4: `skill-evolution-maintainer` v1 accepted. 8-step procedure validated against V3.4 evolution queues (KE-001, RE-001 through RE-005). |
+| D042 | 2026-06-07 | V4 is closed. All 7 functional requirements met. All 4 Skills have v1 procedures with validation examples. evidence-to-skill-promotion updated with 4 accepted promotions. |
+| D043 | 2026-06-07 | V5 is approved as the next major version after V4. V5 = "Benchmark Demo Expansion" corresponding to architecture blueprint Phase 5. V5 will add more complex demo pages to the V2 surface, expanding the evidence loop to cover more interaction patterns. |
 
 ## Pending Confirmations
 

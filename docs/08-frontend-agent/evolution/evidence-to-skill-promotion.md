@@ -133,11 +133,22 @@ V3.4 also promoted 5 items to **rules** (see `rule-evolution-queue.md`):
 
 These are rules, not skills, because they are hard constraints ("must do X") rather than procedures ("to do X, follow these steps"). The Skill territory is procedural knowledge.
 
+## V4 Accepted Promotions
+
+V4 converted all 4 skeleton Skills to v1 procedures. Each Skill was validated against V3 evidence:
+
+| Skill | V3 Evidence Used | Validation Result |
+| --- | --- | --- |
+| frontend-project-reader | V3.1 knowledge maps (5 maps) | v1 accepted (D038) |
+| frontend-incremental-coder | V3.4 failure-diagnosis (V2.10 sidebar hotfix) | v1 accepted (D039) |
+| frontend-e2e-explorer | V3.3 MCP session (12 evidence records) | v1 accepted (D040) |
+| skill-evolution-maintainer | V3.4 evolution queues (KE-001, RE-001–RE-005) | v1 accepted (D041) |
+
 ## Next Step
 
-V4 (Skill v1 implementation) will:
+V5 (Benchmark Demo Expansion) will:
 
-1. Convert `docs/02-harness/skills/frontend-project-reader/SKILL.md` from skeleton to v1
-2. Use the V3 evidence as the validation set
-3. Produce the first evidence-to-skill promotion record
-4. Update this file with the first accepted promotion
+1. Add more complex demo pages to the V2 surface
+2. Run the `frontend-e2e-explorer` Skill on the new pages
+3. Confirm the scenario-selector pattern is project-wide (need ≥3 routes for promotion)
+4. Promote the "scenario selector" pattern to a Skill update when the criterion is met
