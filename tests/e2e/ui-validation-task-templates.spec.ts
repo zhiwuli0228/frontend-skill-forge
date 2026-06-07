@@ -58,7 +58,7 @@ test('task templates real interaction validation', async ({ page }) => {
   await bugFixCard.click();
   const previewDialog = page.getByRole('dialog');
   await expect(previewDialog).toBeVisible();
-  await previewDialog.getByRole('button', { name: /close/i }).click();
+  await previewDialog.getByRole('button', { name: /close/i }).first().click();
 
   await page.getByTestId('task-templates-scenario-select').click();
   await page.getByTitle('Empty').click();
