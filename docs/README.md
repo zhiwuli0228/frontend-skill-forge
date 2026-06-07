@@ -12,7 +12,8 @@ docs/
 ├── 05-domain/            # Domain-specific docs
 ├── 06-operations/        # Operations and deployment
 ├── 07-evidence/          # Cross-cutting verification evidence
-└── 08-frontend-agent/    # Frontend MCP, UI evidence, E2E assets, evolution
+├── 08-frontend-agent/    # Frontend MCP, UI evidence, E2E assets, evolution
+└── 09-change-records/    # Current version state, version baselines, releases, decisions
 ```
 
 ## Sections
@@ -68,3 +69,12 @@ Frontend-specific AI Harness governance layer. Owns:
 - Human feedback integration
 
 This is the key differentiator from a normal backend Harness project.
+
+### 09-change-records
+
+Version-management ledger. Owns:
+- Current version authority
+- Decision ledger
+- Version baselines
+- One release record per version
+- Version workflow and closure rules

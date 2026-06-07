@@ -27,5 +27,10 @@ dist-ssr
 playwright-report/
 test-results/
 
-# Claude Code local config
+# Local tool config (Claude Code, Codex, OpenCode, Playwright MCP)
 .claude/
+.codex/
+.opencode/
+.playwright-mcp/
+AGENTS.md
+CLAUDE.md

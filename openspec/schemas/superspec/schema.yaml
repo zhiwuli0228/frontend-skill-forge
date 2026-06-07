@@ -1,0 +1,194 @@
+name: superspec
+version: 1
+description: >
+  Repository-local gated workflow schema for frontend-skill-forge. This schema
+  standardizes frontend change artifacts, required skills and MCP usage, and
+  evidence-backed verification with Playwright end-to-end coverage.
+artifacts:
+  - id: brainstorm
+    generates: brainstorm.md
+    description: >
+      Pre-change exploration record for scope, constraints, and risks.
+      Required skill: Superpowers brainstorming skill when installed; fallback:
+      openspec-explore only when Superpowers is unavailable and the fallback is
+      explicitly recorded. Fixed artifact path:
+      openspec/changes/<change>/brainstorm.md. This file is the redirect
+      manifest for brainstorm output. If Superpowers generated the brainstorm,
+      the only approved external target is docs/superpowers/specs/. No other
+      redirection is allowed.
+    template: brainstorm.md
+    requires: []
+  - id: proposal
+    generates: proposal.md
+    description: >
+      Change motivation, scope boundary, and delivery intent. Required skill:
+      OpenSpec propose/proposal authoring skill. Fixed output path:
+      openspec/changes/<change>/proposal.md. No redirection is allowed.
+    template: proposal.md
+    requires:
+      - brainstorm
+  - id: specs
+    generates: specs/**/*.md
+    description: >
+      Detailed functional and end-to-end verification requirements. Required
+      skill: OpenSpec spec authoring skill. Fixed output root:
+      openspec/changes/<change>/specs/. Files must remain under this root.
+      Redirection outside specs/ is forbidden.
+    template: specs/spec.md
+    requires:
+      - proposal
+  - id: design
+    generates: design.md
+    description: >
+      Technical design, frontend integration approach, and verification design.
+      Required skill: OpenSpec design authoring skill. Fixed output path:
+      openspec/changes/<change>/design.md. No redirection is allowed.
+    template: design.md
+    requires:
+      - specs
+  - id: design-review
+    generates: design-review.md
+    description: >
+      Independent review of design traceability and feasibility. Required
+      skill: independent review skill. Fixed output path:
+      openspec/changes/<change>/design-review.md. No redirection is allowed.
+    template: review.md
+    requires:
+      - design
+  - id: design-disposition
+    generates: design-disposition.md
+    description: >
+      Resolution record for design review findings. Required skill:
+      disposition/resolution skill. Fixed output path:
+      openspec/changes/<change>/design-disposition.md. No redirection is
+      allowed.
+    template: disposition.md
+    requires:
+      - design-review
+  - id: design-closure
+    generates: design-closure.md
+    description: >
+      Closure check confirming design disposition updates were applied.
+      Required skill: closure verification skill. Fixed output path:
+      openspec/changes/<change>/design-closure.md. No redirection is allowed.
+    template: closure.md
+    requires:
+      - design-disposition
+  - id: plan
+    generates: plan.md
+    description: >
+      Execution sequencing, skill dispatch, MCP usage, and evidence plan.
+      Required skill: planning/dispatch skill. Fixed output path:
+      openspec/changes/<change>/plan.md. No redirection is allowed.
+    template: plan.md
+    requires:
+      - design-closure
+  - id: tasks
+    generates: tasks.md
+    description: >
+      Trackable implementation and verification checklist. Required skill:
+      task decomposition skill. Fixed output path:
+      openspec/changes/<change>/tasks.md. No redirection is allowed.
+    template: tasks.md
+    requires:
+      - plan
+  - id: implementation
+    generates: implementation.md
+    description: >
+      Bounded execution record with changed files and completed work. Required
+      skill: implementation/coding skill. Fixed output path:
+      openspec/changes/<change>/implementation.md. No redirection is allowed.
+    template: implementation.md
+    requires:
+      - tasks
+  - id: implementation-review
+    generates: implementation-review.md
+    description: >
+      Review of implementation outputs against the approved design and tasks.
+      Required skill: independent review skill. Fixed output path:
+      openspec/changes/<change>/implementation-review.md. No redirection is
+      allowed.
+    template: review.md
+    requires:
+      - implementation
+  - id: implementation-disposition
+    generates: implementation-disposition.md
+    description: >
+      Resolution record for implementation review findings. Required skill:
+      disposition/resolution skill. Fixed output path:
+      openspec/changes/<change>/implementation-disposition.md. No redirection is
+      allowed.
+    template: disposition.md
+    requires:
+      - implementation-review
+  - id: implementation-closure
+    generates: implementation-closure.md
+    description: >
+      Closure check confirming implementation disposition updates were applied.
+      Required skill: closure verification skill. Fixed output path:
+      openspec/changes/<change>/implementation-closure.md. No redirection is
+      allowed.
+    template: closure.md
+    requires:
+      - implementation-disposition
+  - id: verify
+    generates: verify.md
+    description: >
+      Verification execution and evidence results with mandatory E2E coverage.
+      Required skill: verification skill with Playwright E2E capability and MCP
+      evidence capture. Fixed output path:
+      openspec/changes/<change>/verify.md. No redirection is allowed.
+    template: verify.md
+    requires:
+      - implementation-closure
+  - id: verify-review
+    generates: verify-review.md
+    description: >
+      Independent review of verification completeness and evidence quality.
+      Required skill: independent review skill. Fixed output path:
+      openspec/changes/<change>/verify-review.md. No redirection is allowed.
+    template: review.md
+    requires:
+      - verify
+  - id: verify-disposition
+    generates: verify-disposition.md
+    description: >
+      Resolution record for verification review findings. Required skill:
+      disposition/resolution skill. Fixed output path:
+      openspec/changes/<change>/verify-disposition.md. No redirection is
+      allowed.
+    template: disposition.md
+    requires:
+      - verify-review
+  - id: verify-closure
+    generates: verify-closure.md
+    description: >
+      Closure check confirming verification disposition updates were applied.
+      Required skill: closure verification skill. Fixed output path:
+      openspec/changes/<change>/verify-closure.md. No redirection is allowed.
+    template: closure.md
+    requires:
+      - verify-disposition
+  - id: acceptance-precheck
+    generates: acceptance-precheck.md
+    description: >
+      Reverse traceability check before release or acceptance claims. Required
+      skill: acceptance/precheck verification skill. Fixed output path:
+      openspec/changes/<change>/acceptance-precheck.md. No redirection is
+      allowed.
+    template: acceptance-precheck.md
+    requires:
+      - verify-closure
+  - id: release
+    generates: release.md
+    description: >
+      Version outcome summary, acceptance state, and open items. Required
+      skill: release summarization skill. Fixed output path:
+      openspec/changes/<change>/release.md. No redirection is allowed.
+    template: release.md
+    requires:
+      - acceptance-precheck
+apply:
+  requires:
+    - tasks
+  tracks: tasks.md

@@ -1,52 +1,42 @@
 import { Menu } from 'antd';
-import { useNavigate, useLocation } from 'react-router';
-import {
-  DashboardOutlined,
-  UnorderedListOutlined,
-  PlusOutlined,
-} from '@ant-design/icons';
+import type { MenuProps } from 'antd';
+import { useLocation, useNavigate } from 'react-router';
+import type { SidebarMenuItem } from '../config/moduleConfig';
 
-const menuItems = [
-  {
-    key: '/dashboard',
-    icon: <DashboardOutlined />,
-    label: 'Dashboard',
-  },
-  {
-    key: '/task',
-    icon: <UnorderedListOutlined />,
-    label: 'Tasks',
-    children: [
-      {
-        key: '/task/list',
-        icon: <UnorderedListOutlined />,
-        label: 'Task List',
-      },
-      {
-        key: '/task/create',
-        icon: <PlusOutlined />,
-        label: 'Create Task',
-      },
-    ],
-  },
-];
+interface SidebarNavigationProps {
+  menuItems: SidebarMenuItem[];
+  defaultOpenKeys?: string[];
+}
 
-export function SidebarNavigation() {
+export function SidebarNavigation({
+  menuItems,
+  defaultOpenKeys = [],
+}: SidebarNavigationProps) {
   const navigate = useNavigate();
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   const handleClick = ({ key }: { key: string }) => {
-    navigate(key);
+    const item = menuItems.find((i) => i.key === key);
+    navigate(item?.path ?? key);
   };
+
+  const antdItems: MenuProps['items'] = menuItems.map(({ key, label }) => ({
+    key,
+    label,
+  }));
+
+  const selectedKey =
+    menuItems.find((item) => item.path && pathname.startsWith(item.path))?.key ?? '';
 
   return (
     <Menu
       mode="inline"
-      selectedKeys={[location.pathname]}
-      defaultOpenKeys={['/task']}
-      items={menuItems}
+      selectedKeys={selectedKey ? [selectedKey] : []}
+      defaultOpenKeys={defaultOpenKeys}
+      items={antdItems}
       onClick={handleClick}
       style={{ height: '100%', borderRight: 0 }}
+      data-testid="sidebar-menu"
     />
   );
 }

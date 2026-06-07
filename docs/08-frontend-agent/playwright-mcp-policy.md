@@ -10,6 +10,8 @@ Define operational policies for using Playwright MCP tools in frontend explorati
 
 All Playwright MCP interactions within the frontend agent layer.
 
+This policy also applies to evidence gathered for `superspec` verify-stage artifacts.
+
 ## Rules
 
 ### 1. Tool Usage Policy
@@ -51,6 +53,12 @@ Every exploration session must produce:
 - Goal statement
 - Observations list
 
+When the session supports a verification artifact, it must also record:
+
+- the related change or task identifier
+- the related Playwright test file path, if automation exists
+- whether the result is pass, fail, or blocked
+
 ### 4. Error Handling
 
 - Capture console errors as evidence
@@ -70,3 +78,4 @@ Every exploration session must produce:
 - Playwright interaction logs
 - Evidence artifacts
 - Error records
+- inputs suitable for the `verify.md` artifact
