@@ -28,7 +28,7 @@ export function TaskDetailDrawer({ task, onClose }: TaskDetailDrawerProps) {
       title={task?.title ?? 'Task Detail'}
       open={task !== null}
       onClose={onClose}
-      width={480}
+      size="large"
       data-testid="task-detail-drawer"
     >
       {task && (

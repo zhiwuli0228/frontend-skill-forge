@@ -24,14 +24,14 @@ Single source of truth for all runtime routes in the frontend-skill-forge projec
 | 3 | `/dashboard` | (root) | redirect → `/task/list/all` | (n/a) | (covered by smoke) | (n/a) |
 | 4 | `/task/list/:filter?` | task | `TaskListPage` | `task-table`, `task-filter-bar`, `task-detail-drawer`, `task-scenario-select` | `task-list-runtime.spec.ts`, `sidebar-filter-navigation.spec.ts`, `full-functional-verification.spec.ts` | `/task/list/all` (and 4 siblings) |
 | 5 | `/task/create` | task | `TaskCreatePage` | `task-create-form`, `task-create-scenario-select` | `task-create-runtime.spec.ts`, `full-functional-verification.spec.ts` | (no sidebar item) |
-| 6 | `/task/templates` | task | `TaskTemplatesPage` | `template-grid`, `template-filter-bar`, `template-preview-modal` | `task-templates-runtime.spec.ts`, `full-functional-verification.spec.ts` | (no sidebar item) |
+| 6 | `/task/templates` | task | `TaskTemplatesPage` | `template-grid`, `template-filter-bar`, `template-preview-modal`, `template-open-workflow` | `task-templates-runtime.spec.ts`, `full-functional-verification.spec.ts` | (no sidebar item) |
 | 7 | `/task/board` | task | `TaskBoardPage` | `board-container`, `board-column-{status}`, `board-task-card-{id}` | `task-board-runtime.spec.ts`, `full-functional-verification.spec.ts` | (no sidebar item) |
 | 8 | `/skill/list/:filter?` | skill | `SkillListPage` | `skill-grid`, `skill-list-view`, `skill-detail-modal`, `skill-filter-bar`, `skill-scenario-select` | `skill-list-runtime.spec.ts`, `sidebar-filter-navigation.spec.ts`, `full-functional-verification.spec.ts` | `/skill/list/all` (and 4 siblings) |
 | 9 | `/skill/market` | skill | `SkillMarketPage` | `skill-market-featured`, `skill-market-recommended`, `skill-card-{id}`, `skill-install-{id}` | `skill-market-runtime.spec.ts`, `full-functional-verification.spec.ts` | (no sidebar item) |
 | 10 | `/skill/config` | skill | `SkillConfigPage` | `skill-config-form`, `skill-config-skill-select`, `skill-config-save`, `skill-config-reset` | `skill-config-runtime.spec.ts`, `full-functional-verification.spec.ts` | (no sidebar item) |
 | 11 | `/skill/versions` | skill | `SkillVersionsPage` | `skill-version-table`, `skill-rollback-btn-{version}` | `skill-versions-runtime.spec.ts`, `full-functional-verification.spec.ts` | (no sidebar item) |
 | 12 | `/workflow/list/:filter?` | workflow | `WorkflowListPage` | `workflow-table`, `workflow-status-toggle-{id}`, `workflow-edit-{id}` | `workflow-list-runtime.spec.ts`, `sidebar-filter-navigation.spec.ts`, `full-functional-verification.spec.ts` | `/workflow/list/all` (and 3 siblings) |
-| 13 | `/workflow/editor` | workflow | `WorkflowEditorPage` | `workflow-editor-canvas`, `workflow-node-palette`, `workflow-node-{id}`, `workflow-editor-save`, `workflow-editor-run` | `workflow-editor-runtime.spec.ts`, `full-functional-verification.spec.ts` | (no sidebar item) |
+| 13 | `/workflow/editor` | workflow | `WorkflowEditorPage` | `workflow-editor-canvas`, `workflow-node-palette`, `workflow-node-{id}`, `workflow-editor-save`, `workflow-editor-run`, `workflow-template-context` | `workflow-editor-runtime.spec.ts`, `full-functional-verification.spec.ts` | (no sidebar item) |
 
 ## MCP Verification (V6)
 

@@ -1,4 +1,4 @@
-import { Modal, Tag, Typography } from 'antd';
+import { Button, Modal, Space, Tag, Typography } from 'antd';
 
 import type { TemplateItem } from '../data/template-mock-data';
 
@@ -15,12 +15,14 @@ interface TemplatePreviewModalProps {
   template: TemplateItem | null;
   open: boolean;
   onClose: () => void;
+  onOpenWorkflow?: (template: TemplateItem) => void;
 }
 
 export function TemplatePreviewModal({
   template,
   open,
   onClose,
+  onOpenWorkflow,
 }: TemplatePreviewModalProps) {
   if (!template) return null;
 
@@ -29,7 +31,20 @@ export function TemplatePreviewModal({
       title={template.title}
       open={open}
       onCancel={onClose}
-      footer={null}
+      footer={
+        <Space>
+          <Button onClick={onClose}>
+            Close
+          </Button>
+          <Button
+            type="primary"
+            data-testid="template-open-workflow"
+            onClick={() => onOpenWorkflow?.(template)}
+          >
+            Open in Workflow Editor
+          </Button>
+        </Space>
+      }
       data-testid="template-preview-modal"
     >
       <div style={{ marginBottom: 16 }}>

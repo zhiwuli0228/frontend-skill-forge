@@ -1,10 +1,10 @@
 # frontend-skill-forge Architecture Blueprint and Development Manual
 
-> Version: 0.1  
+> Version: 0.8  
 > Baseline Branch: `master`  
 > Repository: `zhiwuli0228/frontend-skill-forge`  
 > Document Role: Project-level development manual for Codex, Claude Code, and future AI agents.  
-> Status: Draft / Architecture Baseline
+> Status: Active / Canonical Blueprint
 
 ---
 
@@ -115,6 +115,36 @@ docs/
 ```
 
 This `docs` structure is now part of the architecture and must not be flattened.
+
+---
+
+## 3.1 Current Maturity Snapshot
+
+As of 2026-06-07, the project is no longer only an architecture seed. It has already validated the main harness loop inside this repository.
+
+Current assessment:
+
+| Dimension | Score | Meaning |
+| --- | --- | --- |
+| Core loop readiness | 9/10 | Understanding, exploration, evidence, verification, evolution, and archive all work together. |
+| Documentation asset completeness | 8/10 | Maps, evidence, skills, and evolution queues are established. |
+| Single-project agent usability | 7.5/10 | Agents can work in this repo with materially reduced understanding cost. |
+| Automation level | 5.5/10 | Many safeguards are still procedural rather than executable. |
+| Real-project migration readiness | 5/10 | The approach is not yet validated on a large existing frontend system. |
+| Long-term maintenance cost | 5/10 | Knowledge and evidence freshness still depend too much on manual upkeep. |
+
+Architecture implication:
+
+```text
+The primary risk is no longer missing structure.
+The primary risk is process drift caused by insufficient automation.
+```
+
+That means future work should prefer:
+
+1. executable guardrails over more prose,
+2. freshness mechanisms over more static maps,
+3. migration trials over self-referential refinement.
 
 ---
 
@@ -1287,6 +1317,51 @@ Deliverables:
 6. Re-verification.
 7. Archive report.
 
+Status:
+
+Completed in current baseline.
+
+### Phase 8 — Governance Automation Baseline
+
+Goal:
+
+Reduce reliance on agent self-discipline by turning core documentation obligations into executable checks or assisted generation.
+
+Deliverables:
+
+1. Knowledge-map refresh strategy.
+2. Evidence registry generation support.
+3. Stale-asset detection for governed docs.
+4. Lightweight validation hooks for route/e2e/evidence-sensitive changes.
+5. Clear criteria for when map or evidence updates are mandatory.
+
+### Phase 9 — Migration Pilot
+
+Goal:
+
+Validate the harness on a medium-scale existing frontend project rather than only inside this benchmark repository.
+
+Deliverables:
+
+1. Target project selection criteria.
+2. First-pass onboarding procedure.
+3. Measured cost for map creation and evidence seeding.
+4. Recorded agent success/failure patterns.
+5. Migration constraints fed back into Skills / Rules / Knowledge.
+
+### Phase 10 — Maintainability Hardening
+
+Goal:
+
+Lower long-term upkeep cost by pruning redundant assets and tightening evidence freshness guarantees.
+
+Deliverables:
+
+1. Asset retirement rules.
+2. Promotion thresholds for evidence → knowledge/rule/skill.
+3. Simplified recurring maintenance workflow.
+4. Support boundary definition for single-project vs multi-project use.
+
 ---
 
 ## 18. Agent Working Protocol
@@ -1428,26 +1503,40 @@ Status:
 The next real implementation phase should be:
 
 ```text
-Phase 3: First Evidence Loop
+Phase 8: Governance Automation Baseline
+```
+
+Why this phase is next:
+
+1. Core loop validation is already complete.
+2. The highest remaining weakness is automation.
+3. More benchmark-page expansion will add maintenance pressure faster than it adds strategic value.
+4. Migration validation should happen only after minimal automation guardrails exist.
+
+Recommended workstreams:
+
+```text
+knowledge/evidence freshness automation
+governance checks for governed changes
+trigger rules for map/evidence update obligations
 ```
 
 Recommended branch:
 
 ```bash
-git checkout -b evidence/frontend-first-evidence-loop
+git checkout -b harness/governance-automation-baseline
 ```
 
 Recommended commits:
 
 ```text
-evidence: add first route observation records
-test: add route reachability e2e coverage
-docs: update frontend knowledge maps from evidence
-harness: add first frontend evolution candidates
-evidence: add phase 3 first evidence loop verification
+harness: add governed-change automation baseline
+docs: define freshness contract for knowledge and evidence assets
+test: add validation coverage for governed change gates
+evidence: add phase 8 governance automation verification
 ```
 
-Phase 3 must not expand architecture skeletons further unless required by evidence.
+Phase 8 should avoid large new document trees. It should convert the most important existing expectations into repeatable mechanisms first.
 
 ---
 

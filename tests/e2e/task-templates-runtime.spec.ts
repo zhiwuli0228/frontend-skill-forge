@@ -63,7 +63,7 @@ test.describe('Task Templates Runtime Baseline', () => {
     await page.getByTitle('Empty').click();
 
     // Empty state should appear
-    await expect(page.getByText('No templates found')).toBeVisible();
+    await expect(page.getByText('No templates match the current search criteria')).toBeVisible();
   });
 
   test('loading state shows skeleton UI', async ({ page }) => {

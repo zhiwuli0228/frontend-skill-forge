@@ -64,7 +64,7 @@ export function GlobalShell() {
         placement="left"
         onClose={() => setDrawerOpen(false)}
         open={drawerOpen}
-        width={320}
+        size="default"
       >
         <ModuleSwitcher />
       </Drawer>

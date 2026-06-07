@@ -1,4 +1,4 @@
-import { List, Avatar, Tag, Typography } from 'antd';
+import { Avatar, Tag, Typography } from 'antd';
 import * as Icons from '@ant-design/icons';
 import type { ComponentType } from 'react';
 
@@ -28,43 +28,59 @@ export function SkillList({ skills, onCardClick }: SkillListProps) {
   const icons = Icons as unknown as Record<string, ComponentType<{ style?: React.CSSProperties }>>;
 
   return (
-    <List
-      data-testid="skill-list-view"
-      dataSource={skills}
-      renderItem={(skill) => {
+    <div data-testid="skill-list-view" style={{ display: 'grid', gap: 12 }}>
+      {skills.map((skill) => {
         const IconComponent = icons[skill.icon];
+
         return (
-          <List.Item
+          <div
+            key={skill.id}
             onClick={() => onCardClick(skill)}
-            style={{ cursor: 'pointer' }}
+            style={{
+              cursor: 'pointer',
+              border: '1px solid #f0f0f0',
+              borderRadius: 8,
+              padding: 16,
+              background: '#fff',
+            }}
             data-testid={`skill-list-item-${skill.id}`}
           >
-            <List.Item.Meta
-              avatar={
+            <div style={{ display: 'flex', gap: 12 }}>
+              <div>
                 <Avatar
                   icon={IconComponent ? <IconComponent /> : undefined}
                   style={{ backgroundColor: '#1677ff' }}
                 />
-              }
-              title={skill.name}
-              description={
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <Text strong>{skill.name}</Text>
                 <div>
                   <Text type="secondary" ellipsis>{skill.description}</Text>
-                  <div style={{ marginTop: 4, display: 'flex', gap: 8, alignItems: 'center' }}>
-                    <Tag color={categoryColors[skill.category] ?? 'default'}>
-                      {skill.category}
-                    </Tag>
-                    <Tag color={statusColors[skill.status] ?? 'default'}>
-                      {skill.status}
-                    </Tag>
-                    <Text type="secondary" style={{ fontSize: 12 }}>v{skill.version}</Text>
-                  </div>
                 </div>
-              }
-            />
-          </List.Item>
+                <div
+                  style={{
+                    marginTop: 4,
+                    display: 'flex',
+                    gap: 8,
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <Tag color={categoryColors[skill.category] ?? 'default'}>
+                    {skill.category}
+                  </Tag>
+                  <Tag color={statusColors[skill.status] ?? 'default'}>
+                    {skill.status}
+                  </Tag>
+                  <Text type="secondary" style={{ fontSize: 12 }}>
+                    v{skill.version}
+                  </Text>
+                </div>
+              </div>
+            </div>
+          </div>
         );
-      }}
-    />
+      })}
+    </div>
   );
 }

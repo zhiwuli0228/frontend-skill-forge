@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
+import { useSearchParams } from 'react-router';
 import {
   Typography,
   Space,
@@ -55,7 +56,7 @@ function EditorError({ onRetry }: { onRetry: () => void }) {
     <div data-testid="workflow-editor-error">
       <Alert
         type="error"
-        message="Workflow editor failed to load"
+        title="Workflow editor failed to load"
         description="An unexpected error occurred while loading the editor. Please try again."
         showIcon
         action={
@@ -81,7 +82,7 @@ function NodePalette({ onAddNode }: { onAddNode: (type: EditorNode['type']) => v
       <Text strong style={{ display: 'block', marginBottom: 12 }}>
         Node Palette
       </Text>
-      <Space direction="vertical" style={{ width: '100%' }}>
+      <Space orientation="vertical" style={{ width: '100%' }}>
         {paletteNodes.map((node) => (
           <Card
             key={node.type}
@@ -189,7 +190,7 @@ function EditorCanvas({
             userSelect: 'none',
           }}
         >
-          <Space direction="vertical" align="center" size={0}>
+          <Space orientation="vertical" align="center" size={0}>
             <Tag
               color={NODE_COLORS[node.type]}
               style={{ margin: 0, fontSize: 10, lineHeight: '16px' }}
@@ -207,11 +208,25 @@ function EditorCanvas({
 }
 
 export function WorkflowEditorPage() {
+  const [searchParams] = useSearchParams();
   const [scenario, setScenario] = useState<Scenario>('loaded');
   const [nodes, setNodes] = useState<EditorNode[]>(editorNodes);
   const [edges, setEdges] = useState<EditorEdge[]>(editorEdges);
   const [selectedNode, setSelectedNode] = useState<EditorNode | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const templateContext = useMemo(() => {
+    const sourceTemplate = searchParams.get('sourceTemplate');
+    const templateTitle = searchParams.get('templateTitle');
+    const templateCategory = searchParams.get('templateCategory');
+    if (!sourceTemplate || !templateTitle) return null;
+
+    return {
+      sourceTemplate,
+      templateTitle,
+      templateCategory,
+    };
+  }, [searchParams]);
 
   const displayNodes = scenario === 'empty' ? [] : nodes;
   const displayEdges = scenario === 'empty' ? [] : edges;
@@ -270,10 +285,26 @@ export function WorkflowEditorPage() {
     </Space>
   );
 
+  const contextBanner = templateContext ? (
+    <Alert
+      type="info"
+      showIcon
+      data-testid="workflow-template-context"
+      style={{ marginBottom: 16 }}
+      title={`Started from template: ${templateContext.templateTitle}`}
+      description={
+        templateContext.templateCategory
+          ? `Template category: ${templateContext.templateCategory}. Use this workflow as a starting point for orchestration.`
+          : 'Use this workflow as a starting point for orchestration.'
+      }
+    />
+  ) : null;
+
   if (scenario === 'loading') {
     return (
       <div data-testid="workflow-editor-page">
         <Title level={2}>Workflow Editor</Title>
+        {contextBanner}
         {scenarioSelector}
         <EditorLoading />
       </div>
@@ -284,6 +315,7 @@ export function WorkflowEditorPage() {
     return (
       <div data-testid="workflow-editor-page">
         <Title level={2}>Workflow Editor</Title>
+        {contextBanner}
         {scenarioSelector}
         <EditorError onRetry={() => setScenario('loaded')} />
       </div>
@@ -314,6 +346,7 @@ export function WorkflowEditorPage() {
       </div>
 
       {scenarioSelector}
+      {contextBanner}
 
       {displayNodes.length === 0 ? (
         <Empty description="No nodes in this workflow" />
@@ -332,7 +365,7 @@ export function WorkflowEditorPage() {
         title="Node Properties"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
-        width={400}
+        size="default"
         data-testid="node-properties-drawer"
       >
         {selectedNode && (

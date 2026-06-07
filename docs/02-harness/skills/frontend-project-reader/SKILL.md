@@ -34,6 +34,22 @@ Do NOT use when:
 | API contract map | `docs/02-harness/knowledge/frontend/api-contract-map.md` | markdown tables | yes |
 | E2E registry | `docs/08-frontend-agent/e2e-assets/registry.md` | markdown table | optional |
 
+## Minimum Context Path
+
+For most route-level understanding tasks, do not load every input above immediately.
+
+Start with:
+
+1. `route-map.md`
+2. `component-map.md`
+3. `project-map.md`
+
+Only load:
+
+4. `state-flow-map.md` if state behavior matters
+5. `api-contract-map.md` if mock-data structure matters
+6. `e2e-assets/registry.md` if coverage classification matters
+
 ## Procedure
 
 ### Step 1: Read the Knowledge Maps

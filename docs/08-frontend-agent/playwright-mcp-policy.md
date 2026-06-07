@@ -14,6 +14,8 @@ This policy also applies to evidence gathered for `superspec` verify-stage artif
 
 ## Rules
 
+This policy is subordinate to `ui-validation-evidence-contract.md` for benchmark-grade validation.
+
 ### 1. Tool Usage Policy
 
 **Allowed Tools:**
@@ -53,6 +55,14 @@ Every exploration session must produce:
 - Goal statement
 - Observations list
 
+For benchmark or validation runs, the minimum requirement is stronger:
+
+- at least one real interaction step
+- at least two screenshots or equivalent visual before/after artifacts
+- one reviewable runtime artifact such as a trace or HTML report
+- one raw execution log path
+- one manifest entry under `artifacts/validation/runs/`
+
 When the session supports a verification artifact, it must also record:
 
 - the related change or task identifier
@@ -65,6 +75,7 @@ When the session supports a verification artifact, it must also record:
 - Screenshot error states
 - Record network failures
 - Do not retry failed interactions without diagnosis
+- If runtime artifacts are missing, mark the session incomplete rather than silently closing it
 
 ### 5. Performance Considerations
 

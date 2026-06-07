@@ -25,7 +25,7 @@ function TaskListError({ onRetry }: { onRetry: () => void }) {
     <div data-testid="task-list-error">
       <Alert
         type="error"
-        message="Task list failed to load"
+        title="Task list failed to load"
         description="An unexpected error occurred while loading the task list. Please try again."
         showIcon
         action={
@@ -91,10 +91,21 @@ export function TaskListPage() {
     </Space>
   );
 
+  const pageHeader = (
+    <div style={{ marginBottom: 12 }}>
+      <Title level={2} style={{ marginBottom: 4 }}>
+        Task List
+      </Title>
+      <Text type="secondary">
+        Track operational work, review details, and triage by status, priority, and category.
+      </Text>
+    </div>
+  );
+
   if (scenario === 'loading') {
     return (
       <div>
-        <Title level={2}>Task List</Title>
+        {pageHeader}
         {scenarioSelector}
         <TaskListSkeleton />
       </div>
@@ -104,7 +115,7 @@ export function TaskListPage() {
   if (scenario === 'error') {
     return (
       <div>
-        <Title level={2}>Task List</Title>
+        {pageHeader}
         {scenarioSelector}
         <TaskListError onRetry={() => setScenario('loaded')} />
       </div>
@@ -113,7 +124,7 @@ export function TaskListPage() {
 
   return (
     <div data-testid="task-list-page">
-      <Title level={2}>Task List</Title>
+      {pageHeader}
       {scenarioSelector}
 
       <TaskFilterBar

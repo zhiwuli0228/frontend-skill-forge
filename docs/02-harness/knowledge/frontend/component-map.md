@@ -23,14 +23,14 @@ Catalog all page and sub-components in the V2 surface, with their data-testid ro
 | 2 | `DashboardPage` | `src/domains/dashboard/pages/DashboardPage.tsx` | page | (legacy) | (redirected to /task/list) | kept for backward compat |
 | 3 | `TaskListPage` | `src/domains/task/pages/TaskListPage.tsx` | page | `task-list-page` | scenario select, row click (drawer), status/priority/category filter | scenario selector + URL `filter` param |
 | 4 | `TaskCreatePage` | `src/domains/task/pages/TaskCreatePage.tsx` | page | `task-create-page` | multi-step form, scenario select | uses `TaskCreateForm` (3 steps) |
-| 5 | `TaskTemplatesPage` | `src/domains/task/pages/TaskTemplatesPage.tsx` | page | `task-templates-page` | template search, category filter, preview modal | uses `TemplateGrid` + `TemplateFilterBar` |
+| 5 | `TaskTemplatesPage` | `src/domains/task/pages/TaskTemplatesPage.tsx` | page | `task-templates-page` | template search, category filter, preview modal, workflow handoff | uses `TemplateGrid` + `TemplateFilterBar` |
 | 6 | `TaskBoardPage` | `src/domains/task/pages/TaskBoardPage.tsx` | page | `task-board-page` | drag-and-drop task cards between columns | uses `BoardContainer` |
 | 7 | `SkillListPage` | `src/domains/skill/pages/SkillListPage.tsx` | page | `skill-list-page` | search, category filter, view toggle (grid/list), card click (modal) | URL `filter` overrides user filter |
 | 8 | `SkillMarketPage` | `src/domains/skill/pages/SkillMarketPage.tsx` | page | `skill-market-page` | install/uninstall toggle on cards | featured + recommended sections |
 | 9 | `SkillConfigPage` | `src/domains/skill/pages/SkillConfigPage.tsx` | page | `skill-config-page` | skill select, view mode toggle, save/reset | uses `SkillConfigForm` |
 | 10 | `SkillVersionsPage` | `src/domains/skill/pages/SkillVersionsPage.tsx` | page | `skill-versions-page` | rollback per version | uses `SkillVersionTable` |
 | 11 | `WorkflowListPage` | `src/domains/workflow/pages/WorkflowListPage.tsx` | page | `workflow-list-page` | status toggle, edit link | URL `filter` + manual toggle |
-| 12 | `WorkflowEditorPage` | `src/domains/workflow/pages/WorkflowEditorPage.tsx` | page | `workflow-editor-page` | node palette, save/run | canvas + SVG connections |
+| 12 | `WorkflowEditorPage` | `src/domains/workflow/pages/WorkflowEditorPage.tsx` | page | `workflow-editor-page` | node palette, save/run, template context banner | canvas + SVG connections |
 | 13 | `WorkflowHistoryPage` | `src/domains/workflow/pages/WorkflowHistoryPage.tsx` | page | `workflow-history-page` | status filter | log table |
 | 14 | `WorkflowSchedulePage` | `src/domains/workflow/pages/WorkflowSchedulePage.tsx` | page | `workflow-schedule-page` | toggle enabled, add schedule modal | uses `AddScheduleModal` |
 | 15 | `InsightOverviewPage` | `src/domains/insight/pages/InsightOverviewPage.tsx` | page | `insight-overview-page` | URL `filter` scales stat/chart data | CSS bar chart, no external lib |
@@ -68,7 +68,7 @@ The following components were verified with real Playwright MCP browser tools on
 | S6 | `TemplateFilterBar` | `src/domains/task/components/TemplateFilterBar.tsx` | TaskTemplatesPage | `TemplateFilterBarProps` | `template-filter-bar` | search + category |
 | S7 | `TemplateGrid` | `src/domains/task/components/TemplateGrid.tsx` | TaskTemplatesPage | `TemplateGridProps` | `template-grid` | renders `TemplateCard[]` |
 | S8 | `TemplateCard` | `src/domains/task/components/TemplateCard.tsx` | TemplateGrid | `TemplateCardProps` | `template-card-{id}` | click → preview modal |
-| S9 | `TemplatePreviewModal` | `src/domains/task/components/TemplatePreviewModal.tsx` | TaskTemplatesPage | `TemplatePreviewModalProps` | `template-preview-modal` | open/close |
+| S9 | `TemplatePreviewModal` | `src/domains/task/components/TemplatePreviewModal.tsx` | TaskTemplatesPage | `TemplatePreviewModalProps` | `template-preview-modal` | open/close, open workflow editor |
 | S10 | `BoardContainer` | `src/domains/task/components/BoardContainer.tsx` | TaskBoardPage | `BoardContainerProps` | `board-container` | drag-drop container |
 | S11 | `BoardColumn` | `src/domains/task/components/BoardColumn.tsx` | BoardContainer | `BoardColumnProps` | `board-column-{status}` | drop target |
 | S12 | `BoardTaskCard` | `src/domains/task/components/BoardTaskCard.tsx` | BoardColumn | `BoardTaskCardProps` | `board-task-card-{id}` | drag source |

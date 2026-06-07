@@ -27,6 +27,22 @@ dist-ssr
 playwright-report/
 test-results/
 
+# Validation artifacts (keep structure docs, ignore heavy generated outputs by default)
+artifacts/validation/screenshots/*
+!artifacts/validation/screenshots/.gitkeep
+artifacts/validation/playwright-html/*
+!artifacts/validation/playwright-html/.gitkeep
+artifacts/validation/traces/*
+!artifacts/validation/traces/.gitkeep
+artifacts/validation/json/*
+!artifacts/validation/json/.gitkeep
+artifacts/validation/raw-logs/*
+!artifacts/validation/raw-logs/.gitkeep
+artifacts/validation/runs/*
+!artifacts/validation/runs/.gitkeep
+!artifacts/validation/runs/README.md
+!artifacts/validation/RUN-MANIFEST.template.md
+
 # Local tool config (Claude Code, Codex, OpenCode, Playwright MCP)
 .claude/
 .codex/

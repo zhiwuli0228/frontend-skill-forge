@@ -24,3 +24,4 @@ All evolution activities in the frontend agent layer.
 Track evolution candidates in queues.
 Record human feedback before promotion.
 Document all evolution decisions.
+Use runtime-backed end-to-end runs as the preferred source for new candidates.

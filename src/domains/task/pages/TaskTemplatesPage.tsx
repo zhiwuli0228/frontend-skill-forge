@@ -1,4 +1,5 @@
 import { useState, useMemo, useCallback } from 'react';
+import { useNavigate } from 'react-router';
 import { Typography, Space, Select, Alert, Skeleton, Empty, Card, Row, Col } from 'antd';
 
 import { TemplateFilterBar } from '../components/TemplateFilterBar';
@@ -32,7 +33,7 @@ function TemplatesError({ onRetry }: { onRetry: () => void }) {
     <div data-testid="task-templates-error">
       <Alert
         type="error"
-        message="Template library failed to load"
+        title="Template library failed to load"
         description="An unexpected error occurred while loading templates. Please try again."
         showIcon
         action={
@@ -46,6 +47,7 @@ function TemplatesError({ onRetry }: { onRetry: () => void }) {
 }
 
 export function TaskTemplatesPage() {
+  const navigate = useNavigate();
   const [scenario, setScenario] = useState<Scenario>('loaded');
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('all');
@@ -76,6 +78,16 @@ export function TaskTemplatesPage() {
     setSelectedTemplate(template);
   }, []);
 
+  const handleOpenWorkflow = useCallback((template: TemplateItem) => {
+    const params = new URLSearchParams({
+      sourceTemplate: template.id,
+      templateTitle: template.title,
+      templateCategory: template.category,
+    });
+    setSelectedTemplate(null);
+    navigate(`/workflow/editor?${params.toString()}`);
+  }, [navigate]);
+
   const scenarioSelector = (
     <Space style={{ marginBottom: 16 }}>
       <Text>Scenario:</Text>
@@ -93,10 +105,21 @@ export function TaskTemplatesPage() {
     </Space>
   );
 
+  const pageHeader = (
+    <div style={{ marginBottom: 12 }}>
+      <Title level={2} style={{ marginBottom: 4 }}>
+        Templates
+      </Title>
+      <Text type="secondary">
+        Browse reusable task templates, filter by category, and preview structure before reuse.
+      </Text>
+    </div>
+  );
+
   if (scenario === 'loading') {
     return (
       <div data-testid="task-templates-page">
-        <Title level={2}>Templates</Title>
+        {pageHeader}
         {scenarioSelector}
         <TemplatesSkeleton />
       </div>
@@ -106,7 +129,7 @@ export function TaskTemplatesPage() {
   if (scenario === 'error') {
     return (
       <div data-testid="task-templates-page">
-        <Title level={2}>Templates</Title>
+        {pageHeader}
         {scenarioSelector}
         <TemplatesError onRetry={() => setScenario('loaded')} />
       </div>
@@ -115,7 +138,7 @@ export function TaskTemplatesPage() {
 
   return (
     <div data-testid="task-templates-page">
-      <Title level={2}>Templates</Title>
+      {pageHeader}
       {scenarioSelector}
 
       <TemplateFilterBar
@@ -127,7 +150,7 @@ export function TaskTemplatesPage() {
 
       <div style={{ marginTop: 16 }}>
         {filteredTemplates.length === 0 ? (
-          <Empty description="No templates found" />
+          <Empty description="No templates match the current search criteria" />
         ) : (
           <TemplateGrid
             templates={filteredTemplates}
@@ -140,6 +163,7 @@ export function TaskTemplatesPage() {
         template={selectedTemplate}
         open={selectedTemplate !== null}
         onClose={() => setSelectedTemplate(null)}
+        onOpenWorkflow={handleOpenWorkflow}
       />
     </div>
   );

@@ -27,6 +27,8 @@ docs/08-frontend-agent/
 ├── frontend-agent-architecture.md
 ├── mcp-exploration-protocol.md
 ├── playwright-mcp-policy.md
+├── context-governance-contract.md
+├── ui-validation-evidence-contract.md
 ├── ui-evidence-policy.md
 ├── e2e-asset-lifecycle.md
 ├── ui-drift-diagnosis.md
@@ -45,6 +47,9 @@ docs/08-frontend-agent/
 3. UI evidence must use the standard templates and naming conventions.
 4. Skill evolution must be driven by verified evidence.
 5. Human feedback must be recorded before promoting evidence to Skills.
+6. UI-facing validation is not considered complete without real runtime page interaction evidence.
+7. Agents must use minimal-context loading rules to avoid context explosion during execution.
+8. End-to-end benchmark validation should follow `end-to-end-skill-mcp-cross-module-validation-program.md`.
 
 ## Outputs
 

@@ -34,7 +34,7 @@ function SkillsError({ onRetry }: { onRetry: () => void }) {
     <div data-testid="skill-error">
       <Alert
         type="error"
-        message="Skill library failed to load"
+        title="Skill library failed to load"
         description="An unexpected error occurred while loading skills. Please try again."
         showIcon
         action={
@@ -140,6 +140,9 @@ export function SkillListPage() {
   return (
     <div data-testid="skill-list-page">
       <Title level={2}>Skills</Title>
+      <Text type="secondary">
+        Explore available skills, compare view modes, and inspect details before activation.
+      </Text>
       {scenarioSelector}
 
       <SkillFilterBar

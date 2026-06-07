@@ -16,6 +16,8 @@ docs/
 └── 09-change-records/    # Current version state, version baselines, releases, decisions
 ```
 
+Raw validation outputs do not belong in `docs/`. Store screenshots, traces, HTML reports, and raw logs under [`artifacts/`](../artifacts/README.md).
+
 ## Sections
 
 ### 00-project

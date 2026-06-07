@@ -34,6 +34,18 @@ Do NOT use when:
 | Verification policy | `docs/02-harness/rules/` | rules | yes |
 | Knowledge maps | `docs/02-harness/knowledge/frontend/` | 5 maps | yes |
 
+## Minimum Context Path
+
+For small bounded changes, start with the minimum set:
+
+1. change request
+2. target `route-map.md` entry
+3. target `component-map.md` entry
+4. affected source file(s)
+5. one latest validation/evidence record if the route has recent runtime validation
+
+Only load the rest of the knowledge maps if the change crosses state, data, or architectural boundaries.
+
 ## Procedure
 
 ### Step 1: Parse the Change Request

@@ -34,6 +34,18 @@ Do NOT use when:
 | Knowledge maps | `docs/02-harness/knowledge/frontend/` | 5 maps | yes |
 | E2E registry | `docs/08-frontend-agent/e2e-assets/registry.md` | table | optional |
 
+## Minimum Context Path
+
+For single-route exploration, start with:
+
+1. target route
+2. relevant `route-map.md` entry
+3. relevant `component-map.md` entry
+4. one latest route-level validation or evidence record
+5. selector stability guide
+
+Do not load all frontend maps or all historical evidence unless the route documentation is stale or contradictory.
+
 ## Procedure
 
 ### Step 1: Check Existing Evidence
