@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import {
   Typography,
   Space,
@@ -9,9 +9,13 @@ import {
   Skeleton,
   Empty,
   Tag,
+  Drawer,
+  Form,
+  Input,
+  message,
 } from 'antd';
-import { SaveOutlined, PlayCircleOutlined } from '@ant-design/icons';
-import { editorNodes, editorEdges, type EditorNode } from '../data/workflow-mock-data';
+import { SaveOutlined, PlayCircleOutlined, DeleteOutlined } from '@ant-design/icons';
+import { editorNodes, editorEdges, type EditorNode, type EditorEdge } from '../data/workflow-mock-data';
 
 const { Title, Text } = Typography;
 
@@ -64,7 +68,7 @@ function EditorError({ onRetry }: { onRetry: () => void }) {
   );
 }
 
-function NodePalette() {
+function NodePalette({ onAddNode }: { onAddNode: (type: EditorNode['type']) => void }) {
   const paletteNodes: { type: EditorNode['type']; label: string }[] = [
     { type: 'trigger', label: 'Trigger' },
     { type: 'process', label: 'Process' },
@@ -83,7 +87,8 @@ function NodePalette() {
             key={node.type}
             size="small"
             hoverable
-            style={{ borderLeft: `4px solid ${NODE_COLORS[node.type]}` }}
+            style={{ borderLeft: `4px solid ${NODE_COLORS[node.type]}`, cursor: 'pointer' }}
+            onClick={() => onAddNode(node.type)}
           >
             <Tag color={NODE_COLORS[node.type]} style={{ margin: 0 }}>
               {node.label}
@@ -95,7 +100,15 @@ function NodePalette() {
   );
 }
 
-function EditorCanvas({ nodes, edges }: { nodes: EditorNode[]; edges: typeof editorEdges }) {
+function EditorCanvas({
+  nodes,
+  edges,
+  onNodeClick,
+}: {
+  nodes: EditorNode[];
+  edges: EditorEdge[];
+  onNodeClick: (node: EditorNode) => void;
+}) {
   return (
     <div
       data-testid="workflow-editor-canvas"
@@ -158,6 +171,7 @@ function EditorCanvas({ nodes, edges }: { nodes: EditorNode[]; edges: typeof edi
         <div
           key={node.id}
           data-testid={`workflow-node-${node.id}`}
+          onClick={() => onNodeClick(node)}
           style={{
             position: 'absolute',
             left: node.x,
@@ -171,7 +185,7 @@ function EditorCanvas({ nodes, edges }: { nodes: EditorNode[]; edges: typeof edi
             border: `2px solid ${NODE_COLORS[node.type]}`,
             borderRadius: 8,
             boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-            cursor: 'grab',
+            cursor: 'pointer',
             userSelect: 'none',
           }}
         >
@@ -194,9 +208,50 @@ function EditorCanvas({ nodes, edges }: { nodes: EditorNode[]; edges: typeof edi
 
 export function WorkflowEditorPage() {
   const [scenario, setScenario] = useState<Scenario>('loaded');
+  const [nodes, setNodes] = useState<EditorNode[]>(editorNodes);
+  const [edges, setEdges] = useState<EditorEdge[]>(editorEdges);
+  const [selectedNode, setSelectedNode] = useState<EditorNode | null>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const nodes = scenario === 'empty' ? [] : editorNodes;
-  const edges = scenario === 'empty' ? [] : editorEdges;
+  const displayNodes = scenario === 'empty' ? [] : nodes;
+  const displayEdges = scenario === 'empty' ? [] : edges;
+
+  const handleNodeClick = useCallback((node: EditorNode) => {
+    setSelectedNode(node);
+    setDrawerOpen(true);
+  }, []);
+
+  const handleNodeUpdate = useCallback((updates: Partial<EditorNode>) => {
+    if (!selectedNode) return;
+    setNodes((prev) =>
+      prev.map((n) => (n.id === selectedNode.id ? { ...n, ...updates } : n))
+    );
+    setSelectedNode((prev) => (prev ? { ...prev, ...updates } : null));
+    message.success('Node updated');
+  }, [selectedNode]);
+
+  const handleNodeDelete = useCallback(() => {
+    if (!selectedNode) return;
+    setNodes((prev) => prev.filter((n) => n.id !== selectedNode.id));
+    setEdges((prev) =>
+      prev.filter((e) => e.source !== selectedNode.id && e.target !== selectedNode.id)
+    );
+    setSelectedNode(null);
+    setDrawerOpen(false);
+    message.success('Node deleted');
+  }, [selectedNode]);
+
+  const handleAddNode = useCallback((type: EditorNode['type']) => {
+    const newNode: EditorNode = {
+      id: `n${Date.now()}`,
+      type,
+      label: `New ${type}`,
+      x: 100 + Math.random() * 400,
+      y: 100 + Math.random() * 300,
+    };
+    setNodes((prev) => [...prev, newNode]);
+    message.success('Node added');
+  }, []);
 
   const scenarioSelector = (
     <Space style={{ marginBottom: 16 }}>
@@ -260,14 +315,74 @@ export function WorkflowEditorPage() {
 
       {scenarioSelector}
 
-      {nodes.length === 0 ? (
+      {displayNodes.length === 0 ? (
         <Empty description="No nodes in this workflow" />
       ) : (
         <div style={{ display: 'flex', gap: 16 }}>
-          <NodePalette />
-          <EditorCanvas nodes={nodes} edges={edges} />
+          <NodePalette onAddNode={handleAddNode} />
+          <EditorCanvas
+            nodes={displayNodes}
+            edges={displayEdges}
+            onNodeClick={handleNodeClick}
+          />
         </div>
       )}
+
+      <Drawer
+        title="Node Properties"
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        width={400}
+        data-testid="node-properties-drawer"
+      >
+        {selectedNode && (
+          <Form layout="vertical">
+            <Form.Item label="Node ID">
+              <Input value={selectedNode.id} disabled />
+            </Form.Item>
+            <Form.Item label="Type">
+              <Select
+                value={selectedNode.type}
+                onChange={(v) => handleNodeUpdate({ type: v })}
+                options={[
+                  { value: 'trigger', label: 'Trigger' },
+                  { value: 'process', label: 'Process' },
+                  { value: 'condition', label: 'Condition' },
+                  { value: 'output', label: 'Output' },
+                ]}
+              />
+            </Form.Item>
+            <Form.Item label="Label">
+              <Input
+                value={selectedNode.label}
+                onChange={(e) => handleNodeUpdate({ label: e.target.value })}
+              />
+            </Form.Item>
+            <Form.Item label="X Position">
+              <Input
+                type="number"
+                value={selectedNode.x}
+                onChange={(e) => handleNodeUpdate({ x: Number(e.target.value) })}
+              />
+            </Form.Item>
+            <Form.Item label="Y Position">
+              <Input
+                type="number"
+                value={selectedNode.y}
+                onChange={(e) => handleNodeUpdate({ y: Number(e.target.value) })}
+              />
+            </Form.Item>
+            <Button
+              icon={<DeleteOutlined />}
+              danger
+              onClick={handleNodeDelete}
+              data-testid="btn-delete-node"
+            >
+              Delete Node
+            </Button>
+          </Form>
+        )}
+      </Drawer>
     </div>
   );
 }

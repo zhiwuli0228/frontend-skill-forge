@@ -54,6 +54,8 @@ export function SkillListPage() {
   const [userCategory, setUserCategory] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [selectedSkill, setSelectedSkill] = useState<SkillItem | null>(null);
+  const [tags, setTags] = useState<string[]>([]);
+  const [sortBy, setSortBy] = useState<string>('name');
 
   const sidebarCategory = filter && filter !== 'all' ? filter : null;
   const effectiveCategory = userCategory ?? sidebarCategory ?? 'all';
@@ -76,8 +78,21 @@ export function SkillListPage() {
       );
     }
 
+    if (tags.length > 0) {
+      result = result.filter((s) =>
+        tags.some((tag) => s.description.toLowerCase().includes(tag))
+      );
+    }
+
+    // Sort
+    result = [...result].sort((a, b) => {
+      if (sortBy === 'name') return a.name.localeCompare(b.name);
+      if (sortBy === 'category') return a.category.localeCompare(b.category);
+      return 0;
+    });
+
     return result;
-  }, [baseSkills, effectiveCategory, search]);
+  }, [baseSkills, effectiveCategory, search, tags, sortBy]);
 
   const filterLabel = sidebarCategory;
 
@@ -131,9 +146,13 @@ export function SkillListPage() {
         search={search}
         category={effectiveCategory}
         viewMode={viewMode}
+        tags={tags}
+        sortBy={sortBy}
         onSearchChange={setSearch}
         onCategoryChange={(c) => setUserCategory(c === 'all' ? null : c)}
         onViewModeChange={setViewMode}
+        onTagsChange={setTags}
+        onSortByChange={setSortBy}
       />
 
       {filterLabel && (

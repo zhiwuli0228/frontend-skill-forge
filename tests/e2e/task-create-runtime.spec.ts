@@ -27,9 +27,17 @@ test.describe('Task Create Runtime Baseline', () => {
     await expect(page.getByTestId('step-details')).toBeVisible();
     await expect(page.getByTestId('step-basic-info')).not.toBeVisible();
 
-    // Go to step 3 (Review)
+    // Go to step 3 (Settings)
+    await page.getByTestId('btn-next').click();
+    await expect(page.getByTestId('step-settings')).toBeVisible();
+
+    // Go to step 4 (Review)
     await page.getByTestId('btn-next').click();
     await expect(page.getByTestId('step-review')).toBeVisible();
+
+    // Go back to step 3 (Settings)
+    await page.getByTestId('btn-prev').click();
+    await expect(page.getByTestId('step-settings')).toBeVisible();
 
     // Go back to step 2 (Details)
     await page.getByTestId('btn-prev').click();
@@ -89,6 +97,7 @@ test.describe('Task Create Runtime Baseline', () => {
     // Navigate to review step
     await page.getByTestId('btn-next').click();
     await page.getByTestId('btn-next').click();
+    await page.getByTestId('btn-next').click();
 
     // Submit
     await page.getByTestId('btn-submit').click();
@@ -102,6 +111,7 @@ test.describe('Task Create Runtime Baseline', () => {
     await page.goto('/task/create');
 
     // Navigate to review step (form is prefilled in loaded scenario)
+    await page.getByTestId('btn-next').click();
     await page.getByTestId('btn-next').click();
     await page.getByTestId('btn-next').click();
 

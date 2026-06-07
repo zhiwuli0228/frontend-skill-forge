@@ -13,6 +13,10 @@ const emptyValues: TaskFormValues = {
   assignee: '',
   category: '',
   description: '',
+  dueDate: '',
+  estimatedHours: 0,
+  isPublic: false,
+  tags: [],
 };
 
 const sampleValues: TaskFormValues = {
@@ -21,6 +25,10 @@ const sampleValues: TaskFormValues = {
   assignee: 'Alice',
   category: 'infrastructure',
   description: 'Migrate from HikariCP 5.x to 6.x to resolve connection leak under high concurrency.',
+  dueDate: '2026-06-15T00:00:00Z',
+  estimatedHours: 8,
+  isPublic: true,
+  tags: ['backend', 'devops'],
 };
 
 function validateForm(values: TaskFormValues): Record<string, string> {
@@ -28,6 +36,7 @@ function validateForm(values: TaskFormValues): Record<string, string> {
   if (!values.title.trim()) errors.title = 'Title is required';
   if (!values.priority) errors.priority = 'Priority is required';
   if (!values.category) errors.category = 'Category is required';
+  if (values.estimatedHours < 0) errors.estimatedHours = 'Hours must be positive';
   return errors;
 }
 

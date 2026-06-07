@@ -45,8 +45,9 @@ export function TaskListPage() {
   const [priorityFilter, setPriorityFilter] = useState<string | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
   const [selectedTask, setSelectedTask] = useState<TaskItem | null>(null);
+  const [taskList, setTaskList] = useState<TaskItem[]>(tasks);
 
-  const baseTasks = scenario === 'empty' ? emptyTasks : tasks;
+  const baseTasks = scenario === 'empty' ? emptyTasks : taskList;
 
   const filteredTasks = useMemo(() => {
     let result = baseTasks;
@@ -58,6 +59,18 @@ export function TaskListPage() {
     if (categoryFilter) result = result.filter((t) => t.category === categoryFilter);
     return result;
   }, [baseTasks, filter, statusFilter, priorityFilter, categoryFilter]);
+
+  const handleBatchDelete = (taskIds: string[]) => {
+    setTaskList((prev) => prev.filter((t) => !taskIds.includes(t.id)));
+  };
+
+  const handleBatchStatusChange = (taskIds: string[], status: string) => {
+    setTaskList((prev) =>
+      prev.map((t) =>
+        taskIds.includes(t.id) ? { ...t, status: status as TaskItem['status'] } : t
+      )
+    );
+  };
 
   const filterLabel = filter && filter !== 'all' ? filter : null;
 
@@ -124,6 +137,8 @@ export function TaskListPage() {
           tasks={filteredTasks}
           selectedTaskId={selectedTask?.id ?? null}
           onSelect={setSelectedTask}
+          onBatchDelete={handleBatchDelete}
+          onBatchStatusChange={handleBatchStatusChange}
         />
       </div>
 

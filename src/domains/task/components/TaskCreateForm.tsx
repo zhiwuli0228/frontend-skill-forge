@@ -1,4 +1,4 @@
-import { Form, Input, Select, Button, Steps, Space } from 'antd';
+import { Form, Input, Select, Button, Steps, Space, DatePicker, InputNumber, Switch, Tag } from 'antd';
 import { taskPriorities, taskCategories } from '../data/mock-data';
 
 const { TextArea } = Input;
@@ -9,6 +9,10 @@ export interface TaskFormValues {
   assignee: string;
   category: string;
   description: string;
+  dueDate: string;
+  estimatedHours: number;
+  isPublic: boolean;
+  tags: string[];
 }
 
 interface TaskCreateFormProps {
@@ -22,6 +26,7 @@ interface TaskCreateFormProps {
 }
 
 const assignees = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve'];
+const tagOptions = ['urgent', 'frontend', 'backend', 'devops', 'security', 'performance'];
 
 export function TaskCreateForm({
   currentStep,
@@ -32,13 +37,14 @@ export function TaskCreateForm({
   errors,
   showValidation,
 }: TaskCreateFormProps) {
-  const handleChange = (field: keyof TaskFormValues, value: string) => {
+  const handleChange = (field: keyof TaskFormValues, value: string | number | boolean | string[]) => {
     onValuesChange({ ...values, [field]: value });
   };
 
   const steps = [
     { title: 'Basic Info' },
     { title: 'Details' },
+    { title: 'Settings' },
     { title: 'Review' },
   ];
 
@@ -122,15 +128,66 @@ export function TaskCreateForm({
                 data-testid="input-description"
               />
             </Form.Item>
+            <Form.Item label="Tags">
+              <Select
+                mode="multiple"
+                value={values.tags}
+                onChange={(v) => handleChange('tags', v)}
+                placeholder="Select tags"
+                options={tagOptions.map((t) => ({ value: t, label: t }))}
+                data-testid="input-tags"
+              />
+            </Form.Item>
           </Form>
         </div>
       )}
 
       {currentStep === 2 && (
+        <div data-testid="step-settings">
+          <Form layout="vertical">
+            <Form.Item label="Due Date">
+              <DatePicker
+                style={{ width: '100%' }}
+                onChange={(date) => handleChange('dueDate', date ? date.toISOString() : '')}
+                data-testid="input-due-date"
+              />
+            </Form.Item>
+            <Form.Item label="Estimated Hours">
+              <InputNumber
+                min={0}
+                max={1000}
+                value={values.estimatedHours}
+                onChange={(v) => handleChange('estimatedHours', v || 0)}
+                style={{ width: '100%' }}
+                data-testid="input-estimated-hours"
+              />
+            </Form.Item>
+            <Form.Item label="Public Task">
+              <Switch
+                checked={values.isPublic}
+                onChange={(v) => handleChange('isPublic', v)}
+                data-testid="input-is-public"
+              />
+            </Form.Item>
+          </Form>
+        </div>
+      )}
+
+      {currentStep === 3 && (
         <div data-testid="step-review">
           <p style={{ marginBottom: 16, color: '#666' }}>
             Review your task before creating.
           </p>
+          <div style={{ background: '#f5f5f5', padding: 16, borderRadius: 8 }}>
+            <p><strong>Title:</strong> {values.title}</p>
+            <p><strong>Priority:</strong> {values.priority}</p>
+            <p><strong>Category:</strong> {values.category}</p>
+            <p><strong>Assignee:</strong> {values.assignee || 'Unassigned'}</p>
+            <p><strong>Description:</strong> {values.description || 'No description'}</p>
+            <p><strong>Tags:</strong> {values.tags.length > 0 ? values.tags.map(tag => <Tag key={tag}>{tag}</Tag>) : 'None'}</p>
+            <p><strong>Estimated Hours:</strong> {values.estimatedHours}</p>
+            <p><strong>Public:</strong> {values.isPublic ? 'Yes' : 'No'}</p>
+          </div>
         </div>
       )}
 
@@ -140,12 +197,12 @@ export function TaskCreateForm({
             Previous
           </Button>
         )}
-        {currentStep < 2 && (
+        {currentStep < 3 && (
           <Button type="primary" onClick={() => onStepChange(currentStep + 1)} data-testid="btn-next">
             Next
           </Button>
         )}
-        {currentStep === 2 && (
+        {currentStep === 3 && (
           <Button type="primary" onClick={onSubmit} data-testid="btn-submit">
             Create Task
           </Button>

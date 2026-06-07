@@ -7,18 +7,28 @@ interface SkillFilterBarProps {
   search: string;
   category: string;
   viewMode: 'grid' | 'list';
+  tags: string[];
+  sortBy: string;
   onSearchChange: (value: string) => void;
   onCategoryChange: (value: string) => void;
   onViewModeChange: (mode: 'grid' | 'list') => void;
+  onTagsChange: (tags: string[]) => void;
+  onSortByChange: (sortBy: string) => void;
 }
+
+const tagOptions = ['frontend', 'backend', 'devops', 'security', 'performance', 'testing'];
 
 export function SkillFilterBar({
   search,
   category,
   viewMode,
+  tags,
+  sortBy,
   onSearchChange,
   onCategoryChange,
   onViewModeChange,
+  onTagsChange,
+  onSortByChange,
 }: SkillFilterBarProps) {
   return (
     <Space wrap data-testid="skill-filter-bar">
@@ -39,6 +49,26 @@ export function SkillFilterBar({
           label: c.charAt(0).toUpperCase() + c.slice(1),
         }))}
         data-testid="skill-category-filter"
+      />
+      <Select
+        mode="multiple"
+        value={tags}
+        onChange={onTagsChange}
+        style={{ width: 200 }}
+        placeholder="Filter by tags"
+        options={tagOptions.map((t) => ({ value: t, label: t }))}
+        data-testid="skill-tags-filter"
+      />
+      <Select
+        value={sortBy}
+        onChange={onSortByChange}
+        style={{ width: 140 }}
+        options={[
+          { value: 'name', label: 'Name' },
+          { value: 'category', label: 'Category' },
+          { value: 'recent', label: 'Recent' },
+        ]}
+        data-testid="skill-sort-by"
       />
       <Button.Group data-testid="skill-view-toggle">
         <Button
