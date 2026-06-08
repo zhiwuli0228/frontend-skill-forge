@@ -76,7 +76,7 @@ Do not load all frontend maps or all historical evidence unless the route docume
 
 ### Step 3: Capture Route Snapshots (4 scenarios)
 
-**Goal:** Document the page in all 4 scenario states.
+**Goal:** Document the page in all 4 scenario states, AND produce structured element data for the stitching pipeline.
 
 **Action:**
 1. Capture the **loaded** state: what's visible, what data is shown, what interactive elements exist
@@ -89,6 +89,56 @@ For each state, use the `ui-state-snapshot-template.md` format.
 **Output:** 4 route snapshot records.
 
 **Validation:** Each snapshot should include: URL, title, load state, visible components, form state, modal/drawer state, console state.
+
+### Step 3.5: Extract Structured Element Data (side effect for registry stitching)
+
+**Goal:** Produce a machine-consumable `BrowserElement[]` snapshot that `frontend-registry-stitch` can consume without re-capturing the page.
+
+**Action:**
+1. On the **loaded** state page, run `browser_evaluate` with the element extraction script below
+2. Save output to `artifacts/browser-snapshots/<route-slug>.json`
+3. Format as `Record<string, BrowserElement[]>` keyed by route path (for compatibility with stitch pipeline)
+
+Extraction script (run via MCP `browser_evaluate`):
+```js
+() => {
+  const els = document.querySelectorAll(
+    '[data-testid], button, input:not([type="hidden"]), select, textarea, ' +
+    '[role="tab"], [role="menuitem"], [role="checkbox"], [role="combobox"], ' +
+    '[role="textbox"], h2, [aria-label]'
+  );
+  return Array.from(els).map(el => {
+    const getAncestorRoles = (e) => {
+      const roles = [];
+      let cur = e.parentElement;
+      while (cur && cur !== document.body) {
+        const role = cur.getAttribute('role');
+        const tag = cur.tagName.toLowerCase();
+        if (role) roles.unshift(role);
+        else if (['header', 'main', 'nav', 'aside', 'table', 'form', 'complementary', 'list', 'tablist'].includes(tag))
+          roles.unshift(tag);
+        cur = cur.parentElement;
+      }
+      return roles;
+    };
+    const text = (el.textContent || '').trim().slice(0, 80);
+    return {
+      a11yRole: el.getAttribute('role') || el.tagName.toLowerCase(),
+      visibleText: text,
+      testid: el.getAttribute('data-testid') || null,
+      ariaLabel: el.getAttribute('aria-label') || null,
+      elementType: el.tagName.toLowerCase(),
+      ancestorRoles: getAncestorRoles(el),
+      isInteractive: ['BUTTON', 'INPUT', 'SELECT', 'TEXTAREA', 'A'].includes(el.tagName) ||
+        ['tab', 'menuitem', 'checkbox', 'combobox', 'textbox'].includes(el.getAttribute('role') || '')
+    };
+  });
+}
+```
+
+**Output:** `artifacts/browser-snapshots/<route-slug>.json` — a single file per route containing `{ "/route/path": BrowserElement[] }`.
+
+**Validation:** The extracted array should have ≥10 elements for a typical page. Fewer suggests the page failed to load or the selector list needs adjustment (e.g., missing a custom element pattern).
 
 ### Step 4: Discover Components (3-5 per route)
 
@@ -185,6 +235,7 @@ For each state, use the `ui-state-snapshot-template.md` format.
 | Evidence index | markdown | `docs/08-frontend-agent/evidence/evidence-index/` |
 | Selector stability table | markdown | inline in session record |
 | Updated knowledge maps | markdown | `docs/02-harness/knowledge/frontend/` |
+| Structured element snapshot | JSON | `artifacts/browser-snapshots/<route-slug>.json` |
 
 ## Validation Examples
 
@@ -229,4 +280,5 @@ For each state, use the `ui-state-snapshot-template.md` format.
 - **Uses:** `docs/08-frontend-agent/e2e-assets/registry.md`
 - **Produces:** evidence records (route snapshots, component discoveries, interaction traces)
 - **Related Skill:** `frontend-project-reader` (for understanding the codebase before exploring)
+- **Related Skill:** `frontend-registry-stitch` (consumes browser snapshots from Step 3 to produce element registry)
 - **Related Skill:** `skill-evolution-maintainer` (for evolving skills from the evidence)

@@ -1,0 +1,5006 @@
+{
+  "generatedAt": "2026-06-08T16:55:51.075Z",
+  "filesScanned": 56,
+  "componentsFound": 54,
+  "components": {
+    "App": {
+      "componentName": "App",
+      "sourceFile": "src/app/App.tsx",
+      "jsxTestIds": [],
+      "jsxVisibleTexts": [],
+      "jsxAriaLabels": [],
+      "eventBindings": [],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "RouterProvider",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "ConfigProvider",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "router",
+          "source": "./router",
+          "isDefault": false
+        },
+        {
+          "name": "Providers",
+          "source": "./providers",
+          "isDefault": false
+        }
+      ]
+    },
+    "Providers": {
+      "componentName": "Providers",
+      "sourceFile": "src/app/providers.tsx",
+      "jsxTestIds": [],
+      "jsxVisibleTexts": [],
+      "jsxAriaLabels": [],
+      "eventBindings": [],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "ReactNode",
+          "source": "react",
+          "isDefault": false
+        }
+      ]
+    },
+    "LoginPage": {
+      "componentName": "LoginPage",
+      "sourceFile": "src/domains/auth/pages/LoginPage.tsx",
+      "jsxTestIds": [],
+      "jsxVisibleTexts": [
+        "Login"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        }
+      ]
+    },
+    "ActivityFeed": {
+      "componentName": "ActivityFeed",
+      "sourceFile": "src/domains/dashboard/components/ActivityFeed.tsx",
+      "jsxTestIds": [
+        "activity-feed-empty",
+        "activity-feed",
+        "`activity-item-${item.id"
+      ],
+      "jsxVisibleTexts": [
+        "}\n          description=\"No recent activity\"\n        />",
+        ");\n  }\n\n  return (",
+        "Activity Feed",
+        "}\n            description={",
+        "}\n          />"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "List",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "HistoryOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "ActivityItem",
+          "source": "../data/mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "AlertQueue": {
+      "componentName": "AlertQueue",
+      "sourceFile": "src/domains/dashboard/components/AlertQueue.tsx",
+      "jsxTestIds": [
+        "alert-queue-empty",
+        "alert-queue",
+        "`alert-item-${item.id"
+      ],
+      "jsxVisibleTexts": [
+        ");\n  }\n\n  return (",
+        "Alert Queue",
+        ",\n          ]}\n        >",
+        "}\n          />"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onItemClick"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "List",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "AlertOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "AlertItem",
+          "source": "../data/mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "DetailDrawer": {
+      "componentName": "DetailDrawer",
+      "sourceFile": "src/domains/dashboard/components/DetailDrawer.tsx",
+      "jsxTestIds": [
+        "detail-drawer"
+      ],
+      "jsxVisibleTexts": [
+        ")}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClose",
+          "handlerName": "onClose"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Drawer",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Descriptions",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "AlertItem",
+          "source": "../data/mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "MetricBand": {
+      "componentName": "MetricBand",
+      "sourceFile": "src/domains/dashboard/components/MetricBand.tsx",
+      "jsxTestIds": [
+        "metric-band",
+        "`metric-card-${metric.filterKey"
+      ],
+      "jsxVisibleTexts": [
+        "void;\n}\n\nconst trendIcon = {\n  up:",
+        ",\n  down:",
+        ",\n  stable:",
+        "}\n              />\n              {isSelected && (",
+        "Filtering",
+        ")}",
+        ");\n      })}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onMetricSelect"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Col",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Row",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Statistic",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "ArrowUpOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "ArrowDownOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "MinusOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "MetricCard",
+          "source": "../data/mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "DashboardPage": {
+      "componentName": "DashboardPage",
+      "sourceFile": "src/domains/dashboard/pages/DashboardPage.tsx",
+      "jsxTestIds": [
+        "dashboard-loading",
+        "dashboard-error",
+        "error-retry-link",
+        "scenario-select",
+        "dashboard-page"
+      ],
+      "jsxVisibleTexts": [
+        "))}",
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "(null);\n  const [selectedAlert, setSelectedAlert] = useState",
+        "Dashboard",
+        "Scenario:",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return (",
+        "setSelectedAlert(null)} />"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onMetricSelect",
+          "handlerName": "setSelectedMetric"
+        },
+        {
+          "attribute": "onItemClick",
+          "handlerName": "setSelectedAlert"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onClose",
+          "handlerName": "setSelectedAlert"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useMemo",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Row",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Col",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "MetricBand",
+          "source": "../components/MetricBand",
+          "isDefault": false
+        },
+        {
+          "name": "AlertQueue",
+          "source": "../components/AlertQueue",
+          "isDefault": false
+        },
+        {
+          "name": "ActivityFeed",
+          "source": "../components/ActivityFeed",
+          "isDefault": false
+        },
+        {
+          "name": "DetailDrawer",
+          "source": "../components/DetailDrawer",
+          "isDefault": false
+        },
+        {
+          "name": "metrics",
+          "source": "../data/mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "alerts",
+          "source": "../data/mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "activities",
+          "source": "../data/mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "emptyAlerts",
+          "source": "../data/mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "emptyActivities",
+          "source": "../data/mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type AlertItem",
+          "source": "../data/mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "InsightAnalysisPage": {
+      "componentName": "InsightAnalysisPage",
+      "sourceFile": "src/domains/insight/pages/InsightAnalysisPage.tsx",
+      "jsxTestIds": [
+        "insight-analysis-chart",
+        "insight-analysis-loading",
+        "insight-analysis-error",
+        "insight-analysis-retry-link",
+        "insight-analysis-scenario-select",
+        "insight-analysis-page",
+        "insight-analysis-filter",
+        "insight-analysis-metric-select",
+        "insight-analysis-time-select",
+        "insight-analysis-data-table"
+      ],
+      "jsxVisibleTexts": [
+        "d.value));\n\n  return (",
+        "))}",
+        ");\n}\n\nfunction AnalysisSkeleton() {\n  return (",
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "('loaded');\n  const [metric, setMetric] = useState",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "Insight Analysis",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  if (scenario === 'empty') {\n    return (",
+        ");\n  }\n\n  return ("
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setMetric"
+        },
+        {
+          "attribute": "ons",
+          "handlerName": "metricOptions"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setTimeRange"
+        },
+        {
+          "attribute": "ons",
+          "handlerName": "timeRangeOptions"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useMemo",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Row",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Col",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Table",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "taskTrendData",
+          "source": "../data/insight-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "skillUsageData",
+          "source": "../data/insight-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type ChartDataPoint",
+          "source": "../data/insight-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "ColumnsType",
+          "source": "antd/es/table",
+          "isDefault": false
+        }
+      ]
+    },
+    "InsightExportPage": {
+      "componentName": "InsightExportPage",
+      "sourceFile": "src/domains/insight/pages/InsightExportPage.tsx",
+      "jsxTestIds": [
+        "insight-export-loading",
+        "insight-export-error",
+        "insight-export-retry-link",
+        "insight-export-scenario-select",
+        "insight-export-page",
+        "insight-export-form",
+        "insight-export-format-select",
+        "insight-export-datatype-select",
+        "insight-export-start-date",
+        "insight-export-end-date",
+        "insight-export-button",
+        "insight-export-table"
+      ],
+      "jsxVisibleTexts": [
+        "record.status === 'ready' ? (",
+        "} size=\"small\" href={record.downloadUrl}>\n          Download",
+        ") : null,\n  },\n];\n\nfunction ExportSkeleton() {\n  return (",
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "('loaded');\n  const [format, setFormat] = useState",
+        "('csv');\n  const [dataType, setDataType] = useState",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "Insight Export",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return (",
+        "Format",
+        "Data Type",
+        "Start Date",
+        "End Date",
+        "} data-testid=\"insight-export-button\">\n            Export",
+        ") : (",
+        ")}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setFormat"
+        },
+        {
+          "attribute": "ons",
+          "handlerName": "formatOptions"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setDataType"
+        },
+        {
+          "attribute": "ons",
+          "handlerName": "dataTypeOptions"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        }
+      ],
+      "stateDeclarations": [
+        {
+          "variableName": "startDate",
+          "hook": "useState"
+        },
+        {
+          "variableName": "endDate",
+          "hook": "useState"
+        }
+      ],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Table",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Input",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "DownloadOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "ExportOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "exports",
+          "source": "../data/insight-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "emptyExports",
+          "source": "../data/insight-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type ExportItem",
+          "source": "../data/insight-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "ColumnsType",
+          "source": "antd/es/table",
+          "isDefault": false
+        }
+      ]
+    },
+    "InsightOverviewPage": {
+      "componentName": "InsightOverviewPage",
+      "sourceFile": "src/domains/insight/pages/InsightOverviewPage.tsx",
+      "jsxTestIds": [
+        "insight-stat-cards",
+        "insight-chart",
+        "insight-overview-loading",
+        "insight-overview-error",
+        "insight-overview-retry-link",
+        "insight-overview-scenario-select",
+        "insight-overview-page",
+        "sidebar-filter-indicator"
+      ],
+      "jsxVisibleTexts": [
+        ";\n  if (trendType === 'down') return",
+        ";\n  return",
+        "))}",
+        "d.value));\n  return (",
+        ");\n}\n\nfunction OverviewSkeleton() {\n  return (",
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "();\n  const [scenario, setScenario] = useState",
+        "('loaded');\n\n  const rangeFactor: Record",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "Insight Overview",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  if (scenario === 'empty') {\n    return (",
+        ");\n  }\n\n  return (",
+        "Time range:",
+        ")}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useMemo",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useParams",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Row",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Col",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Statistic",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "ArrowUpOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "ArrowDownOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "MinusOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "statCards",
+          "source": "../data/insight-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "taskTrendData",
+          "source": "../data/insight-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "skillUsageData",
+          "source": "../data/insight-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type StatCard",
+          "source": "../data/insight-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type ChartDataPoint",
+          "source": "../data/insight-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "InsightReportsPage": {
+      "componentName": "InsightReportsPage",
+      "sourceFile": "src/domains/insight/pages/InsightReportsPage.tsx",
+      "jsxTestIds": [
+        "insight-reports-loading",
+        "insight-reports-error",
+        "insight-reports-retry-link",
+        "insight-reports-scenario-select",
+        "insight-reports-page",
+        "insight-reports-table"
+      ],
+      "jsxVisibleTexts": [
+        "} size=\"small\">\n        View",
+        "),\n  },\n];\n\nfunction ReportsSkeleton() {\n  return (",
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "Insight Reports",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return (",
+        "}>\n          Generate Report",
+        ") : (",
+        ")}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Table",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "EyeOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "FileTextOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "reports",
+          "source": "../data/insight-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "emptyReports",
+          "source": "../data/insight-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type ReportItem",
+          "source": "../data/insight-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "ColumnsType",
+          "source": "antd/es/table",
+          "isDefault": false
+        }
+      ]
+    },
+    "SettingsLogsPage": {
+      "componentName": "SettingsLogsPage",
+      "sourceFile": "src/domains/settings/pages/SettingsLogsPage.tsx",
+      "jsxTestIds": [
+        "settings-logs-loading",
+        "settings-logs-error",
+        "settings-logs-retry-link",
+        "settings-logs-scenario-select",
+        "settings-logs-page",
+        "settings-logs-export-button",
+        "settings-logs-action-filter",
+        "settings-logs-status-filter",
+        "settings-logs-table"
+      ],
+      "jsxVisibleTexts": [
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "('all');\n  const [statusFilter, setStatusFilter] = useState",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "Operation Logs",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return (",
+        "Export",
+        ") : (",
+        ")}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setActionFilter"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setStatusFilter"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useMemo",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Table",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "DownloadOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "logs",
+          "source": "../data/settings-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "emptyLogs",
+          "source": "../data/settings-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type LogEntry",
+          "source": "../data/settings-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "ColumnsType",
+          "source": "antd/es/table",
+          "isDefault": false
+        }
+      ]
+    },
+    "SettingsParamsPage": {
+      "componentName": "SettingsParamsPage",
+      "sourceFile": "src/domains/settings/pages/SettingsParamsPage.tsx",
+      "jsxTestIds": [
+        "settings-params-loading",
+        "settings-params-error",
+        "settings-params-retry-link",
+        "settings-params-scenario-select",
+        "settings-params-page",
+        "settings-params-form",
+        "`settings-params-group-${group",
+        "settings-params-save-button",
+        "settings-params-reset-button"
+      ],
+      "jsxVisibleTexts": [
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "('loaded');\n  const [formValues, setFormValues] = useState",
+        "handleChange(param.key, e.target.value)}\n            />",
+        ");\n      case 'select':\n        return (",
+        "({ value: opt, label: opt }))}\n            />",
+        ");\n      case 'toggle':\n        return (",
+        "handleChange(param.key, checked)}\n            />",
+        ");\n      case 'number':\n        return (",
+        "handleChange(param.key, value ?? 0)}\n            />",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "System Parameters",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return (",
+        ") : (",
+        "))}",
+        "Save",
+        "Reset",
+        ")}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "Save"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "Reset"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useMemo",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Input",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "InputNumber",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Switch",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Form",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "systemParams",
+          "source": "../data/settings-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type SystemParam",
+          "source": "../data/settings-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "SettingsPermissionsPage": {
+      "componentName": "SettingsPermissionsPage",
+      "sourceFile": "src/domains/settings/pages/SettingsPermissionsPage.tsx",
+      "jsxTestIds": [
+        "settings-permissions-loading",
+        "settings-permissions-error",
+        "settings-permissions-retry-link",
+        "settings-permissions-scenario-select",
+        "settings-permissions-page",
+        "settings-permissions-tree",
+        "settings-permissions-matrix",
+        "settings-permissions-save-button",
+        "settings-permissions-reset-button"
+      ],
+      "jsxVisibleTexts": [
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "('loaded');\n  const [checkedKeys, setCheckedKeys] = useState",
+        "),\n    })),\n  ];\n\n  const scenarioSelector = (",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "Permission Management",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  if (scenario === 'empty') {\n    return (",
+        "Save",
+        "Reset"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tree",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Table",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Checkbox",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "SaveOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "ReloadOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "permissionTree",
+          "source": "../data/settings-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "ColumnsType",
+          "source": "antd/es/table",
+          "isDefault": false
+        },
+        {
+          "name": "DataNode",
+          "source": "antd/es/tree",
+          "isDefault": false
+        }
+      ]
+    },
+    "SettingsUsersPage": {
+      "componentName": "SettingsUsersPage",
+      "sourceFile": "src/domains/settings/pages/SettingsUsersPage.tsx",
+      "jsxTestIds": [
+        "settings-users-loading",
+        "settings-users-error",
+        "settings-users-retry-link",
+        "settings-users-scenario-select",
+        "settings-users-page",
+        "settings-users-add-button",
+        "settings-users-table",
+        "settings-users-add-modal"
+      ],
+      "jsxVisibleTexts": [
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "} size=\"small\">\n            Edit",
+        "),\n    },\n  ];\n\n  const scenarioSelector = (",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "User Management",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return (",
+        "Add User",
+        ") : (",
+        ")}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onOk",
+          "handlerName": "AddOk"
+        },
+        {
+          "attribute": "onCancel",
+          "handlerName": "AddCancel"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "setModalOpen"
+        }
+      ],
+      "stateDeclarations": [
+        {
+          "variableName": "modalOpen",
+          "hook": "useState"
+        }
+      ],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Table",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Modal",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Form",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Input",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Switch",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "PlusOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "EditOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "users",
+          "source": "../data/settings-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "emptyUsers",
+          "source": "../data/settings-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type UserItem",
+          "source": "../data/settings-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "ColumnsType",
+          "source": "antd/es/table",
+          "isDefault": false
+        }
+      ]
+    },
+    "SkillCard": {
+      "componentName": "SkillCard",
+      "sourceFile": "src/domains/skill/components/SkillCard.tsx",
+      "jsxTestIds": [
+        "`skill-card-${skill.id"
+      ],
+      "jsxVisibleTexts": [
+        ">;\n  const IconComponent = icons[skill.icon];\n\n  return (",
+        "}\n          />"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onClick"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Badge",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Icons",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "ComponentType",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "SkillItem",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "SkillConfigForm": {
+      "componentName": "SkillConfigForm",
+      "sourceFile": "src/domains/skill/components/SkillConfigForm.tsx",
+      "jsxTestIds": [
+        "skill-config-endpoint",
+        "skill-config-api-key",
+        "skill-config-timeout",
+        "`skill-config-param-key-${index",
+        "`skill-config-param-value-${index",
+        "`skill-config-param-remove-${index",
+        "skill-config-param-add",
+        "skill-config-permissions",
+        "skill-config-form",
+        "skill-config-save",
+        "skill-config-reset"
+      ],
+      "jsxVisibleTexts": [
+        "Remove",
+        "))}",
+        "Add Parameter",
+        "),\n    },\n  ];\n\n  return (",
+        "Save",
+        "Reset"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "addParameter"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "PermissionsChange"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "onSave"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "onReset"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "removeParameter"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useCallback",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Form",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Input",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "InputNumber",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Collapse",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Checkbox",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "SkillConfig",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "SkillDetailModal": {
+      "componentName": "SkillDetailModal",
+      "sourceFile": "src/domains/skill/components/SkillDetailModal.tsx",
+      "jsxTestIds": [
+        "skill-detail-modal"
+      ],
+      "jsxVisibleTexts": [
+        "))}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onCancel",
+          "handlerName": "onClose"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Modal",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Descriptions",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "DownloadOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "UserOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "SkillItem",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "SkillFilterBar": {
+      "componentName": "SkillFilterBar",
+      "sourceFile": "src/domains/skill/components/SkillFilterBar.tsx",
+      "jsxTestIds": [
+        "skill-filter-bar",
+        "skill-search",
+        "skill-category-filter",
+        "skill-tags-filter",
+        "skill-sort-by",
+        "skill-view-mode",
+        "skill-grid-btn",
+        "skill-list-btn"
+      ],
+      "jsxVisibleTexts": [],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onChange",
+          "handlerName": "onCategoryChange"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "onTagsChange"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "onSortByChange"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "onViewModeChange"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Input",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "SearchOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "AppstoreOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "UnorderedListOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "skillCategories",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "SkillGrid": {
+      "componentName": "SkillGrid",
+      "sourceFile": "src/domains/skill/components/SkillGrid.tsx",
+      "jsxTestIds": [
+        "skill-grid"
+      ],
+      "jsxVisibleTexts": [
+        "onCardClick(skill)}\n          />",
+        "))}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onCardClick"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Row",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Col",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "SkillItem",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "SkillCard",
+          "source": "./SkillCard",
+          "isDefault": false
+        }
+      ]
+    },
+    "SkillList": {
+      "componentName": "SkillList",
+      "sourceFile": "src/domains/skill/components/SkillList.tsx",
+      "jsxTestIds": [
+        "skill-list-view",
+        "`skill-list-item-${skill.id"
+      ],
+      "jsxVisibleTexts": [
+        ">;\n\n  return (",
+        "v{skill.version}",
+        ");\n      })}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onCardClick"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Avatar",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Icons",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "ComponentType",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "SkillItem",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "SkillVersionTable": {
+      "componentName": "SkillVersionTable",
+      "sourceFile": "src/domains/skill/components/SkillVersionTable.tsx",
+      "jsxTestIds": [
+        "skill-version-table",
+        "`skill-rollback-btn-${record.version"
+      ],
+      "jsxVisibleTexts": [
+        "void;\n}\n\nconst statusColor: Record",
+        "record.status !== 'current' ? (",
+        "Rollback"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRollback"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Table",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "SkillVersion",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "SkillConfigPage": {
+      "componentName": "SkillConfigPage",
+      "sourceFile": "src/domains/skill/pages/SkillConfigPage.tsx",
+      "jsxTestIds": [
+        "skill-config-loading",
+        "skill-config-error",
+        "skill-config-error-retry-link",
+        "skill-config-scenario-select",
+        "skill-config-page",
+        "skill-config-skill-select",
+        "skill-config-view-toggle",
+        "skill-json-editor",
+        "skill-json-textarea"
+      ],
+      "jsxVisibleTexts": [
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "('form');\n  const [config, setConfig] = useState",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "Skill Configuration",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return (",
+        "Select Skill:",
+        ") : (",
+        ")}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "SkillChange"
+        },
+        {
+          "attribute": "ons",
+          "handlerName": "skillOptions"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "ViewModeChange"
+        },
+        {
+          "attribute": "onfig",
+          "handlerName": "config"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "ConfigChange"
+        },
+        {
+          "attribute": "onSave",
+          "handlerName": "Save"
+        },
+        {
+          "attribute": "onReset",
+          "handlerName": "Reset"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useCallback",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useMemo",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Segmented",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Input",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "SkillConfigForm",
+          "source": "../components/SkillConfigForm",
+          "isDefault": false
+        },
+        {
+          "name": "skills",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "emptySkills",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "mockConfig",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type SkillItem",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type SkillConfig",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "SkillListPage": {
+      "componentName": "SkillListPage",
+      "sourceFile": "src/domains/skill/pages/SkillListPage.tsx",
+      "jsxTestIds": [
+        "skill-loading",
+        "skill-error",
+        "skill-error-retry-link",
+        "skill-scenario-select",
+        "skill-list-page",
+        "sidebar-filter-indicator"
+      ],
+      "jsxVisibleTexts": [
+        "))}",
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "();\n  const [scenario, setScenario] = useState",
+        "(null);\n  const [viewMode, setViewMode] = useState",
+        "(null);\n  const [tags, setTags] = useState",
+        "([]);\n  const [sortBy, setSortBy] = useState",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "Skills",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return (",
+        "Sidebar filter:",
+        ")}",
+        ") : viewMode === 'grid' ? (",
+        ") : (",
+        "setSelectedSkill(null)}\n      />"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onSearchChange",
+          "handlerName": "setSearch"
+        },
+        {
+          "attribute": "onViewModeChange",
+          "handlerName": "setViewMode"
+        },
+        {
+          "attribute": "onTagsChange",
+          "handlerName": "setTags"
+        },
+        {
+          "attribute": "onSortByChange",
+          "handlerName": "setSortBy"
+        },
+        {
+          "attribute": "onCardClick",
+          "handlerName": "CardClick"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onClose",
+          "handlerName": "setSelectedSkill"
+        }
+      ],
+      "stateDeclarations": [
+        {
+          "variableName": "search",
+          "hook": "useState"
+        }
+      ],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useMemo",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useCallback",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useParams",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Row",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Col",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "SkillFilterBar",
+          "source": "../components/SkillFilterBar",
+          "isDefault": false
+        },
+        {
+          "name": "SkillGrid",
+          "source": "../components/SkillGrid",
+          "isDefault": false
+        },
+        {
+          "name": "SkillList",
+          "source": "../components/SkillList",
+          "isDefault": false
+        },
+        {
+          "name": "SkillDetailModal",
+          "source": "../components/SkillDetailModal",
+          "isDefault": false
+        },
+        {
+          "name": "skills",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "emptySkills",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type SkillItem",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "SkillMarketPage": {
+      "componentName": "SkillMarketPage",
+      "sourceFile": "src/domains/skill/pages/SkillMarketPage.tsx",
+      "jsxTestIds": [
+        "skill-market-loading",
+        "skill-market-error",
+        "skill-market-error-retry-link",
+        "`skill-card-${skill.id",
+        "`skill-install-${skill.id",
+        "skill-market-scenario-select",
+        "skill-market-page",
+        "skill-market-featured",
+        "skill-market-recommended"
+      ],
+      "jsxVisibleTexts": [
+        "))}",
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        ">;\n  const IconComponent = icons[skill.icon];\n\n  return (",
+        ")}",
+        "v{skill.version}",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "Skill Market",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return (",
+        ") : (",
+        "Featured",
+        "Recommended",
+        "setSelectedSkill(null)}\n      />"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onToggleInstall",
+          "handlerName": "ToggleInstall"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "CardClick"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "onClick"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onClose",
+          "handlerName": "setSelectedSkill"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useMemo",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useCallback",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Row",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Col",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Icons",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "ComponentType",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "SkillDetailModal",
+          "source": "../components/SkillDetailModal",
+          "isDefault": false
+        },
+        {
+          "name": "skills",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "emptySkills",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type SkillItem",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "SkillVersionsPage": {
+      "componentName": "SkillVersionsPage",
+      "sourceFile": "src/domains/skill/pages/SkillVersionsPage.tsx",
+      "jsxTestIds": [
+        "skill-versions-loading",
+        "skill-versions-error",
+        "skill-versions-error-retry-link",
+        "skill-scenario-select",
+        "skill-versions-page",
+        "skill-versions-empty"
+      ],
+      "jsxVisibleTexts": [
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "Skill Versions",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        "Name: {skill.name}",
+        "Current Version: {currentVersion?.version ?? 'N/A'}",
+        "Author: {skill.author}",
+        ") : (",
+        ")}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "ons",
+          "handlerName": "versions"
+        },
+        {
+          "attribute": "onRollback",
+          "handlerName": "Rollback"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "notification",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "SkillVersionTable",
+          "source": "../components/SkillVersionTable",
+          "isDefault": false
+        },
+        {
+          "name": "skills",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "mockVersions",
+          "source": "../data/skill-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "BoardColumn": {
+      "componentName": "BoardColumn",
+      "sourceFile": "src/domains/task/components/BoardColumn.tsx",
+      "jsxTestIds": [
+        "`board-column-${status",
+        "`board-card-count-${status"
+      ],
+      "jsxVisibleTexts": [
+        ") : (\n        tasks.map((task) => (",
+        "))\n      )}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onDragOver",
+          "handlerName": "DragOver"
+        },
+        {
+          "attribute": "onDrop",
+          "handlerName": "Drop"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "onTaskClick"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Badge",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "TaskItem",
+          "source": "../data/mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "BoardTaskCard",
+          "source": "./BoardTaskCard",
+          "isDefault": false
+        }
+      ]
+    },
+    "BoardContainer": {
+      "componentName": "BoardContainer",
+      "sourceFile": "src/domains/task/components/BoardContainer.tsx",
+      "jsxTestIds": [
+        "board-container"
+      ],
+      "jsxVisibleTexts": [
+        "toBoardStatus(t.status) === col.status),\n  }));\n\n  return (",
+        "onTaskMove(taskId, col.status)}\n            />",
+        "))}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onTaskClick",
+          "handlerName": "onTaskClick"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Row",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Col",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "TaskItem",
+          "source": "../data/mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "BoardColumn",
+          "source": "./BoardColumn",
+          "isDefault": false
+        }
+      ]
+    },
+    "BoardTaskCard": {
+      "componentName": "BoardTaskCard",
+      "sourceFile": "src/domains/task/components/BoardTaskCard.tsx",
+      "jsxTestIds": [
+        "`board-task-card-${task.id"
+      ],
+      "jsxVisibleTexts": [],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onClick"
+        },
+        {
+          "attribute": "onDragStart",
+          "handlerName": "onDragStart"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "TaskItem",
+          "source": "../data/mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "TaskCreateForm": {
+      "componentName": "TaskCreateForm",
+      "sourceFile": "src/domains/task/components/TaskCreateForm.tsx",
+      "jsxTestIds": [
+        "task-create-form",
+        "form-steps",
+        "step-basic-info",
+        "input-title",
+        "input-priority",
+        "input-assignee",
+        "step-details",
+        "input-category",
+        "input-description",
+        "input-tags",
+        "step-settings",
+        "input-due-date",
+        "input-estimated-hours",
+        "input-is-public",
+        "step-review",
+        "btn-prev",
+        "btn-next",
+        "btn-submit"
+      ],
+      "jsxVisibleTexts": [
+        "void;\n  values: TaskFormValues;\n  errors: Record",
+        ")}\n\n      {currentStep === 1 && (",
+        ")}\n\n      {currentStep === 2 && (",
+        ")}\n\n      {currentStep === 3 && (",
+        "Review your task before creating.",
+        "Title:",
+        "Priority:",
+        "Category:",
+        "Assignee:",
+        "Description:",
+        "Tags:",
+        ") : 'None'}",
+        "Estimated Hours:",
+        "Public:",
+        ")}",
+        "Previous",
+        ")}\n        {currentStep",
+        "Next",
+        ")}\n        {currentStep === 3 && (",
+        "Create Task"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onSubmit"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "onStepChange"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Form",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Input",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Steps",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "DatePicker",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "InputNumber",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Switch",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "taskPriorities",
+          "source": "../data/mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "taskCategories",
+          "source": "../data/mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "TaskDetailDrawer": {
+      "componentName": "TaskDetailDrawer",
+      "sourceFile": "src/domains/task/components/TaskDetailDrawer.tsx",
+      "jsxTestIds": [
+        "task-detail-drawer"
+      ],
+      "jsxVisibleTexts": [
+        "void;\n}\n\nconst statusColor: Record",
+        ")}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClose",
+          "handlerName": "onClose"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Drawer",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Descriptions",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "TaskItem",
+          "source": "../data/mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "TaskFilterBar": {
+      "componentName": "TaskFilterBar",
+      "sourceFile": "src/domains/task/components/TaskFilterBar.tsx",
+      "jsxTestIds": [
+        "task-filter-bar",
+        "filter-status",
+        "filter-priority",
+        "filter-category"
+      ],
+      "jsxVisibleTexts": [
+        "Status:",
+        "Priority:",
+        "Category:"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "taskStatuses",
+          "source": "../data/mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "taskPriorities",
+          "source": "../data/mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "taskCategories",
+          "source": "../data/mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "TaskPreview": {
+      "componentName": "TaskPreview",
+      "sourceFile": "src/domains/task/components/TaskPreview.tsx",
+      "jsxTestIds": [
+        "task-preview",
+        "task-preview-empty"
+      ],
+      "jsxVisibleTexts": [
+        ");\n  }\n\n  return (",
+        "Not set",
+        ") : (",
+        ")}",
+        "Unassigned",
+        "No description"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Descriptions",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "TaskFormValues",
+          "source": "./TaskCreateForm",
+          "isDefault": false
+        }
+      ]
+    },
+    "TaskTable": {
+      "componentName": "TaskTable",
+      "sourceFile": "src/domains/task/components/TaskTable.tsx",
+      "jsxTestIds": [
+        "task-table-empty",
+        "task-batch-actions",
+        "btn-batch-delete",
+        "btn-batch-complete",
+        "task-table"
+      ],
+      "jsxVisibleTexts": [
+        "void;\n}\n\nconst statusColor: Record",
+        "0;\n\n  if (tasks.length === 0) {\n    return (",
+        ");\n  }\n\n  return (",
+        "Selected {selectedRowKeys.length} tasks",
+        "Delete",
+        "Mark Completed",
+        ")}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Table",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Popconfirm",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "message",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "DeleteOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "TaskItem",
+          "source": "../data/mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "TemplateCard": {
+      "componentName": "TemplateCard",
+      "sourceFile": "src/domains/task/components/TemplateCard.tsx",
+      "jsxTestIds": [
+        "`template-card-${template.id"
+      ],
+      "jsxVisibleTexts": [
+        ">;\n  const IconComponent = icons[template.icon];\n\n  return ("
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onClick"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Icons",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "ComponentType",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "TemplateItem",
+          "source": "../data/template-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "TemplateFilterBar": {
+      "componentName": "TemplateFilterBar",
+      "sourceFile": "src/domains/task/components/TemplateFilterBar.tsx",
+      "jsxTestIds": [
+        "template-filter-bar",
+        "template-search",
+        "template-category-filter"
+      ],
+      "jsxVisibleTexts": [],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onChange",
+          "handlerName": "onCategoryChange"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Input",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "SearchOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "templateCategories",
+          "source": "../data/template-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "TemplateGrid": {
+      "componentName": "TemplateGrid",
+      "sourceFile": "src/domains/task/components/TemplateGrid.tsx",
+      "jsxTestIds": [
+        "template-grid"
+      ],
+      "jsxVisibleTexts": [
+        "onCardClick(template)}\n          />",
+        "))}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onCardClick"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Row",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Col",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "TemplateItem",
+          "source": "../data/template-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "TemplateCard",
+          "source": "./TemplateCard",
+          "isDefault": false
+        }
+      ]
+    },
+    "TemplatePreviewModal": {
+      "componentName": "TemplatePreviewModal",
+      "sourceFile": "src/domains/task/components/TemplatePreviewModal.tsx",
+      "jsxTestIds": [
+        "template-open-workflow",
+        "template-preview-modal"
+      ],
+      "jsxVisibleTexts": [
+        "Close",
+        "Open in Workflow Editor",
+        "}\n      data-testid=\"template-preview-modal\"\n    >",
+        "Category:",
+        "Description",
+        "Tags",
+        "))}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onCancel",
+          "handlerName": "onClose"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "onClose"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Modal",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "TemplateItem",
+          "source": "../data/template-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "TaskBoardPage": {
+      "componentName": "TaskBoardPage",
+      "sourceFile": "src/domains/task/pages/TaskBoardPage.tsx",
+      "jsxTestIds": [
+        "task-board-loading",
+        "task-board-error",
+        "task-board-error-retry-link",
+        "task-board-scenario-select",
+        "task-board-page"
+      ],
+      "jsxVisibleTexts": [
+        "))}",
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "(null);\n  const [taskList, setTaskList] = useState",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "Task Board",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return (",
+        "setSelectedTask(null)}\n      />"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onTaskClick",
+          "handlerName": "setSelectedTask"
+        },
+        {
+          "attribute": "onTaskMove",
+          "handlerName": "TaskMove"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onClose",
+          "handlerName": "setSelectedTask"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useCallback",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Row",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Col",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "BoardContainer",
+          "source": "../components/BoardContainer",
+          "isDefault": false
+        },
+        {
+          "name": "TaskDetailDrawer",
+          "source": "../components/TaskDetailDrawer",
+          "isDefault": false
+        },
+        {
+          "name": "tasks",
+          "source": "../data/mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "emptyTasks",
+          "source": "../data/mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type TaskItem",
+          "source": "../data/mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "TaskCreatePage": {
+      "componentName": "TaskCreatePage",
+      "sourceFile": "src/domains/task/pages/TaskCreatePage.tsx",
+      "jsxTestIds": [
+        "task-create-loading",
+        "task-create-error",
+        "task-create-error-retry-link",
+        "task-create-scenario-select",
+        "task-create-page"
+      ],
+      "jsxVisibleTexts": [
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "Create Task",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return ("
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onStepChange",
+          "handlerName": "StepChange"
+        },
+        {
+          "attribute": "onValuesChange",
+          "handlerName": "ValuesChange"
+        },
+        {
+          "attribute": "onSubmit",
+          "handlerName": "Submit"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        }
+      ],
+      "stateDeclarations": [
+        {
+          "variableName": "currentStep",
+          "hook": "useState"
+        },
+        {
+          "variableName": "showValidation",
+          "hook": "useState"
+        }
+      ],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useMemo",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useCallback",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Row",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Col",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Modal",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "TaskCreateForm",
+          "source": "../components/TaskCreateForm",
+          "isDefault": false
+        },
+        {
+          "name": "type TaskFormValues",
+          "source": "../components/TaskCreateForm",
+          "isDefault": false
+        },
+        {
+          "name": "TaskPreview",
+          "source": "../components/TaskPreview",
+          "isDefault": false
+        }
+      ]
+    },
+    "TaskListPage": {
+      "componentName": "TaskListPage",
+      "sourceFile": "src/domains/task/pages/TaskListPage.tsx",
+      "jsxTestIds": [
+        "task-list-loading",
+        "task-list-error",
+        "task-error-retry-link",
+        "task-scenario-select",
+        "task-list-page",
+        "sidebar-filter-indicator"
+      ],
+      "jsxVisibleTexts": [
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "();\n  const [scenario, setScenario] = useState",
+        "(null);\n  const [selectedTask, setSelectedTask] = useState",
+        "(null);\n  const [taskList, setTaskList] = useState",
+        "Scenario:",
+        ");\n\n  const pageHeader = (",
+        "Task List",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return (",
+        "Sidebar filter:",
+        ")}",
+        "setSelectedTask(null)}\n      />"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onStatusChange",
+          "handlerName": "setStatusFilter"
+        },
+        {
+          "attribute": "onPriorityChange",
+          "handlerName": "setPriorityFilter"
+        },
+        {
+          "attribute": "onCategoryChange",
+          "handlerName": "setCategoryFilter"
+        },
+        {
+          "attribute": "onSelect",
+          "handlerName": "setSelectedTask"
+        },
+        {
+          "attribute": "onBatchDelete",
+          "handlerName": "BatchDelete"
+        },
+        {
+          "attribute": "onBatchStatusChange",
+          "handlerName": "BatchStatusChange"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onClose",
+          "handlerName": "setSelectedTask"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useMemo",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useParams",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "TaskFilterBar",
+          "source": "../components/TaskFilterBar",
+          "isDefault": false
+        },
+        {
+          "name": "TaskTable",
+          "source": "../components/TaskTable",
+          "isDefault": false
+        },
+        {
+          "name": "TaskDetailDrawer",
+          "source": "../components/TaskDetailDrawer",
+          "isDefault": false
+        },
+        {
+          "name": "tasks",
+          "source": "../data/mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "emptyTasks",
+          "source": "../data/mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type TaskItem",
+          "source": "../data/mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "TaskTemplatesPage": {
+      "componentName": "TaskTemplatesPage",
+      "sourceFile": "src/domains/task/pages/TaskTemplatesPage.tsx",
+      "jsxTestIds": [
+        "task-templates-loading",
+        "task-templates-error",
+        "task-templates-error-retry-link",
+        "task-templates-scenario-select",
+        "task-templates-page"
+      ],
+      "jsxVisibleTexts": [
+        "))}",
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "Scenario:",
+        ");\n\n  const pageHeader = (",
+        "Templates",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return (",
+        ") : (",
+        ")}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onSearchChange",
+          "handlerName": "setSearch"
+        },
+        {
+          "attribute": "onCategoryChange",
+          "handlerName": "setCategory"
+        },
+        {
+          "attribute": "onCardClick",
+          "handlerName": "CardClick"
+        },
+        {
+          "attribute": "onOpenWorkflow",
+          "handlerName": "OpenWorkflow"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onClose",
+          "handlerName": "setSelectedTemplate"
+        }
+      ],
+      "stateDeclarations": [
+        {
+          "variableName": "search",
+          "hook": "useState"
+        },
+        {
+          "variableName": "category",
+          "hook": "useState"
+        }
+      ],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useMemo",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useCallback",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useNavigate",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Row",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Col",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "TemplateFilterBar",
+          "source": "../components/TemplateFilterBar",
+          "isDefault": false
+        },
+        {
+          "name": "TemplateGrid",
+          "source": "../components/TemplateGrid",
+          "isDefault": false
+        },
+        {
+          "name": "TemplatePreviewModal",
+          "source": "../components/TemplatePreviewModal",
+          "isDefault": false
+        },
+        {
+          "name": "templates",
+          "source": "../data/template-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "emptyTemplates",
+          "source": "../data/template-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type TemplateItem",
+          "source": "../data/template-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "WorkflowEditorPage": {
+      "componentName": "WorkflowEditorPage",
+      "sourceFile": "src/domains/workflow/pages/WorkflowEditorPage.tsx",
+      "jsxTestIds": [
+        "workflow-editor-loading",
+        "workflow-editor-error",
+        "workflow-editor-error-retry-link",
+        "workflow-node-palette",
+        "workflow-editor-canvas",
+        "`workflow-node-${node.id",
+        "workflow-editor-scenario-select",
+        "workflow-template-context",
+        "workflow-editor-page",
+        "workflow-editor-save",
+        "workflow-editor-run",
+        "node-properties-drawer",
+        "btn-delete-node"
+      ],
+      "jsxVisibleTexts": [
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "Node Palette",
+        "onAddNode(node.type)}\n          >",
+        "))}",
+        "void;\n}) {\n  return (",
+        ");\n        })}",
+        "('loaded');\n  const [nodes, setNodes] = useState",
+        "(editorNodes);\n  const [edges, setEdges] = useState",
+        "Scenario:",
+        ");\n\n  const contextBanner = templateContext ? (",
+        ") : null;\n\n  if (scenario === 'loading') {\n    return (",
+        "Workflow Editor",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return (",
+        "Save",
+        "} data-testid=\"workflow-editor-run\">\n            Run",
+        ") : (",
+        ")}",
+        "Delete Node"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onAddNode",
+          "handlerName": "AddNode"
+        },
+        {
+          "attribute": "onNodeClick",
+          "handlerName": "NodeClick"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "NodeDelete"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "onAddNode"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "onNodeClick"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onClose",
+          "handlerName": "setDrawerOpen"
+        }
+      ],
+      "stateDeclarations": [
+        {
+          "variableName": "drawerOpen",
+          "hook": "useState"
+        }
+      ],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useCallback",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useMemo",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useSearchParams",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Drawer",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Form",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Input",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "message",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "SaveOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "PlayCircleOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "DeleteOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "editorNodes",
+          "source": "../data/workflow-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "editorEdges",
+          "source": "../data/workflow-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type EditorNode",
+          "source": "../data/workflow-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type EditorEdge",
+          "source": "../data/workflow-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "WorkflowHistoryPage": {
+      "componentName": "WorkflowHistoryPage",
+      "sourceFile": "src/domains/workflow/pages/WorkflowHistoryPage.tsx",
+      "jsxTestIds": [
+        "workflow-history-loading",
+        "workflow-history-error",
+        "workflow-history-error-retry-link",
+        "workflow-history-scenario-select",
+        "workflow-history-page",
+        "workflow-history-status-filter",
+        "workflow-history-table"
+      ],
+      "jsxVisibleTexts": [
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "Workflow Execution History",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return (",
+        "Filter by status:",
+        ") : (",
+        ")}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setStatusFilter"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useMemo",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Table",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "executionLogs",
+          "source": "../data/workflow-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "emptyExecutionLogs",
+          "source": "../data/workflow-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type ExecutionLog",
+          "source": "../data/workflow-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "WorkflowListPage": {
+      "componentName": "WorkflowListPage",
+      "sourceFile": "src/domains/workflow/pages/WorkflowListPage.tsx",
+      "jsxTestIds": [
+        "workflow-loading",
+        "workflow-error",
+        "workflow-error-retry-link",
+        "workflow-scenario-select",
+        "workflow-list-page",
+        "sidebar-filter-indicator",
+        "workflow-table",
+        "`workflow-status-toggle-${record.id",
+        "`workflow-edit-${record.id"
+      ],
+      "jsxVisibleTexts": [
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "();\n  const [scenario, setScenario] = useState",
+        ">(() => {\n    const initial: Record",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "Workflow List",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  if (filteredWorkflows.length === 0) {\n    return (",
+        "Sidebar filter:",
+        ")}",
+        ");\n  }\n\n  return (",
+        "Edit",
+        "),\n          },\n        ]}\n      />"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useMemo",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useParams",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Table",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Switch",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "EditOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "workflows",
+          "source": "../data/workflow-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "emptyWorkflows",
+          "source": "../data/workflow-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type WorkflowItem",
+          "source": "../data/workflow-mock-data",
+          "isDefault": false
+        }
+      ]
+    },
+    "WorkflowSchedulePage": {
+      "componentName": "WorkflowSchedulePage",
+      "sourceFile": "src/domains/workflow/pages/WorkflowSchedulePage.tsx",
+      "jsxTestIds": [
+        "workflow-schedule-loading",
+        "workflow-schedule-error",
+        "workflow-schedule-error-retry-link",
+        "`workflow-schedule-toggle-${record.id",
+        "`workflow-schedule-edit-${record.id",
+        "`workflow-schedule-delete-${record.id",
+        "workflow-schedule-scenario-select",
+        "workflow-schedule-page",
+        "workflow-add-schedule",
+        "workflow-schedule-table",
+        "workflow-schedule-modal",
+        "workflow-schedule-form-workflow",
+        "workflow-schedule-form-cron"
+      ],
+      "jsxVisibleTexts": [
+        "void }) {\n  return (",
+        "Retry",
+        "}\n      />",
+        "handleDelete(record.id)}\n          >",
+        "),\n    },\n  ];\n\n  const scenarioSelector = (",
+        "Scenario:",
+        ");\n\n  if (scenario === 'loading') {\n    return (",
+        "Workflow Schedules",
+        ");\n  }\n\n  if (scenario === 'error') {\n    return (",
+        "setScenario('loaded')} />",
+        ");\n  }\n\n  return (",
+        "Add Schedule",
+        ") : (",
+        ")}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "onRetry"
+        },
+        {
+          "attribute": "onChange",
+          "handlerName": "setScenario"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "Add"
+        },
+        {
+          "attribute": "onOk",
+          "handlerName": "ModalOk"
+        },
+        {
+          "attribute": "onClick",
+          "handlerName": "handleEdit"
+        },
+        {
+          "attribute": "onConfirm",
+          "handlerName": "handleDelete"
+        },
+        {
+          "attribute": "onRetry",
+          "handlerName": "setScenario"
+        }
+      ],
+      "stateDeclarations": [
+        {
+          "variableName": "modalOpen",
+          "hook": "useState"
+        }
+      ],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useMemo",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "useCallback",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Select",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Table",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Switch",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Modal",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Form",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Input",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Alert",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Popconfirm",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "message",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "PlusOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "EditOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "DeleteOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "schedules",
+          "source": "../data/workflow-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "emptySchedules",
+          "source": "../data/workflow-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "type ScheduleItem",
+          "source": "../data/workflow-mock-data",
+          "isDefault": false
+        },
+        {
+          "name": "ColumnsType",
+          "source": "antd/es/table",
+          "isDefault": false
+        }
+      ]
+    },
+    "PlaceholderPage": {
+      "componentName": "PlaceholderPage",
+      "sourceFile": "src/shared/ui/PlaceholderPage.tsx",
+      "jsxTestIds": [],
+      "jsxVisibleTexts": [],
+      "jsxAriaLabels": [],
+      "eventBindings": [],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Typography",
+          "source": "antd",
+          "isDefault": false
+        }
+      ]
+    },
+    "getModuleConfig": {
+      "componentName": "getModuleConfig",
+      "sourceFile": "src/shell/config/moduleConfig.tsx",
+      "jsxTestIds": [],
+      "jsxVisibleTexts": [
+        "[key, mod.label]),\n)\n\nexport const MODULE_ICONS: Record"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "ReactNode",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "UnorderedListOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "ThunderboltOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "BranchesOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "BarChartOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "SettingOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        }
+      ]
+    },
+    "GlobalShell": {
+      "componentName": "GlobalShell",
+      "sourceFile": "src/shell/layout/GlobalShell.tsx",
+      "jsxTestIds": [
+        "global-shell",
+        "header",
+        "module-switcher-btn",
+        "module-tag",
+        "module-drawer"
+      ],
+      "jsxVisibleTexts": [
+        "Frontend Skill Forge",
+        "} />"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "setDrawerOpen"
+        },
+        {
+          "attribute": "onClose",
+          "handlerName": "setDrawerOpen"
+        }
+      ],
+      "stateDeclarations": [
+        {
+          "variableName": "drawerOpen",
+          "hook": "useState"
+        }
+      ],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "useState",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "Layout",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Drawer",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Input",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Avatar",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Space",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "MenuOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "SearchOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "UserOutlined",
+          "source": "@ant-design/icons",
+          "isDefault": false
+        },
+        {
+          "name": "Outlet",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "useLocation",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "ModuleSwitcher",
+          "source": "../navigation/ModuleSwitcher",
+          "isDefault": true
+        },
+        {
+          "name": "MODULE_LABELS",
+          "source": "../config/moduleConfig",
+          "isDefault": false
+        }
+      ]
+    },
+    "ModuleLayout": {
+      "componentName": "ModuleLayout",
+      "sourceFile": "src/shell/layout/ModuleLayout.tsx",
+      "jsxTestIds": [
+        "module-layout",
+        "module-sider",
+        "module-content",
+        "breadcrumb"
+      ],
+      "jsxVisibleTexts": [],
+      "jsxAriaLabels": [],
+      "eventBindings": [],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Layout",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Breadcrumb",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Outlet",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "useLocation",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "useNavigate",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "useEffect",
+          "source": "react",
+          "isDefault": false
+        },
+        {
+          "name": "getModuleConfig",
+          "source": "../config/moduleConfig",
+          "isDefault": false
+        },
+        {
+          "name": "TopTabNavigation",
+          "source": "../navigation/TopTabNavigation",
+          "isDefault": true
+        },
+        {
+          "name": "SidebarNavigation",
+          "source": "../navigation/SidebarNavigation",
+          "isDefault": false
+        }
+      ]
+    },
+    "ModuleSwitcher": {
+      "componentName": "ModuleSwitcher",
+      "sourceFile": "src/shell/navigation/ModuleSwitcher.tsx",
+      "jsxTestIds": [
+        "`module-card-${mod.key"
+      ],
+      "jsxVisibleTexts": [
+        "))}"
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "handleClick"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Card",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Row",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "Col",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "useNavigate",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "useLocation",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "modules",
+          "source": "../config/moduleConfig",
+          "isDefault": false
+        }
+      ]
+    },
+    "SidebarNavigation": {
+      "componentName": "SidebarNavigation",
+      "sourceFile": "src/shell/navigation/SidebarNavigation.tsx",
+      "jsxTestIds": [
+        "sidebar-menu"
+      ],
+      "jsxVisibleTexts": [],
+      "jsxAriaLabels": [],
+      "eventBindings": [
+        {
+          "attribute": "onClick",
+          "handlerName": "Click"
+        }
+      ],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Menu",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "MenuProps",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "useLocation",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "useNavigate",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "SidebarMenuItem",
+          "source": "../config/moduleConfig",
+          "isDefault": false
+        }
+      ]
+    },
+    "TopTabNavigation": {
+      "componentName": "TopTabNavigation",
+      "sourceFile": "src/shell/navigation/TopTabNavigation.tsx",
+      "jsxTestIds": [
+        "`tab-${sanitizeKey(tab.key)",
+        "module-tabs"
+      ],
+      "jsxVisibleTexts": [
+        "({\n    key: tab.key,\n    label: (",
+        "),\n  }))\n\n  return ("
+      ],
+      "jsxAriaLabels": [],
+      "eventBindings": [],
+      "stateDeclarations": [],
+      "propsReceived": [],
+      "imports": [
+        {
+          "name": "Tabs",
+          "source": "antd",
+          "isDefault": false
+        },
+        {
+          "name": "useNavigate",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "useLocation",
+          "source": "react-router",
+          "isDefault": false
+        },
+        {
+          "name": "TabItem",
+          "source": "../config/moduleConfig",
+          "isDefault": false
+        }
+      ]
+    }
+  }
+}

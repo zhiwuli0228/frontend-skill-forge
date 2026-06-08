@@ -1,0 +1,649 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-06-08T17:15:28.490Z",
+  "projectAnchorProfile": {
+    "testidCoverage": 0.9074074074074074,
+    "textUniqueness": 0.35279805352798055,
+    "ariaLabelCoverage": 0,
+    "recommendedPrimary": "testid",
+    "recommendedFallback": "text",
+    "minimumConfidence": 0.6
+  },
+  "routes": {
+    "/task/list/all": [
+      {
+        "selector": {
+          "primary": "getByTestId('module-switcher-btn')",
+          "strategy": "testid"
+        },
+        "a11yRole": "button",
+        "visibleText": "",
+        "sourceComponent": "GlobalShell",
+        "sourceFile": "src/shell/layout/GlobalShell.tsx",
+        "parentComponent": "unknown",
+        "elementTestId": "module-switcher-btn",
+        "boundState": "drawerOpen",
+        "boundHandler": "setDrawerOpen",
+        "dataFlow": {
+          "handlerDefinedIn": "GlobalShell",
+          "stateOwnedBy": "GlobalShell",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/task/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('tab--task-list')",
+          "strategy": "testid"
+        },
+        "a11yRole": "tab",
+        "visibleText": "Task List",
+        "sourceComponent": "TopTabNavigation",
+        "sourceFile": "src/shell/navigation/TopTabNavigation.tsx",
+        "parentComponent": "unknown",
+        "elementTestId": "tab--task-list",
+        "dataFlow": {
+          "handlerDefinedIn": "unknown",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/task/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('tab--task-create')",
+          "strategy": "testid"
+        },
+        "a11yRole": "tab",
+        "visibleText": "Create Task",
+        "sourceComponent": "TopTabNavigation",
+        "sourceFile": "src/shell/navigation/TopTabNavigation.tsx",
+        "parentComponent": "unknown",
+        "elementTestId": "tab--task-create",
+        "dataFlow": {
+          "handlerDefinedIn": "unknown",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/task/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('tab--task-templates')",
+          "strategy": "testid"
+        },
+        "a11yRole": "tab",
+        "visibleText": "Templates",
+        "sourceComponent": "TopTabNavigation",
+        "sourceFile": "src/shell/navigation/TopTabNavigation.tsx",
+        "parentComponent": "unknown",
+        "elementTestId": "tab--task-templates",
+        "dataFlow": {
+          "handlerDefinedIn": "unknown",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/task/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('tab--task-board')",
+          "strategy": "testid"
+        },
+        "a11yRole": "tab",
+        "visibleText": "Board",
+        "sourceComponent": "TopTabNavigation",
+        "sourceFile": "src/shell/navigation/TopTabNavigation.tsx",
+        "parentComponent": "unknown",
+        "elementTestId": "tab--task-board",
+        "dataFlow": {
+          "handlerDefinedIn": "unknown",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/task/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('task-scenario-select')",
+          "strategy": "testid"
+        },
+        "a11yRole": "combobox",
+        "visibleText": "Loaded",
+        "sourceComponent": "TaskListPage",
+        "sourceFile": "src/domains/task/pages/TaskListPage.tsx",
+        "parentComponent": "unknown",
+        "elementTestId": "task-scenario-select",
+        "boundHandler": "setScenario",
+        "dataFlow": {
+          "handlerDefinedIn": "TaskListPage",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/task/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('filter-status')",
+          "strategy": "testid"
+        },
+        "a11yRole": "combobox",
+        "visibleText": "Status:",
+        "sourceComponent": "TaskFilterBar",
+        "sourceFile": "src/domains/task/components/TaskFilterBar.tsx",
+        "parentComponent": "TaskListPage",
+        "elementTestId": "filter-status",
+        "dataFlow": {
+          "handlerDefinedIn": "unknown",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/task/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('filter-priority')",
+          "strategy": "testid"
+        },
+        "a11yRole": "combobox",
+        "visibleText": "Priority:",
+        "sourceComponent": "TaskFilterBar",
+        "sourceFile": "src/domains/task/components/TaskFilterBar.tsx",
+        "parentComponent": "TaskListPage",
+        "elementTestId": "filter-priority",
+        "dataFlow": {
+          "handlerDefinedIn": "unknown",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/task/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('filter-category')",
+          "strategy": "testid"
+        },
+        "a11yRole": "combobox",
+        "visibleText": "Category:",
+        "sourceComponent": "TaskFilterBar",
+        "sourceFile": "src/domains/task/components/TaskFilterBar.tsx",
+        "parentComponent": "TaskListPage",
+        "elementTestId": "filter-category",
+        "dataFlow": {
+          "handlerDefinedIn": "unknown",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/task/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByRole('heading', { name: /Task List/i })",
+          "strategy": "text"
+        },
+        "a11yRole": "heading",
+        "visibleText": "Task List",
+        "sourceComponent": "TaskListPage",
+        "sourceFile": "src/domains/task/pages/TaskListPage.tsx",
+        "parentComponent": "unknown",
+        "elementTestId": null,
+        "dataFlow": {
+          "handlerDefinedIn": "unknown",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "text",
+        "confidence": "medium",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/task/list/all"
+      }
+    ],
+    "/skill/list/all": [
+      {
+        "selector": {
+          "primary": "getByTestId('module-switcher-btn')",
+          "strategy": "testid"
+        },
+        "a11yRole": "button",
+        "visibleText": "",
+        "sourceComponent": "GlobalShell",
+        "sourceFile": "src/shell/layout/GlobalShell.tsx",
+        "parentComponent": "unknown",
+        "elementTestId": "module-switcher-btn",
+        "boundState": "drawerOpen",
+        "boundHandler": "setDrawerOpen",
+        "dataFlow": {
+          "handlerDefinedIn": "GlobalShell",
+          "stateOwnedBy": "GlobalShell",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/skill/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('tab--skill-list')",
+          "strategy": "testid"
+        },
+        "a11yRole": "tab",
+        "visibleText": "Skill List",
+        "sourceComponent": "TopTabNavigation",
+        "sourceFile": "src/shell/navigation/TopTabNavigation.tsx",
+        "parentComponent": "unknown",
+        "elementTestId": "tab--skill-list",
+        "dataFlow": {
+          "handlerDefinedIn": "unknown",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/skill/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('tab--skill-market')",
+          "strategy": "testid"
+        },
+        "a11yRole": "tab",
+        "visibleText": "Skill Market",
+        "sourceComponent": "TopTabNavigation",
+        "sourceFile": "src/shell/navigation/TopTabNavigation.tsx",
+        "parentComponent": "unknown",
+        "elementTestId": "tab--skill-market",
+        "dataFlow": {
+          "handlerDefinedIn": "unknown",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/skill/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('tab--skill-config')",
+          "strategy": "testid"
+        },
+        "a11yRole": "tab",
+        "visibleText": "Config Center",
+        "sourceComponent": "TopTabNavigation",
+        "sourceFile": "src/shell/navigation/TopTabNavigation.tsx",
+        "parentComponent": "unknown",
+        "elementTestId": "tab--skill-config",
+        "dataFlow": {
+          "handlerDefinedIn": "unknown",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/skill/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('tab--skill-versions')",
+          "strategy": "testid"
+        },
+        "a11yRole": "tab",
+        "visibleText": "Version Management",
+        "sourceComponent": "TopTabNavigation",
+        "sourceFile": "src/shell/navigation/TopTabNavigation.tsx",
+        "parentComponent": "unknown",
+        "elementTestId": "tab--skill-versions",
+        "dataFlow": {
+          "handlerDefinedIn": "unknown",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/skill/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('skill-scenario-select')",
+          "strategy": "testid"
+        },
+        "a11yRole": "combobox",
+        "visibleText": "Loaded",
+        "sourceComponent": "SkillListPage",
+        "sourceFile": "src/domains/skill/pages/SkillListPage.tsx",
+        "parentComponent": "unknown",
+        "elementTestId": "skill-scenario-select",
+        "boundState": "search",
+        "boundHandler": "setScenario",
+        "dataFlow": {
+          "handlerDefinedIn": "SkillListPage",
+          "stateOwnedBy": "SkillListPage",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/skill/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('skill-search')",
+          "strategy": "testid"
+        },
+        "a11yRole": "textbox",
+        "visibleText": "Search skills...",
+        "sourceComponent": "SkillFilterBar",
+        "sourceFile": "src/domains/skill/components/SkillFilterBar.tsx",
+        "parentComponent": "SkillListPage",
+        "elementTestId": "skill-search",
+        "boundHandler": "onCategoryChange",
+        "dataFlow": {
+          "handlerDefinedIn": "SkillFilterBar",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/skill/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('skill-category-filter')",
+          "strategy": "testid"
+        },
+        "a11yRole": "combobox",
+        "visibleText": "All",
+        "sourceComponent": "SkillFilterBar",
+        "sourceFile": "src/domains/skill/components/SkillFilterBar.tsx",
+        "parentComponent": "SkillListPage",
+        "elementTestId": "skill-category-filter",
+        "boundHandler": "onCategoryChange",
+        "dataFlow": {
+          "handlerDefinedIn": "SkillFilterBar",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/skill/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('skill-tags-filter')",
+          "strategy": "testid"
+        },
+        "a11yRole": "combobox",
+        "visibleText": "Filter by tags",
+        "sourceComponent": "SkillFilterBar",
+        "sourceFile": "src/domains/skill/components/SkillFilterBar.tsx",
+        "parentComponent": "SkillListPage",
+        "elementTestId": "skill-tags-filter",
+        "boundHandler": "onCategoryChange",
+        "dataFlow": {
+          "handlerDefinedIn": "SkillFilterBar",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/skill/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('skill-sort-by')",
+          "strategy": "testid"
+        },
+        "a11yRole": "combobox",
+        "visibleText": "Name",
+        "sourceComponent": "SkillFilterBar",
+        "sourceFile": "src/domains/skill/components/SkillFilterBar.tsx",
+        "parentComponent": "SkillListPage",
+        "elementTestId": "skill-sort-by",
+        "boundHandler": "onCategoryChange",
+        "dataFlow": {
+          "handlerDefinedIn": "SkillFilterBar",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/skill/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('skill-grid-btn')",
+          "strategy": "testid"
+        },
+        "a11yRole": "button",
+        "visibleText": "",
+        "sourceComponent": "SkillFilterBar",
+        "sourceFile": "src/domains/skill/components/SkillFilterBar.tsx",
+        "parentComponent": "SkillListPage",
+        "elementTestId": "skill-grid-btn",
+        "boundHandler": "onViewModeChange",
+        "dataFlow": {
+          "handlerDefinedIn": "SkillFilterBar",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/skill/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('skill-list-btn')",
+          "strategy": "testid"
+        },
+        "a11yRole": "button",
+        "visibleText": "",
+        "sourceComponent": "SkillFilterBar",
+        "sourceFile": "src/domains/skill/components/SkillFilterBar.tsx",
+        "parentComponent": "SkillListPage",
+        "elementTestId": "skill-list-btn",
+        "boundHandler": "onViewModeChange",
+        "dataFlow": {
+          "handlerDefinedIn": "SkillFilterBar",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/skill/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByTestId('skill-card-s16')",
+          "strategy": "testid"
+        },
+        "a11yRole": "button",
+        "visibleText": "API Caller",
+        "sourceComponent": "SkillMarketPage",
+        "sourceFile": "src/domains/skill/pages/SkillMarketPage.tsx",
+        "parentComponent": "unknown",
+        "elementTestId": "skill-card-s16",
+        "boundHandler": "onRetry",
+        "dataFlow": {
+          "handlerDefinedIn": "SkillMarketPage",
+          "stateOwnedBy": "unknown",
+          "serviceCalls": []
+        },
+        "anchorMethod": "testid",
+        "confidence": "high",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/skill/list/all"
+      },
+      {
+        "selector": {
+          "primary": "getByRole('heading', { name: /Skills/i })",
+          "strategy": "text"
+        },
+        "a11yRole": "heading",
+        "visibleText": "Skills",
+        "sourceComponent": "SkillListPage",
+        "sourceFile": "src/domains/skill/pages/SkillListPage.tsx",
+        "parentComponent": "unknown",
+        "elementTestId": null,
+        "boundState": "search",
+        "dataFlow": {
+          "handlerDefinedIn": "unknown",
+          "stateOwnedBy": "SkillListPage",
+          "serviceCalls": []
+        },
+        "anchorMethod": "text",
+        "confidence": "medium",
+        "lastVerifiedCommit": "HEAD",
+        "route": "/skill/list/all"
+      }
+    ]
+  },
+  "unmatched": [
+    {
+      "route": "/task/list/all",
+      "selector": "getByRole('menuitem', { name: /All/i })",
+      "status": "unmapped",
+      "reason": "no-testid-no-unique-text"
+    },
+    {
+      "route": "/task/list/all",
+      "selector": "getByRole('menuitem', { name: /Open/i })",
+      "status": "unmapped",
+      "reason": "no-testid-no-unique-text"
+    },
+    {
+      "route": "/task/list/all",
+      "selector": "getByRole('menuitem', { name: /In Progress/i })",
+      "status": "unmapped",
+      "reason": "no-testid-no-unique-text"
+    },
+    {
+      "route": "/task/list/all",
+      "selector": "getByRole('menuitem', { name: /Completed/i })",
+      "status": "unmapped",
+      "reason": "no-testid-no-unique-text"
+    },
+    {
+      "route": "/task/list/all",
+      "selector": "getByRole('menuitem', { name: /Archived/i })",
+      "status": "unmapped",
+      "reason": "no-testid-no-unique-text"
+    },
+    {
+      "route": "/task/list/all",
+      "selector": "getByRole('checkbox', { name: /Select all/i })",
+      "status": "unmapped",
+      "reason": "no-testid-no-unique-text"
+    },
+    {
+      "route": "/task/list/all",
+      "selector": "getByRole('button', { name: /1/i })",
+      "status": "unmapped",
+      "reason": "no-testid-no-unique-text"
+    },
+    {
+      "route": "/task/list/all",
+      "selector": "getByRole('button', { name: /2/i })",
+      "status": "unmapped",
+      "reason": "no-testid-no-unique-text"
+    },
+    {
+      "route": "/task/list/all",
+      "selector": "getByRole('input', { name: /Search.../i })",
+      "status": "unmapped",
+      "reason": "no-testid-no-unique-text"
+    },
+    {
+      "route": "/skill/list/all",
+      "selector": "getByRole('menuitem', { name: /All/i })",
+      "status": "unmapped",
+      "reason": "no-testid-no-unique-text"
+    },
+    {
+      "route": "/skill/list/all",
+      "selector": "getByRole('menuitem', { name: /Text Processing/i })",
+      "status": "unmapped",
+      "reason": "no-testid-no-unique-text"
+    },
+    {
+      "route": "/skill/list/all",
+      "selector": "getByRole('menuitem', { name: /Image Generation/i })",
+      "status": "unmapped",
+      "reason": "no-testid-no-unique-text"
+    },
+    {
+      "route": "/skill/list/all",
+      "selector": "getByRole('menuitem', { name: /Data Analysis/i })",
+      "status": "unmapped",
+      "reason": "no-testid-no-unique-text"
+    },
+    {
+      "route": "/skill/list/all",
+      "selector": "getByRole('menuitem', { name: /Tool Invocation/i })",
+      "status": "unmapped",
+      "reason": "no-testid-no-unique-text"
+    },
+    {
+      "route": "/skill/list/all",
+      "selector": "getByRole('input', { name: /Search.../i })",
+      "status": "unmapped",
+      "reason": "no-testid-no-unique-text"
+    }
+  ],
+  "stitchReport": {
+    "/task/list/all": {
+      "route": "/task/list/all",
+      "totalElements": 19,
+      "matched": 10,
+      "highConfidence": 9,
+      "mediumConfidence": 1,
+      "lowConfidence": 0,
+      "unmatched": 9
+    },
+    "/skill/list/all": {
+      "route": "/skill/list/all",
+      "totalElements": 20,
+      "matched": 14,
+      "highConfidence": 13,
+      "mediumConfidence": 1,
+      "lowConfidence": 0,
+      "unmatched": 6
+    }
+  }
+}
