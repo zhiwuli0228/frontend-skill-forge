@@ -2,6 +2,7 @@ import { createBrowserRouter, redirect } from 'react-router';
 import { GlobalShell } from '../shell/layout/GlobalShell';
 import ModuleLayout from '../shell/layout/ModuleLayout';
 
+import { AuthGuard } from '../domains/auth/guards/AuthGuard';
 import { LoginPage } from '../domains/auth/pages/LoginPage';
 import { TaskListPage } from '../domains/task/pages/TaskListPage';
 import { TaskCreatePage } from '../domains/task/pages/TaskCreatePage';
@@ -31,7 +32,9 @@ export const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <GlobalShell />,
+    element: <AuthGuard />,
+    children: [{
+      element: <GlobalShell />,
     children: [
       {
         index: true,
@@ -96,6 +99,8 @@ export const router = createBrowserRouter([
           { path: 'logs', element: <SettingsLogsPage /> },
         ],
       },
+      ],
+    },
     ],
   },
 ]);
