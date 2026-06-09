@@ -162,4 +162,4 @@ When performing substantial work, the agent should say:
 
 - Use with `ui-validation-evidence-contract.md`
 - Use with `skill-and-map-feasibility-validation-plan.md`
-- Use with the three frontend Skills under `docs/02-harness/skills/`
+- Use with the frontend Skills under `frontend-skill-template/`

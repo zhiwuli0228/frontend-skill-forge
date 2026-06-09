@@ -928,7 +928,7 @@ skill-evolution-maintainer
 Location:
 
 ```text
-docs/02-harness/skills/
+frontend-skill-template/
 ```
 
 ### 12.1 frontend-project-reader

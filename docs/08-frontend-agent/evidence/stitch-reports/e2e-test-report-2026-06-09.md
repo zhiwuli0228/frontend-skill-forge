@@ -173,8 +173,8 @@ These fixes should be incorporated into the extraction script in both `frontend-
 ### File Inventory
 
 ```
-docs/02-harness/skills/frontend-registry-stitch/SKILL.md   ← NEW
-docs/02-harness/skills/frontend-e2e-explorer/SKILL.md      ← UPDATED (Step 3.5 + cross-ref)
+frontend-skill-template/frontend-registry-stitch/SKILL.md   ← NEW
+frontend-skill-template/frontend-e2e-explorer/SKILL.md      ← UPDATED (Step 3.5 + cross-ref)
 docs/08-frontend-agent/element-stitching-protocol.md       ← UPDATED (Skill reference)
 docs/08-frontend-agent/evidence/element-stitching-spike-01.md ← UPDATED (resolved issues)
 src/testability/element-registry/

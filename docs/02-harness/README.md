@@ -26,7 +26,6 @@ docs/02-harness/
 ├── agent-rules.md
 ├── skill-evolution-policy.md
 ├── migration-guide.md
-├── skills/          # Generic Skill definitions
 ├── rules/           # Generic Rule definitions
 └── knowledge/       # Generic Knowledge definitions
 ```
