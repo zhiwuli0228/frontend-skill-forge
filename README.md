@@ -1,73 +1,36 @@
-# React + TypeScript + Vite
+# frontend-skill-forge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React 19 + TypeScript 6 + Vite 8 + Ant Design 6 + React Router 7 frontend application.
 
-Currently, two official plugins are available:
+## Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev       # Start dev server at http://localhost:5173
+npm run build     # Type-check and production build
+npm run lint      # Run ESLint
+npm run test:e2e  # Run Playwright E2E tests
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Agent Governance — Playwright MCP Context Guard
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Any agent performing browser automation (Playwright MCP) in this repo must follow the mandatory context guard protocol. Raw DOM and full snapshots must not enter the conversation; every snapshot must be summarized as a Compact Page State Summary.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Rule | Document |
+|---|---|
+| Pre-MCP execution guard | `docs/08-frontend-agent/MCP_CONTEXT_GUARD.md` |
+| Post-snapshot summary template | `docs/08-frontend-agent/page-state-summary-compact.md` |
+| MCP operation protocol | `docs/08-frontend-agent/playwright-mcp-operation-protocol.md` |
+| Context bloat check script | `scripts/check-mcp-context-bloat.ps1` |
+| AGENTS.md hard rules | `AGENTS.md` |
+
+Key principles:
+- Raw MCP output is evidence, not working context
+- Element refs are valid only for the current snapshot
+- No snapshot loops (snapshot → click → snapshot → click…)
+- Stop exploration once enough evidence is collected
+- Use semantic anchors (route, label, data-testid) over unstable refs
+
+## Architecture
+
+See `CLAUDE.md` and `docs/` for detailed architecture documentation.

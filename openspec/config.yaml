@@ -1,3 +1,10 @@
 project: frontend-skill-forge
 schema:
   default: superspec
+
+# Playwright MCP context governance — mandatory for any task using browser automation
+governance:
+  mcp_context_guard:
+    - docs/08-frontend-agent/MCP_CONTEXT_GUARD.md
+    - docs/08-frontend-agent/page-state-summary-compact.md
+    - docs/08-frontend-agent/playwright-mcp-operation-protocol.md
