@@ -1,6 +1,8 @@
-import { Avatar, Tag, Typography } from 'antd';
+import { Avatar, Tag, Typography, Button } from 'antd';
+import { ExportOutlined } from '@ant-design/icons';
 import * as Icons from '@ant-design/icons';
 import type { ComponentType } from 'react';
+import { useNavigate } from 'react-router';
 
 import type { SkillItem } from '../data/skill-mock-data';
 
@@ -26,6 +28,7 @@ interface SkillListProps {
 
 export function SkillList({ skills, onCardClick }: SkillListProps) {
   const icons = Icons as unknown as Record<string, ComponentType<{ style?: React.CSSProperties }>>;
+  const navigate = useNavigate();
 
   return (
     <div data-testid="skill-list-view" style={{ display: 'grid', gap: 12 }}>
@@ -53,7 +56,23 @@ export function SkillList({ skills, onCardClick }: SkillListProps) {
                 />
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <Text strong>{skill.name}</Text>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Text strong>{skill.name}</Text>
+                  {skill.actionRoute && (
+                    <Button
+                      size="small"
+                      type="primary"
+                      icon={<ExportOutlined />}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(skill.actionRoute!);
+                      }}
+                      data-testid={`skill-list-open-${skill.id}`}
+                    >
+                      Open
+                    </Button>
+                  )}
+                </div>
                 <div>
                   <Text type="secondary" ellipsis>{skill.description}</Text>
                 </div>

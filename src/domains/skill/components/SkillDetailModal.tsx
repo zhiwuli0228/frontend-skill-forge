@@ -1,5 +1,6 @@
-import { Modal, Descriptions, Tag, Space } from 'antd';
-import { DownloadOutlined, UserOutlined } from '@ant-design/icons';
+import { Modal, Descriptions, Tag, Space, Button } from 'antd';
+import { DownloadOutlined, UserOutlined, ExportOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router';
 
 import type { SkillItem } from '../data/skill-mock-data';
 
@@ -23,6 +24,8 @@ interface SkillDetailModalProps {
 }
 
 export function SkillDetailModal({ skill, open, onClose }: SkillDetailModalProps) {
+  const navigate = useNavigate();
+
   if (!skill) return null;
 
   return (
@@ -30,7 +33,21 @@ export function SkillDetailModal({ skill, open, onClose }: SkillDetailModalProps
       title={skill.name}
       open={open}
       onCancel={onClose}
-      footer={null}
+      footer={
+        skill.actionRoute ? (
+          <Button
+            type="primary"
+            icon={<ExportOutlined />}
+            onClick={() => {
+              onClose();
+              navigate(skill.actionRoute!);
+            }}
+            data-testid="skill-detail-open-button"
+          >
+            Open
+          </Button>
+        ) : null
+      }
       data-testid="skill-detail-modal"
     >
       <Descriptions column={1} bordered size="small">

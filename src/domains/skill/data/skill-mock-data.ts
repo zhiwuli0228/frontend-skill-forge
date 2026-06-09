@@ -9,6 +9,7 @@ export interface SkillItem {
   author: string;
   downloads: number;
   tags: string[];
+  actionRoute?: string; // optional route for launching the skill's functionality
 }
 
 export interface SkillVersion {
@@ -47,7 +48,8 @@ export const skills: SkillItem[] = [
   { id: 's14', name: 'Data Validator', description: 'Validates data against configurable schemas and rules, returning detailed error reports.', category: 'data', version: '1.1.0', status: 'draft', icon: 'SafetyOutlined', author: 'QualityAI', downloads: 4300, tags: ['validation', 'schema', 'quality'] },
   { id: 's15', name: 'Statistical Analyzer', description: 'Computes descriptive and inferential statistics with hypothesis testing and regression analysis.', category: 'data', version: '2.0.0', status: 'inactive', icon: 'FundOutlined', author: 'StatsPro', downloads: 6700, tags: ['statistics', 'analysis', 'math'] },
 
-  // Tool category (5)
+  // Tool category (6)
+  { id: 's21', name: 'Task Creator', description: 'Create and manage operational tasks with a guided 4-step wizard: Basic Info, Details, Settings, and Review before submission.', category: 'tool', version: '1.0.0', status: 'active', icon: 'PlusSquareOutlined', author: 'TaskFlow', downloads: 8500, tags: ['task', 'creation', 'workflow', 'form'], actionRoute: '/skill/create-task' },
   { id: 's16', name: 'API Caller', description: 'Makes HTTP requests to external APIs with retry logic, rate limiting, and response caching.', category: 'tool', version: '3.5.0', status: 'active', icon: 'ApiOutlined', author: 'DevTools', downloads: 19400, tags: ['api', 'http', 'integration'] },
   { id: 's17', name: 'Web Scraper', description: 'Extracts structured data from web pages with CSS selector support and pagination handling.', category: 'tool', version: '2.3.0', status: 'active', icon: 'CloudOutlined', author: 'ScrapeAI', downloads: 13600, tags: ['scraping', 'web', 'extraction'] },
   { id: 's18', name: 'Code Executor', description: 'Safely executes code snippets in sandboxed environments with language support for Python, JS, and more.', category: 'tool', version: '1.6.0', status: 'active', icon: 'CodeOutlined', author: 'RunBox', downloads: 10900, tags: ['code', 'execution', 'sandbox'] },

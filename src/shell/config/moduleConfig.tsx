@@ -66,6 +66,7 @@ export const modules: Record<string, ModuleConfig> = {
       { key: '/skill/market', label: 'Skill Market' },
       { key: '/skill/config', label: 'Config Center' },
       { key: '/skill/versions', label: 'Version Management' },
+      { key: '/skill/create-task', label: 'Task Creator' },
     ],
     sidebarMenu: [
       { key: 'all', label: 'All', path: '/skill/list/all' },

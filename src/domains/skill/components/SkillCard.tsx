@@ -1,6 +1,8 @@
-import { Card, Tag, Badge, Typography } from 'antd';
+import { Card, Tag, Badge, Typography, Button } from 'antd';
+import { ExportOutlined } from '@ant-design/icons';
 import * as Icons from '@ant-design/icons';
 import type { ComponentType } from 'react';
+import { useNavigate } from 'react-router';
 
 import type { SkillItem } from '../data/skill-mock-data';
 
@@ -27,6 +29,7 @@ interface SkillCardProps {
 export function SkillCard({ skill, onClick }: SkillCardProps) {
   const icons = Icons as unknown as Record<string, ComponentType<{ style?: React.CSSProperties }>>;
   const IconComponent = icons[skill.icon];
+  const navigate = useNavigate();
 
   return (
     <Badge.Ribbon text={skill.version} color="blue">
@@ -46,14 +49,30 @@ export function SkillCard({ skill, onClick }: SkillCardProps) {
         >
           {skill.description}
         </Paragraph>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <Tag color={categoryColors[skill.category] ?? 'default'}>
-            {skill.category}
-          </Tag>
-          <Badge
-            status={statusColors[skill.status] as 'success' | 'default' | 'warning' | 'error' | 'processing'}
-            text={<Text type="secondary" style={{ fontSize: 12 }}>{skill.status}</Text>}
-          />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <Tag color={categoryColors[skill.category] ?? 'default'}>
+              {skill.category}
+            </Tag>
+            <Badge
+              status={statusColors[skill.status] as 'success' | 'default' | 'warning' | 'error' | 'processing'}
+              text={<Text type="secondary" style={{ fontSize: 12 }}>{skill.status}</Text>}
+            />
+          </div>
+          {skill.actionRoute && (
+            <Button
+              size="small"
+              type="primary"
+              icon={<ExportOutlined />}
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(skill.actionRoute!);
+              }}
+              data-testid={`skill-open-${skill.id}`}
+            >
+              Open
+            </Button>
+          )}
         </div>
       </Card>
     </Badge.Ribbon>

@@ -24,12 +24,14 @@ Every project using this skill MUST provide these values. The current project's 
 |-----------|----------------|---------------------------|-------|
 | `base_url` | `http://localhost:5173` | `{{BASE_URL}}` | Dev server origin |
 | `login_url` | `/login` | `{{LOGIN_URL}}` | Relative or absolute |
-| `username` | `admin` | `{{AUTH_USERNAME}}` | Valid test credential |
-| `password` | `admin123` | `{{AUTH_PASSWORD}}` | Valid test credential |
+| `username` | *(from `references/credentials.json`)* | `{{AUTH_USERNAME}}` | Stored in credentials file, not inline |
+| `password` | *(from `references/credentials.json`)* | `{{AUTH_PASSWORD}}` | Stored in credentials file, not inline |
 | `tenant` | _(none)_ | `{{AUTH_TENANT}}` | Optional; omit if single-tenant |
 | `post_login_redirect` | `/` | `{{POST_LOGIN_REDIRECT}}` | Where login sends the user on success |
 
-## Current Project Credentials
+## Credentials File
+
+Credentials are stored in `references/credentials.json` to avoid plaintext in prompts:
 
 ```json
 {
@@ -43,6 +45,8 @@ Every project using this skill MUST provide these values. The current project's 
   "tenant": null
 }
 ```
+
+The agent MUST read this file at the start of the workflow. Do not type credentials directly in the prompt — always load them from `references/credentials.json`.
 
 ## Selector Inventory
 
@@ -79,9 +83,17 @@ The login page has a scenario selector that can put it into `loading` or `error`
 
 ### 3. Submit Credentials
 
+First, read credentials from `references/credentials.json`:
+
 ```
-Fill [data-testid="login-username"] with "admin"
-Fill [data-testid="login-password"] with "admin123"
+Read references/credentials.json → extract credentials.username and credentials.password
+```
+
+Then fill and submit:
+
+```
+Fill [data-testid="login-username"] with <username from file>
+Fill [data-testid="login-password"] with <password from file>
 Click [data-testid="login-submit"]
 Wait for navigation away from /login
 ```
@@ -117,7 +129,7 @@ Once authenticated, the downstream exploration skill (e.g. `frontend-e2e-explore
 | Symptom | Likely Cause | Action |
 |---------|-------------|--------|
 | Login form not visible | Scenario is `loading` or `error` | Switch scenario to `loaded` |
-| Validation error after submit | Wrong credentials | Verify username/password against VALID_CREDENTIALS |
+| Validation error after submit | Wrong credentials | Verify username/password in `references/credentials.json` |
 | Still on `/login` after submit | AuthContext state not updated | Check console for errors; restart dev server |
 | Redirect loop | AuthGuard logic broken | Check `src/domains/auth/guards/AuthGuard.tsx` |
 | `BLOCKED_BY_NO_LOGIN_FORM` | Login page DOM changed | Update selector inventory; check for `data-testid` changes |
@@ -152,7 +164,7 @@ The login page supports 3 dev scenarios via the in-page selector. The login skil
 
 - URL: http://localhost:5173/login
 - Scenario: loaded
-- Credentials: admin / ***
+- Credentials: (from file) / ***
 - Result: success / failure
 
 ## Session Confirmation
@@ -167,5 +179,6 @@ The login page supports 3 dev scenarios via the in-page selector. The login skil
 
 ## References
 
+- `references/credentials.json` — Login credentials (base_url, username, password). Read at workflow start — never inline credentials in prompts.
 - `references/selector-reference.md` — Full selector inventory with fallback strategies
 - `references/login-flow.md` — Step-by-step login flow diagram

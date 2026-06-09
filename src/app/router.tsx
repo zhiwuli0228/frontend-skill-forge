@@ -12,6 +12,7 @@ import { SkillListPage } from '../domains/skill/pages/SkillListPage';
 import { SkillMarketPage } from '../domains/skill/pages/SkillMarketPage';
 import { SkillConfigPage } from '../domains/skill/pages/SkillConfigPage';
 import { SkillVersionsPage } from '../domains/skill/pages/SkillVersionsPage';
+import { SkillTaskCreatePage } from '../domains/skill/pages/SkillTaskCreatePage';
 import { WorkflowListPage } from '../domains/workflow/pages/WorkflowListPage';
 import { WorkflowEditorPage } from '../domains/workflow/pages/WorkflowEditorPage';
 import { WorkflowHistoryPage } from '../domains/workflow/pages/WorkflowHistoryPage';
@@ -64,6 +65,7 @@ export const router = createBrowserRouter([
           { path: 'market', element: <SkillMarketPage /> },
           { path: 'config', element: <SkillConfigPage /> },
           { path: 'versions', element: <SkillVersionsPage /> },
+          { path: 'create-task', element: <SkillTaskCreatePage /> },
         ],
       },
       {

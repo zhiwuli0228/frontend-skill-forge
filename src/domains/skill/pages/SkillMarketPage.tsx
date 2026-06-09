@@ -1,7 +1,9 @@
 import { useState, useMemo, useCallback } from 'react';
 import { Typography, Space, Select, Alert, Skeleton, Empty, Card, Row, Col, Button, Tag } from 'antd';
+import { ExportOutlined } from '@ant-design/icons';
 import * as Icons from '@ant-design/icons';
 import type { ComponentType } from 'react';
+import { useNavigate } from 'react-router';
 
 import { SkillDetailModal } from '../components/SkillDetailModal';
 import { skills, emptySkills, type SkillItem } from '../data/skill-mock-data';
@@ -72,6 +74,7 @@ interface SkillCardProps {
 function SkillCard({ skill, installed, featured, onToggleInstall, onClick }: SkillCardProps) {
   const icons = Icons as unknown as Record<string, ComponentType<{ style?: React.CSSProperties }>>;
   const IconComponent = icons[skill.icon];
+  const navigate = useNavigate();
 
   return (
     <Card
@@ -102,18 +105,35 @@ function SkillCard({ skill, installed, featured, onToggleInstall, onClick }: Ski
             v{skill.version}
           </Text>
         </Space>
-        <Button
-          size="small"
-          type={installed ? 'default' : 'primary'}
-          danger={installed}
-          onClick={(e) => {
-            e.stopPropagation();
-            onToggleInstall(skill);
-          }}
-          data-testid={`skill-install-${skill.id}`}
-        >
-          {installed ? 'Uninstall' : 'Install'}
-        </Button>
+        <Space>
+          {skill.actionRoute && (
+            <Button
+              size="small"
+              type={featured ? 'default' : 'primary'}
+              ghost={featured}
+              icon={<ExportOutlined />}
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(skill.actionRoute!);
+              }}
+              data-testid={`skill-market-open-${skill.id}`}
+            >
+              Open
+            </Button>
+          )}
+          <Button
+            size="small"
+            type={installed ? 'default' : 'primary'}
+            danger={installed}
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleInstall(skill);
+            }}
+            data-testid={`skill-install-${skill.id}`}
+          >
+            {installed ? 'Uninstall' : 'Install'}
+          </Button>
+        </Space>
       </div>
       <div style={{ marginTop: 8 }}>
         <Space size={[0, 4]} wrap>

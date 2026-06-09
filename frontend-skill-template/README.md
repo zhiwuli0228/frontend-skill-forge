@@ -15,6 +15,7 @@ This directory contains executable Skill templates for frontend-skill-forge proj
 | `skill-evolution-maintainer` | maintenance | Maintain skill change log and evolution evidence |
 | `frontend-task-creation` | planning | Create and manage OpenSpec tasks for frontend changes |
 | `frontend-test-spec-generator` | analysis-and-generation | Analyze source code and generate executable E2E test spec/plan/tasks documents |
+| `create-task-skill` | action | Create tasks through the 4-step task creation wizard via Playwright MCP browser tools |
 
 ## Usage
 
