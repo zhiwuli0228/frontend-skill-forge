@@ -6,6 +6,7 @@ This directory contains executable Skill templates for frontend-skill-forge proj
 
 | Skill | Type | Purpose |
 |---|---|---|
+| `frontend-auth-login` | precondition | Authenticate browser session before exploration; shields other skills from auth differences |
 | `frontend-project-reader` | discovery | Read project structure and maintain knowledge maps (route-map, component-map) |
 | `frontend-e2e-explorer` | exploration | Explore UI via Playwright MCP and produce evidence records |
 | `frontend-incremental-coder` | implementation | Implement frontend changes within approved boundaries |

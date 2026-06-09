@@ -31,6 +31,10 @@ Key principles:
 - Stop exploration once enough evidence is collected
 - Use semantic anchors (route, label, data-testid) over unstable refs
 
+## Frontend Exploration
+
+New to the project or just finished a migration? Start with the [Frontend Exploration Guide](./FRONTEND_EXPLORATION_GUIDE.md) — it walks you through the full workflow from running smoke tests to collecting evidence and driving subsequent page exploration.
+
 ## Architecture
 
 See `CLAUDE.md` and `docs/` for detailed architecture documentation.

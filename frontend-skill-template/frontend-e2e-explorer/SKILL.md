@@ -32,6 +32,7 @@ Do not use this Skill when:
 
 ## Required Inputs
 
+- Authenticated session — run `frontend-auth-login` first for protected routes
 - Route target (URL path, e.g. `/task/list/all`)
 - Evidence templates from `docs/08-frontend-agent/evidence/`
 - Selector stability guide from `docs/08-frontend-agent/mcp/selector-stability-guide.md`
@@ -39,6 +40,12 @@ Do not use this Skill when:
 - MCP / Playwright browser tools (optional but preferred)
 
 ## Workflow
+
+### 0. Ensure Authenticated
+
+Before exploring a protected route, check whether the browser session is authenticated. If not, run `frontend-auth-login` first. See `frontend-skill-template/frontend-auth-login/SKILL.md`.
+
+If the target route is `/login` itself, skip this step.
 
 ### 1. Check Existing Evidence
 
@@ -90,6 +97,7 @@ If evidence discovered new information (new components, changed behavior), updat
 
 If blocked, use one of these failure codes:
 
+- `BLOCKED_BY_NO_AUTH` — browser session not authenticated and `frontend-auth-login` failed or unavailable
 - `BLOCKED_BY_NO_MCP` — MCP browser tools unavailable and no e2e test artifacts exist for the route
 - `BLOCKED_BY_PAGE_FAILED_TO_LOAD` — 404 or error on navigation
 - `BLOCKED_BY_NO_SCENARIO_SELECTOR` — page lacks the 4-state scenario selector
