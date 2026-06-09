@@ -111,6 +111,7 @@ export interface UnmappedElement {
   selector: string;
   status: 'unmapped';
   reason: 'no-testid-no-unique-text' | 'dynamic-content' | 'out-of-scope' | 'below-confidence-threshold';
+  staleSince?: string;
 }
 
 export interface StitchReport {
@@ -130,4 +131,20 @@ export interface ElementRegistry {
   routes: Record<string, StitchedElement[]>;
   unmatched: UnmappedElement[];
   stitchReport: Record<string, StitchReport>;
+}
+
+// ── Change detection types ──
+
+export interface ModuleRouteMap {
+  moduleRoutes: Record<string, string[]>;
+  pageFileToRoute: Record<string, string>;
+  filePrefixToRoutes: Record<string, string[]>;
+}
+
+export interface FileChangeResult {
+  changedFiles: string[];
+  affectedRoutes: string[];
+  affectedModules: string[];
+  isShellChange: boolean;
+  isGlobalChange: boolean;
 }

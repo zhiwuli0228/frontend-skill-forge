@@ -27,7 +27,7 @@ const ALL_STRATEGIES: AnchorStrategy[] = [testidStrategy, textStrategy, componen
  * Narrow code-side components to those reachable from a given route.
  * Simple heuristics: match by module prefix from the URL path.
  */
-function scopeComponentsToRoute(
+export function scopeComponentsToRoute(
   route: string,
   components: Record<string, CodeComponent>,
 ): CodeComponent[] {
