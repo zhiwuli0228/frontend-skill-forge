@@ -1,945 +1,683 @@
-# Frontend Skill Forge — Agent Migration Guide
+# AI-Assisted Development Methodology — Deployment Guide
 
 ## Overview
 
-This guide is **optimized for AI agent execution**. Every file and directory receives an explicit action label (KEEP / DELETE / REPLACE / MODIFY). Follow the steps in order; each step lists exact paths, generation rules, and expected outcomes.
+This guide is **optimized for AI agent execution**. It describes how to deploy the Frontend Skill Forge methodology layer (docs structure, skill templates, knowledge maps, AI agent configuration) to any frontend project — **regardless of tech stack** (React, Vue, Angular, Svelte, vanilla JS).
 
-**Template source:** `frontend-skill-forge` (React 19 + Vite 8 + TypeScript 6 + Ant Design 6 + React Router 7)
-**Target:** `{{TARGET_PROJECT_NAME}}`
+### What This Guide Covers
 
----
+| Deliverable | Path | Description |
+|-------------|------|-------------|
+| Documentation system | `docs/` | 13 subdirectories covering architecture, development, ops, AI governance, change records |
+| Skill templates | `frontend-skill-template/` | 11 executable AI agent skills (page exploration, element stitching, incremental coding, etc.) |
+| AI configuration | `.claude/` `.codex/` | Runtime agent configuration and skill registration |
+| Knowledge maps | `docs/02-harness/knowledge/frontend/` | Route map, component map, element registry, API contract map, state flow map |
 
-## Migration Strategy
-
-### Core Principle: Two-Layer Separation
-
-The template divides cleanly into two layers. Understanding this boundary is the foundation of correct migration:
-
-```
-┌──────────────────────────────────────────────────────┐
-│  TEMPLATE INFRASTRUCTURE (preserve)                  │
-│                                                      │
-│  src/shell/      Layout, navigation, module config   │
-│  src/app/        App shell, providers, router pattern│
-│  src/shared/     Shared UI components                │
-│  src/testability/ Element registry, selectors, fixtures│
-│  src/main.tsx    Entry point                         │
-│  config files    Vite, TS, ESLint, Playwright        │
-│  docs/01-08/     Architecture, harness, ops docs     │
-│  .claude/, .codex/, .opencode/  AI harness config    │
-│                                                      │
-├──────────────────────────────────────────────────────┤
-│  SIMULATED BUSINESS CODE (delete & replace)          │
-│                                                      │
-│  src/domains/{task,skill,workflow,insight,settings}/ │
-│  src/domains/dashboard/                              │
-│  src/domains/auth/          Mock auth → real auth    │
-│  src/shell/config/moduleConfig.tsx  → your modules   │
-│  src/app/router.tsx                → your routes     │
-│  tests/e2e/, tests/fixtures/      → your tests       │
-│  docs/00-project/, docs/05-domain/  → your docs      │
-│  docs/09-change-records/           → your records    │
-└──────────────────────────────────────────────────────┘
-```
-
-### Three-Phase Migration Approach
-
-#### Phase 1: DISCOVERY — Read & Understand
-
-Before modifying anything, read the template's key files to build a mental model:
-
-1. Read `src/shell/config/moduleConfig.tsx` — understand the `ModuleConfig` type contract
-2. Read `src/app/router.tsx` — understand the 3-level nesting pattern (AuthGuard → GlobalShell → ModuleLayout → Page)
-3. Read `src/shell/layout/GlobalShell.tsx` — understand what it renders and what context it consumes
-4. Read `src/shell/layout/ModuleLayout.tsx` — understand how it derives tabs/sidebar/breadcrumb from config
-5. Read `src/domains/auth/context/useAuth.ts` — understand the `AuthContextValue` contract
-6. Read one complete domain page (e.g., `src/domains/task/pages/TaskListPage.tsx`) — understand the scenario pattern
-7. Read `src/testability/selectors.ts` — understand the selector entry format
-
-These 7 files define **all contracts** your migrated code must satisfy. Everything else follows from them.
-
-#### Phase 2: SCAFFOLD — Build the Skeleton
-
-Work in strict dependency order. Each step produces output that the next step consumes:
+### Template Source
 
 ```
-moduleConfig.tsx  ──►  router.tsx  ──►  providers.tsx
-       │                    │
-       └────────────────────┼──►  domain/page components
-                            │
-                            └──►  selectors.ts  ──►  E2E tests + fixtures
+frontend-skill-forge/
+├── docs/                         # Documentation layer (the core asset)
+│   ├── 00-project/               # Project identity — REGENERATE
+│   ├── 01-architecture/          # Architecture patterns — ADAPT
+│   ├── 02-harness/               # AI governance — COPY AS-IS
+│   ├── 03-openspec/              # Spec management — COPY AS-IS
+│   ├── 04-development/           # Dev guidelines — ADAPT
+│   ├── 05-domain/                # Domain knowledge — REGENERATE
+│   ├── 06-operations/            # Ops & release — ADAPT
+│   ├── 07-evidence/              # Verification evidence — RESET
+│   ├── 08-frontend-agent/        # Frontend AI harness — COPY AS-IS
+│   ├── 09-change-records/        # Version ledger — RESET
+│   ├── MIGRATION_GUIDE_CN.md     # This guide (Chinese)
+│   └── MIGRATION_GUIDE_EN.md     # This guide (English)
+├── frontend-skill-template/      # 11 AI skills — COPY AS-IS
+├── .claude/skills/               # Claude Code runtime skills — COPY AS-IS
+└── .codex/skills/                # Codex runtime skills — COPY AS-IS
 ```
 
-1. Define `moduleConfig.tsx` first — all navigation components read from it
-2. Write `router.tsx` next — it references module keys and page components
-3. Create page stubs (returning `<PlaceholderPage>` initially) so the router compiles
-4. Update `providers.tsx` — add Query/state management wrappers
-5. Fill in page components — one by one, following the scenario pattern
-6. Register selectors — after page components have their `data-testid` attributes
-7. Write E2E tests — after selectors are registered
+### Target
 
-#### Phase 3: FILL — Replace Stubs with Real Implementation
-
-For each module, iterate:
-1. Create mock data in `data/mock-data.ts` (loaded + empty variants)
-2. Build domain components with `data-testid` attributes
-3. Replace page stubs with full scenario-driven pages
-4. Wire up sidebar filter parameter handling (`useParams<{ filter?: string }>()`)
-5. Register selectors in `SELECTOR_REGISTRY`
-6. Write fixtures and E2E tests
-7. Run `npm run build` and `npm run dev` to verify
-
-### Risk Management
-
-| Risk | Mitigation |
-|------|------------|
-| Build breaks after deleting domains | Run `npm run build` after each major step — catch import errors immediately |
-| Shell components reference deleted auth code | `AuthGuard` and `GlobalShell` only import from `useAuth` — keep that hook's contract |
-| ModuleLayout redirects to non-existent route | Always define `defaultRoute` before wiring the router |
-| TypeScript `verbatimModuleSyntax` errors | After every file creation, check that type imports use `import type { X }` |
-
-### Rollback Checkpoints
-
-After each step below passes verification, create a git commit. If a later step fails, revert to the last checkpoint:
-
-```bash
-git add -A && git commit -m "migrate: step N — <description>"
+```
+{{TARGET_PROJECT}}/               # Any frontend project
+├── docs/                         # <- deploy the methodology here
+├── frontend-skill-template/      # <- deploy skill templates here
+├── .claude/                      # <- deploy AI config here
+└── .codex/                       # <- deploy Codex config here
 ```
 
 ---
 
-## Template Variables
+## Deployment Strategy
 
-Replace these before starting:
+### Three Action Categories
 
-| Variable | Example |
-|----------|---------|
-| `{{TARGET_PROJECT_NAME}}` | `my-order-system` |
-| `{{APP_TITLE}}` | `Order Management System` |
-| `{{MODULE_KEY_1}}`, `{{MODULE_KEY_2}}`, ... | `orders`, `inventory`, `customers` |
-| `{{MODULE_LABEL_1}}`, `{{MODULE_LABEL_2}}`, ... | `Order Management`, `Inventory` |
-| `{{DEFAULT_MODULE_KEY}}` | `orders` |
-| `{{DEFAULT_ROUTE}}` | `/orders/list` |
-| `{{ENTITY_1}}`, `{{ENTITY_2}}`, ... | `Order`, `InventoryItem`, `Customer` |
+Every file in the methodology layer receives one of three actions:
+
+| Action | Meaning | Applies To |
+|--------|---------|------------|
+| **COPY** | Copy verbatim — no modifications needed | Cross-project governance, skills, AI config |
+| **ADAPT** | Keep structure, update project-specific references | Architecture docs, dev guides, ops docs |
+| **REGENERATE** | Delete old content, generate new from target project source | Project identity docs, domain docs, evidence, change records |
+
+### Deployment Order
+
+Steps must execute in this order — each step may depend on outputs from prior steps:
+
+```
+Step 0: Read target project
+Step 1: COPY methodology core (docs/02,03,08 + frontend-skill-template/ + .claude/ + .codex/)
+Step 2: REGENERATE project identity docs (docs/00-project/)
+Step 3: ADAPT architecture docs (docs/01-architecture/)
+Step 4: ADAPT dev guides (docs/04-development/)
+Step 5: REGENERATE domain docs (docs/05-domain/)
+Step 6: ADAPT ops docs (docs/06-operations/)
+Step 7: RESET evidence & change records
+Step 8: ADAPT AI agent config (CLAUDE.md, skill path references)
+Step 9: Deploy & register skill templates
+Step 10: Generate knowledge maps
+Step 11: Verify deployment
+```
 
 ---
 
-## Step 1: Discovery — Read Key Files
+## Step 0: Prerequisites — Read Target Project
 
-**Goal:** Understand all contracts before making changes.
+Before deploying, read the target project to understand its structure:
 
 ### Files to READ (mandatory)
 
 ```
-src/shell/config/moduleConfig.tsx       # ModuleConfig, TabItem, SidebarMenuItem types
-src/app/router.tsx                       # 3-level route nesting pattern
-src/shell/layout/GlobalShell.tsx         # Header + Drawer + Content structure
-src/shell/layout/ModuleLayout.tsx        # Tab + Sider + Breadcrumb structure
-src/domains/auth/context/useAuth.ts      # AuthContextValue contract
-src/domains/task/pages/TaskListPage.tsx  # Scenario pattern reference
-src/testability/selectors.ts             # SelectorEntry format
+package.json                    # Project name, tech stack, scripts
+CLAUDE.md or README.md          # Project-level instructions (if any)
+Source directory structure      # Where pages, components, routes live
+Router/route configuration      # How routes are defined (react-router, vue-router, etc.)
+Test configuration              # What test framework is used
 ```
 
-### Files to READ (recommended — understand the patterns)
+### Information to Extract
 
+From these files, build a project profile:
+
+```yaml
+project_name: "{{TARGET_PROJECT_NAME}}"
+tech_stack:
+  framework: "{{FRAMEWORK}}"       # react | vue | angular | svelte | vanilla
+  language: "{{LANGUAGE}}"         # typescript | javascript
+  build_tool: "{{BUILD_TOOL}}"     # vite | webpack | etc.
+  test_framework: "{{TEST}}"       # playwright | cypress | jest | vitest
+route_config_path: "{{ROUTE_CONFIG_PATH}}"
+page_directory: "{{PAGE_DIRECTORY}}"   # e.g., src/pages/, src/views/
+component_directory: "{{COMPONENT_DIR}}"
+data_model_path: "{{DATA_MODEL_PATH}}" # e.g., src/types/, src/interfaces/
+selector_convention: "{{SELECTOR}}"    # data-testid | data-test | data-cy | id
+module_count: {{N}}
+page_count: {{M}}
 ```
-src/shell/navigation/ModuleSwitcher.tsx      # How modules are rendered in drawer
-src/shell/navigation/SidebarNavigation.tsx    # How sidebar menu items work
-src/shell/navigation/TopTabNavigation.tsx     # How top tabs work
-src/domains/task/components/TaskTable.tsx     # Domain component pattern
-src/domains/task/data/mock-data.ts            # Mock data export pattern
-src/app/App.tsx                               # Provider wrapping order
-src/app/providers.tsx                         # Current provider list
-src/shared/ui/PlaceholderPage.tsx             # Page stub helper
-tests/e2e/smoke.spec.ts                       # E2E test pattern
-tests/helpers/fixture-loader.ts               # Fixture loading utility
-```
 
-### Action
-
-Read each file above. Take notes on:
-- Type contracts that must be preserved
-- Import paths that your code will need to match
-- `data-testid` naming conventions
-- The exact shape of mock data exports
+This profile drives all subsequent ADAPT and REGENERATE steps.
 
 ---
 
-## Step 2: Initialize Project
+## Step 1: COPY — Methodology Core
 
-### Files to MODIFY
+### Files to COPY (verbatim, no modifications)
 
-| Action | Path | Instructions |
-|--------|------|--------------|
-| MODIFY | `package.json` | Set `name` to `"{{TARGET_PROJECT_NAME}}"`. Update `description`. Add/remove dependencies as needed. |
-| MODIFY | `index.html` | Change `<title>` to `"{{APP_TITLE}}"`. |
+```
+docs/02-harness/                  # AI agent workflow, git governance, verification, skill lifecycle
+docs/03-openspec/                 # OpenSpec spec management process
+docs/08-frontend-agent/           # MCP protocols, element stitching, UI evidence, evolution
+frontend-skill-template/          # All 11 skill templates (each: SKILL.md + references/)
+.claude/skills/                   # Claude Code runtime skill registrations
+.codex/skills/                    # Codex runtime skill registrations
+docs/MIGRATION_GUIDE_CN.md        # This guide (Chinese version)
+docs/MIGRATION_GUIDE_EN.md        # This guide (English version)
+```
 
-### Verification
+### Shell Commands
+
 ```bash
-npm install
-npm run build  # must pass on unmodified template code
-```
+TEMPLATE="frontend-skill-forge"
+TARGET="{{TARGET_PROJECT}}"
 
----
+# Core governance (cross-project universal)
+cp -r $TEMPLATE/docs/02-harness/     $TARGET/docs/02-harness/
+cp -r $TEMPLATE/docs/03-openspec/    $TARGET/docs/03-openspec/
+cp -r $TEMPLATE/docs/08-frontend-agent/ $TARGET/docs/08-frontend-agent/
 
-## Step 3: Clean Simulated Business Code
+# Skill templates (all 11 skills)
+cp -r $TEMPLATE/frontend-skill-template/ $TARGET/frontend-skill-template/
 
-### Files to DELETE
+# AI agent configuration
+cp -r $TEMPLATE/.claude/  $TARGET/.claude/
+cp -r $TEMPLATE/.codex/   $TARGET/.codex/
 
-```
-src/domains/task/
-src/domains/skill/
-src/domains/workflow/
-src/domains/insight/
-src/domains/settings/
-src/domains/dashboard/
-tests/e2e/*
-tests/fixtures/tasks/
-tests/fixtures/skills/
-tests/fixtures/workflows/
-tests/fixtures/insights/
-src/assets/hero.png
-```
-
-### Files to TEMPORARILY STUB
-
-After deleting the domains above, `router.tsx` will have broken imports. Remove all domain page imports from `router.tsx` and replace the route tree with a minimal stub:
-
-```tsx
-import { createBrowserRouter } from 'react-router'
-import { Outlet } from 'react-router'
-
-export const router = createBrowserRouter([
-  {
-    path: '/login',
-    element: <div data-testid="login-stub">Login (stub)</div>,
-  },
-  {
-    path: '/',
-    element: <div data-testid="root-stub">Root (stub) <Outlet /></div>,
-    children: [
-      { index: true, element: <div>Home (stub)</div> },
-    ],
-  },
-])
+# Migration guides
+cp $TEMPLATE/docs/MIGRATION_GUIDE_CN.md $TARGET/docs/MIGRATION_GUIDE_CN.md
+cp $TEMPLATE/docs/MIGRATION_GUIDE_EN.md $TARGET/docs/MIGRATION_GUIDE_EN.md
 ```
 
 ### Verification
+
 ```bash
-npm run build  # must pass with stub router — proves shell code has zero domain dependencies
+# Check that all core directories exist
+test -d $TARGET/docs/02-harness/ && echo "OK: 02-harness" || echo "MISSING: 02-harness"
+test -d $TARGET/docs/03-openspec/ && echo "OK: 03-openspec" || echo "MISSING: 03-openspec"
+test -d $TARGET/docs/08-frontend-agent/ && echo "OK: 08-frontend-agent" || echo "MISSING: 08-frontend-agent"
+test -d $TARGET/frontend-skill-template/ && echo "OK: skill templates" || echo "MISSING: skill templates"
+test -d $TARGET/.claude/skills/ && echo "OK: .claude skills" || echo "MISSING: .claude skills"
+
+# Count skills (should be 11+)
+ls $TARGET/frontend-skill-template/ | wc -l
 ```
 
 ---
 
-## Step 4: Define Module Configuration
+## Step 2: REGENERATE — Project Identity Docs
 
-`src/shell/config/moduleConfig.tsx` — **REPLACE** the `modules` object entirely.
+`docs/00-project/` must reflect the TARGET project, not the template.
 
-### Type Contracts (KEEP EXACTLY AS-IS)
+### File Actions
 
-```ts
-export interface TabItem {
-  key: string        // route path, e.g. "/orders/list"
-  label: string      // display label, e.g. "Order List"
-}
+| File | Action | Generation Method |
+|------|--------|-------------------|
+| `README.md` | REGENERATE | List files in this directory with one-line descriptions |
+| `project-overview.md` | REGENERATE | Read `package.json` + route config → generate |
+| `glossary.md` | REGENERATE | Read route config + data models → generate |
+| `current-status.md` | REGENERATE | Document deployment status, known issues |
+| `roadmap.md` | REGENERATE | Write "TBD — define after deployment" if no roadmap exists |
 
-export interface SidebarMenuItem {
-  key: string
-  label: string
-  path?: string      // route path with optional filter param
-  children?: SidebarMenuItem[]
-}
+### Generation Rules
 
-export interface ModuleConfig {
-  key: string              // URL segment, e.g. "orders"
-  label: string            // display name, e.g. "Order Management"
-  icon: ReactNode          // from @ant-design/icons
-  defaultRoute: string     // e.g. "/orders/list"
-  tabs: TabItem[]
-  sidebarMenu: SidebarMenuItem[]
-}
+For `project-overview.md`:
+```
+Read: package.json, route config, project README/CLAUDE.md
+Sections:
+  1. Project Name & Positioning (1-2 paragraphs)
+  2. Tech Stack (table: technology + version from package.json)
+  3. Page/Module Inventory (table: route path + page description)
+  4. Architecture Highlights (3-5 bullets)
+  5. Directory Structure (key directories with descriptions)
 ```
 
-### Generation Rule
-
-For each business module target, create one `ModuleConfig` entry:
-
-```tsx
-{{MODULE_KEY}}: {
-  key: '{{MODULE_KEY}}',
-  label: '{{MODULE_LABEL}}',
-  icon: <{{ICON_COMPONENT}} />,  // pick from @ant-design/icons
-  defaultRoute: '/{{MODULE_KEY}}/{{FIRST_TAB_PATH}}',
-  tabs: [
-    { key: '/{{MODULE_KEY}}/{{TAB_PATH_1}}', label: '{{TAB_LABEL_1}}' },
-    { key: '/{{MODULE_KEY}}/{{TAB_PATH_2}}', label: '{{TAB_LABEL_2}}' },
-    // ...
-  ],
-  sidebarMenu: [
-    { key: 'all', label: 'All', path: '/{{MODULE_KEY}}/{{FIRST_TAB_PATH}}/all' },
-    { key: '{{FILTER_KEY_1}}', label: '{{FILTER_LABEL_1}}', path: '/{{MODULE_KEY}}/{{FIRST_TAB_PATH}}/{{FILTER_KEY_1}}' },
-    // ...
-  ],
-},
+For `glossary.md`:
 ```
-
-### Design Heuristics
-
-- **tab count**: 2-5 per module. Fewer than 2 means no tabs needed; more than 5 suggests splitting into two modules.
-- **sidebar vs tabs**: If a menu item navigates to a *different* page (different URL path), it is a **tab**. If it filters the *same* page (same URL path with `:filter?` param), it is a **sidebarMenuItem**.
-- **sidebar `path` field**: MUST include the optional `:filter?` param route pattern so the parent page receives it. Example: `/orders/list/pending` where the route is `/orders/list/:filter?`.
-- **icon selection**: Use `@ant-design/icons` components only. Reference: https://ant.design/components/icon.
-
-### Keep these exports UNCHANGED
-
-```tsx
-export const MODULE_LABELS: Record<string, string> = ...
-export const MODULE_ICONS: Record<string, ReactNode> = ...
-export function getModuleConfig(key: string): ModuleConfig | undefined { ... }
-```
-
-These are consumed by `GlobalShell.tsx` (via `MODULE_LABELS`) and `ModuleLayout.tsx` (via `getModuleConfig`).
-
-### Verification
-```bash
-npx tsc -b --noEmit  # verify moduleConfig compiles in isolation
-```
-
----
-
-## Step 5: Rewrite Router
-
-`src/app/router.tsx` — **REPLACE** the stub with real routes.
-
-### Structural Template (DO NOT CHANGE THIS PATTERN)
-
-```tsx
-import { createBrowserRouter, redirect } from 'react-router'
-import { GlobalShell } from '../shell/layout/GlobalShell'
-import ModuleLayout from '../shell/layout/ModuleLayout'
-import { AuthGuard } from '../domains/auth/guards/AuthGuard'
-import { LoginPage } from '../domains/auth/pages/LoginPage'
-// Import your page components here (use PlaceholderPage as stubs initially)
-
-export const router = createBrowserRouter([
-  {
-    path: '/login',
-    element: <LoginPage />,
-  },
-  {
-    path: '/',
-    element: <AuthGuard />,
-    children: [{
-      element: <GlobalShell />,
-      children: [
-        {
-          index: true,
-          loader: () => redirect('{{DEFAULT_ROUTE}}'),
-        },
-        // For each module in moduleConfig.tsx:
-        {
-          path: '{{MODULE_KEY}}',
-          element: <ModuleLayout moduleKey="{{MODULE_KEY}}" />,
-          children: [
-            { index: true, loader: () => redirect('/{{MODULE_KEY}}/{{DEFAULT_TAB}}') },
-            { path: '{{TAB_PATH_1}}/:filter?', element: <{{PAGE_COMPONENT_1}} /> },
-            { path: '{{TAB_PATH_2}}', element: <{{PAGE_COMPONENT_2}} /> },
-            // one child per tab in moduleConfig
-          ],
-        },
-      ],
-    }],
-  },
-])
-```
-
-### Rules (non-negotiable)
-
-1. `AuthGuard` wraps everything except `/login`
-2. `GlobalShell` wraps all authenticated routes
-3. Each module route uses `<ModuleLayout moduleKey="..."/>` — the `moduleKey` MUST match a key in `moduleConfig.tsx`
-4. Optional `:filter?` param ONLY on list/index routes that support sidebar filtering
-5. `index: true` with `redirect` loader for bare module paths (`/orders` → `/orders/list`)
-6. The root `index: true` redirects to the default module's default route
-
-### Phase 2 Strategy: Use Page Stubs First
-
-Create minimal page components that return `<PlaceholderPage>` so the router compiles:
-
-```tsx
-// src/domains/orders/pages/OrderListPage.tsx
-import { PlaceholderPage } from '../../../shared/ui/PlaceholderPage'
-export function OrderListPage() {
-  return <PlaceholderPage title="Order List" description="Order list page (stub)" />
-}
-```
-
-This decouples router wiring from page implementation — you can verify navigation works before building full pages.
-
-### Verification
-```bash
-npm run build          # full build must pass
-npm run dev            # start dev server
-# Navigate to each module, verify:
-# - Top tabs appear and navigate correctly
-# - Sidebar menu items appear and update URL
-# - Breadcrumb shows correct module > page
-# - Module switcher drawer shows all modules
-```
-
----
-
-## Step 6: Replace Auth Logic
-
-### Contract Preservation
-
-`GlobalShell` and `AuthGuard` depend on the `useAuth()` hook returning this shape:
-
-```ts
-interface AuthContextValue {
-  user: { username: string } | null
-  isAuthenticated: boolean
-  login: (username: string, password: string) => Promise<{ success: boolean; error?: string }>
-  logout: () => void
-}
-```
-
-**DO NOT** change the field names `isAuthenticated`, `login`, `logout` — they are consumed by GlobalShell.
-
-### Files to Process
-
-| File | Action | Instructions |
-|------|--------|--------------|
-| `src/domains/auth/context/useAuth.ts` | MODIFY | Update `AuthContextValue` to add fields (e.g., `token`, `role`, `permissions[]`). Keep existing fields. |
-| `src/domains/auth/context/AuthContext.tsx` | MODIFY | Replace mock `login` (800ms setTimeout + credential check) with real API call. Keep the `AuthProvider` wrapper signature. |
-| `src/domains/auth/data/auth-mock-data.ts` | DELETE | Remove mock credentials — real auth has no use for them. |
-| `src/domains/auth/guards/AuthGuard.tsx` | KEEP | Reads `isAuthenticated` — no changes needed. Optionally add role-based redirect logic. |
-| `src/domains/auth/pages/LoginPage.tsx` | REPLACE | Replace with your branded login page. Keep `data-testid` on form fields for E2E tests. |
-
-### Verification
-```bash
-npm run dev
-# - Visit / when not authenticated → redirected to /login
-# - Login with valid credentials → redirected to default route
-# - Login with invalid credentials → error message shown
-# - Click logout in header dropdown → redirected to /login
-# - Visit /login when already authenticated → redirected to default route
-```
-
----
-
-## Step 7: Update Providers
-
-`src/app/providers.tsx` — **MODIFY** to add new global providers.
-
-### Current state
-
-```tsx
-import type { ReactNode } from 'react'
-import { AuthProvider } from '../domains/auth/context/AuthContext'
-
-export function Providers({ children }: { children: ReactNode }) {
-  return (
-    <AuthProvider>
-      {children}
-    </AuthProvider>
-  )
-}
-```
-
-### Common additions (choose as needed)
-
-```tsx
-import type { ReactNode } from 'react'
-import { AuthProvider } from '../domains/auth/context/AuthContext'
-
-// If using React Query for server state:
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: { retry: 1, staleTime: 30_000 },
-  },
-})
-
-// If using a router-aware auth (e.g., keycloak-js):
-// import { ReactKeycloakProvider } from '@react-keycloak/web'
-
-export function Providers({ children }: { children: ReactNode }) {
-  return (
-    <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        {children}
-      </QueryClientProvider>
-    </AuthProvider>
-  )
-}
-```
-
-**Note:** `src/app/App.tsx` wraps `<RouterProvider>` inside `<ConfigProvider>` — update `ConfigProvider`'s `theme` prop there for Ant Design token customization. Do NOT restructure `App.tsx`.
-
-### Verification
-```bash
-npm run build  # must pass
-```
-
----
-
-## Step 8: Create Domain Pages (Fill Phase)
-
-For each module defined in `moduleConfig.tsx`, create the corresponding page and component files under `src/domains/{{MODULE_KEY}}/`.
-
-### Directory structure per module
-
-```
-src/domains/{{MODULE_KEY}}/
-├── components/                # Domain-specific components
-│   ├── {{Entity}}Table.tsx     # Data table with row selection, batch actions
-│   ├── {{Entity}}FilterBar.tsx # Filter controls (status, priority, category selects)
-│   └── {{Entity}}DetailDrawer.tsx # Detail view drawer or modal
-├── data/
-│   └── mock-data.ts           # exports: {{entities}}[] and empty{{Entities}}[]
-├── pages/
-│   ├── {{Entity}}ListPage.tsx  # List/tabular view with scenario selector
-│   ├── {{Entity}}CreatePage.tsx # Creation form page
-│   └── ...                     # One page per tab in moduleConfig
-└── hooks/                      # Domain-specific hooks (optional)
-    └── use{{Entity}}.ts
-```
-
-### Page Component Pattern (follow exactly)
-
-Each data-display page MUST follow this pattern. It is the single most important code convention in the template:
-
-```tsx
-import { useState } from 'react'
-import { useParams } from 'react-router'
-import { Typography, Select, Space, Alert, Skeleton } from 'antd'
-// import { {{entities}}, empty{{Entities}}, type {{Entity}}Item } from '../data/mock-data'
-// import { {{Entity}}Table, {{Entity}}FilterBar, {{Entity}}DetailDrawer } from '../components/...'
-
-type Scenario = 'loaded' | 'loading' | 'empty' | 'error'
-
-export function {{Entity}}ListPage() {
-  const { filter } = useParams<{ filter?: string }>()
-  const [scenario, setScenario] = useState<Scenario>('loaded')
-
-  // Sidebar filter integration:
-  // const baseItems = scenario === 'empty' ? empty{{Entities}} : {{entities}}
-  // const filtered = useMemo(() => {
-  //   let result = baseItems
-  //   if (filter && filter !== 'all') result = result.filter(t => t.status === filter)
-  //   return result
-  // }, [baseItems, filter])
-
-  const scenarioSelector = (
-    <Space style={{ marginBottom: 16 }}>
-      <Typography.Text>Scenario:</Typography.Text>
-      <Select
-        value={scenario}
-        onChange={setScenario}
-        options={[
-          { value: 'loaded', label: 'Loaded' },
-          { value: 'loading', label: 'Loading' },
-          { value: 'empty', label: 'Empty' },
-          { value: 'error', label: 'Error' },
-        ]}
-        data-testid="{{module-key}}-scenario-select"
-      />
-    </Space>
-  )
-
-  if (scenario === 'loading') {
-    return (
-      <div data-testid="{{module-key}}-loading">
-        <Skeleton active paragraph={{ rows: 8 }} />
-      </div>
-    )
-  }
-
-  if (scenario === 'error') {
-    return (
-      <div data-testid="{{module-key}}-error">
-        <Alert
-          type="error"
-          message="Failed to load {{entity}} list"
-          showIcon
-          action={
-            <a onClick={() => setScenario('loaded')}
-               data-testid="{{module-key}}-error-retry-link">
-              Retry
-            </a>
-          }
-        />
-      </div>
-    )
-  }
-
-  // scenario === 'loaded' or 'empty':
-  return (
-    <div data-testid="{{module-key}}-page">
-      {scenarioSelector}
-      {/* {{Entity}}FilterBar */}
-      {/* sidebar filter indicator tag */}
-      {/* {{Entity}}Table with empty state for scenario==='empty' */}
-      {/* {{Entity}}DetailDrawer */}
-    </div>
-  )
-}
-```
-
-### Naming Conventions
-
-| Element | Format | Example |
-|---------|--------|---------|
-| Page component | `{{Entity}}{{Action}}Page` (PascalCase) | `OrderListPage`, `OrderCreatePage` |
-| Domain component | `{{Entity}}{{Role}}` (PascalCase) | `OrderTable`, `OrderFilterBar` |
-| `data-testid` | `{{module-key}}-{{role}}` (kebab-case) | `order-table`, `order-filter-bar` |
-| Mock data (loaded) | `{{entities}}` (camelCase) | `orders`, `skillItems` |
-| Mock data (empty) | `empty{{Entities}}` (camelCase) | `emptyOrders`, `emptySkillItems` |
-| Route path | `/{{module-key}}/{{action}}` (kebab-case) | `/orders/list`, `/orders/create` |
-| Type name | `{{Entity}}Item` (PascalCase) | `OrderItem`, `CustomerItem` |
-
-### Incremental Verification
-
-Build each module one at a time:
-```bash
-# After each module's page stubs are created:
-npm run build
-
-# After each module's full implementation:
-npm run dev  # cycle all 4 scenarios, test sidebar filter, test top tabs
-```
-
----
-
-## Step 9: Update Selector Registry
-
-`src/testability/selectors.ts` — **REPLACE** the `SELECTOR_REGISTRY` object.
-
-### Remove entries
-
-Delete all entries with prefixes matching deleted domains: `skill-list.`, `task-list.`, `workflow-list.`, `dashboard.`
-
-### Add entries for each new page
-
-For each interactive element in your pages, register:
-
-```ts
-'{{module-key}}.{{element-role}}': {
-  id: '{{module-key}}.{{element-role}}',
-  priority: 'testid',  // or 'role' for heading elements
-  selector: 'data-testid={{data-testid-value}}',  // or 'role=heading[name=/pattern/i]'
-  description: 'Human-readable description',
-},
-```
-
-### Priority rules
-- **`'role'`**: Use for page headings ONLY — `selector: 'role=heading[name=/pattern/i]'`
-- **`'testid'`**: Use for ALL other elements — `selector: 'data-testid=value'`
-
-### Minimum entries per list page
-```
-{{module-key}}.heading        (priority: role)
-{{module-key}}.filter-bar     (priority: testid)
-{{module-key}}.table          (priority: testid)
-{{module-key}}.scenario-select (priority: testid)
-{{module-key}}.loading        (priority: testid)
-{{module-key}}.error          (priority: testid)
-{{module-key}}.error-retry-link (priority: testid)
-{{module-key}}.empty          (priority: testid) — if empty state has a testid
+Read: route config (module names), data model files (entity types + statuses)
+Sections:
+  1. Module Terms (table: term + english + description)
+  2. Entity Terms (table: entity + module + description)
+  3. Status Terms (table: status + entity + description)
+  4. Technical Terms (table: term + description)
 ```
 
 ### Verification
-```
-npx tsc -b --noEmit  # selectors.ts compiles
+
+```bash
+grep -r "Frontend Skill Forge" $TARGET/docs/00-project/ && echo "ERROR: template name found" || echo "OK: no template names"
+grep -r "task center\|skill library\|workflow editor" $TARGET/docs/00-project/ && echo "WARNING: template modules found" || echo "OK: no template modules"
 ```
 
 ---
 
-## Step 10: Create E2E Tests and Fixtures
+## Step 3: ADAPT — Architecture Docs
 
-### Test Fixture format
+`docs/01-architecture/` describes universal architecture patterns but may contain template-specific module names in examples.
 
-`tests/fixtures/{{module-key}}/{{fixture-name}}.json`:
+### Files to ADAPT
 
-```json
-{
-  "scenarioId": "{{module-key}}-list-loaded",
-  "page": "/{{module-key}}/list",
-  "purpose": "Verify {{module-key}} list page renders correctly with data",
-  "data": {
-    "items": []
-  },
-  "expected": {
-    "visibleTexts": ["heading text", "expected labels"],
-    "roles": ["heading", "table", "button"],
-    "actions": ["click", "navigate"]
-  }
-}
+| File | Action |
+|------|--------|
+| `README.md` | ADAPT — update file list |
+| `frontend-skill-forge-architecture-blueprint.md` | ADAPT — replace project name, update module list |
+| `frontend-layering.md` | ADAPT — replace module examples |
+| `route-architecture.md` | ADAPT — update route tree with target routes |
+| `module-boundary.md` | ADAPT — update module examples |
+| All other `.md` files | ADAPT — search-and-replace template names |
+
+### Adaptation Rules
+
+For each file:
+1. Search for: `Frontend Skill Forge` → replace with: `{{TARGET_PROJECT_NAME}}`
+2. Search for: `task/skill/workflow/insight/settings` (as module names) → replace with target module names
+3. Search for: `Task Center/Skill Library/Workflow/Data Insight/System Settings` → replace with target module labels
+4. If a code example references template-specific components (e.g., `TaskListPage`), either replace with target equivalents or add a note: "*(adapt to your equivalent)*"
+5. Do NOT change structural patterns, concepts, or generic explanations
+
+### If Target Has Different Architecture
+
+If the target project's architecture differs fundamentally (e.g., Vue SFC instead of React components, no module-based routing), mark this directory with a note:
+
+```markdown
+# Architecture Docs — Pending Adaptation
+
+The architecture patterns in this directory were generated for a different codebase structure.
+After the target project stabilizes, regenerate these docs using `frontend-project-reader`.
 ```
-
-Note: `expected.visibleTexts`, `expected.roles`, and `expected.actions` are validated by `validateScenarioShape()` in `src/testability/fixture.ts`.
-
-### E2E test structure
-
-`tests/e2e/{{module-key}}-list-runtime.spec.ts`:
-
-```ts
-import { test, expect } from '@playwright/test'
-
-test.describe('{{Module Label}} List Page', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/login')
-    await page.fill('[data-testid="username"]', 'admin')
-    await page.fill('[data-testid="password"]', 'admin123')
-    await page.click('[data-testid="login-submit"]')
-    await page.waitForURL('/**/list/**')
-  })
-
-  test('renders page heading', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: /{{pattern}}/i })).toBeVisible()
-  })
-
-  test('toggles through scenarios', async ({ page }) => {
-    // Select "loading" → verify skeleton visible
-    // Select "empty" → verify empty state visible
-    // Select "error" → verify error alert + retry link
-    // Select "loaded" → verify table/content visible
-  })
-
-  test('filters by sidebar menu item', async ({ page }) => {
-    // Click sidebar menu item
-    // Verify URL contains filter param
-    // Verify filter indicator tag is visible
-  })
-
-  test('navigates via top tabs', async ({ page }) => {
-    // Click each top tab
-    // Verify URL changes
-    // Verify breadcrumb updates
-  })
-})
-```
-
-### Playwright config
-
-`playwright.config.ts` — **KEEP** but verify settings match your project:
-- `webServer.command`: `npm run dev` (or your dev command)
-- `webServer.port`: matches your Vite port (default `5173`)
-- `testDir`: `tests/e2e`
 
 ### Verification
+
 ```bash
-npx playwright test  # run all E2E tests
+# Check no template module names remain in architecture docs
+grep -rn "task center\|skill library" $TARGET/docs/01-architecture/ --include="*.md"
 ```
 
 ---
 
-## Step 11: Documentation Localization
+## Step 4: ADAPT — Development Guides
 
-This is a critical step. The template ships with a rich documentation layer designed for AI-assisted development. Each subdirectory in `docs/` serves a distinct purpose and has different localization rules.
+### File Actions
 
-### Documentation Category Map
+| File | Action | How to Adapt |
+|------|--------|-------------|
+| `README.md` | ADAPT | Update file list |
+| `coding-guide.md` | REGENERATE | Base on target project's actual conventions |
+| `testing-guide.md` | REGENERATE | Base on target project's test framework |
+| `local-development.md` | REGENERATE | Base on target project's setup instructions |
+| `evidence-rules.md` | COPY | Evidence rules are cross-project universal |
 
-| Directory | Category | Action | Rationale |
-|-----------|----------|--------|-----------|
-| `docs/00-project/` | Project identity | **REGENERATE** | Template's project overview, glossary, roadmap are specific to "Frontend Skill Forge" |
-| `docs/01-architecture/` | Architecture reference | **PRESERVE + UPDATE** | Layering, module boundary, route architecture patterns are universal — update references to specific module names |
-| `docs/02-harness/` | AI harness governance | **PRESERVE** | Agent workflow, git governance, verification policy, skill lifecycle — language- and domain-agnostic |
-| `docs/03-openspec/` | OpenSpec specs | **PRESERVE** | Spec management process is template infrastructure |
-| `docs/04-development/` | Dev guidelines | **PRESERVE + UPDATE** | Coding guide, testing guide, evidence rules — update toolchain details if changed |
-| `docs/05-domain/` | Domain knowledge | **REGENERATE** | Template's domain docs describe simulated business logic |
-| `docs/06-operations/` | Ops & release | **UPDATE** | Release notes and troubleshooting — update for your project |
-| `docs/07-evidence/` | Verification evidence | **CLEAR + REBUILD** | Evidence is project-specific; archive old as reference, rebuild for new project |
-| `docs/08-frontend-agent/` | Frontend AI harness | **PRESERVE** | MCP protocols, E2E assets, UI evidence schemas — part of template infrastructure |
-| `docs/09-change-records/` | Version ledger | **RESET** | Archive template's records, start fresh for your project |
-| `docs/README.md` | Docs index | **UPDATE** | Update section descriptions to reflect your project |
-| `docs/MIGRATION_GUIDE_CN.md` | Migration guide (CN) | **DELETE or UPDATE** | Remove if not needed; update if you maintain a Chinese team |
-| `docs/MIGRATION_GUIDE_EN.md` | Migration guide (EN) | **KEEP** | This guide itself — keep for future reference |
+### Regeneration Heuristics
 
-### Category: PRESERVE (read-only after migration)
+For `coding-guide.md`: Read the target project's ESLint config, Prettier config, tsconfig, and one representative component file. Extract: naming conventions, import patterns, component structure, typing conventions.
 
-These directories contain template infrastructure documentation. Do NOT modify content — only update cross-references if file paths change:
+For `testing-guide.md`: Read the target project's test config and one representative test file. Extract: test framework, test file location convention, selector strategy, fixture/mock pattern.
 
-```
-docs/02-harness/       # AI agent workflow, git governance, verification, skill lifecycle
-docs/03-openspec/      # Spec management, superpower patterns
-docs/08-frontend-agent/ # MCP protocols, UI evidence, E2E asset lifecycle, evolution
-```
+For `local-development.md`: Read the target project's README and package.json scripts. Document: prerequisites, install command, dev server command, build command, test command.
 
-### Category: PRESERVE + UPDATE (keep structure, localize references)
+---
 
-These directories contain universal patterns with template-specific examples. Update:
+## Step 5: REGENERATE — Domain Docs
 
-| Directory | What to Update |
-|-----------|---------------|
-| `docs/01-architecture/` | In `architecture-guide.md`, `frontend-layering.md`: replace "task/skill/workflow" module examples with your module names. In `route-architecture.md`: update the route tree diagram. |
-| `docs/04-development/` | In `coding-guide.md`: update module name references. In `local-development.md`: update port/config if changed. In `testing-guide.md`: update test examples with your module names. |
+`docs/05-domain/` is the most critical customization step. These docs tell AI agents how to explore, understand, and code against the target project.
 
-**Update rule**: Search each file for template-specific names (`task`, `skill`, `workflow`, `insight`, `settings`, `dashboard`, `Frontend Skill Forge`) and replace with your equivalents. Do NOT change structural content.
-
-### Category: REGENERATE (create from scratch, using template as structural reference)
-
-These directories must be rewritten for your project. Use the template versions as structural guides, not content sources.
-
-#### `docs/00-project/` — Generation Rules
-
-| File | Content Source | How to Generate |
-|------|---------------|-----------------|
-| `README.md` | Directory index | List the files in this directory with one-line descriptions |
-| `project-overview.md` | `moduleConfig.tsx` + `package.json` | Describe: project name, tech stack, module list (from config), key features per module, architecture highlights |
-| `glossary.md` | `moduleConfig.tsx` + domain entities | Define: each module term, each entity type, each status value, technical terms (shell, layout, scenario, selector) |
-| `current-status.md` | git log + migration state | Current phase, completed steps, pending steps, known issues |
-| `roadmap.md` | User-provided plan | Future phases, planned features, timeline. If unknown, write "TBD — define after migration" |
-
-**Structural reference**: Read the template's `docs/00-project/project-overview.md` first. Note its sections (Overview, Tech Stack, Modules, Architecture). Replicate the section structure with your content.
-
-#### `docs/05-domain/` — Generation Rules
-
-The template has 3 domain docs: `e2e-exploration-domain.md`, `frontend-understanding-domain.md`, `incremental-coding-domain.md`. These describe the AI agent's approach to exploring, understanding, and coding against the simulated domains.
-
-For your project, generate:
+### Files to Create
 
 | File | Content |
 |------|---------|
-| `README.md` | Index of domain docs |
-| `{{module-key}}-domain.md` | One per module: describe the domain model, entities, statuses, business rules, page inventory, component inventory |
-| `e2e-exploration-domain.md` | Update: replace template module references with your modules. Describe how an AI agent should explore each page. |
-| `frontend-understanding-domain.md` | Update: describe component tree, data flow, and state management for each module. |
-| `incremental-coding-domain.md` | Update: describe coding patterns, mock data conventions, and test patterns per module. |
+| `README.md` | Index of domain docs — list files with descriptions |
+| `e2e-exploration-domain.md` | How AI agents should explore each page |
+| `frontend-understanding-domain.md` | Component tree, data flow, state management per page |
+| `incremental-coding-domain.md` | Coding patterns, templates, naming conventions |
 
-**Generation heuristic**: For each module, read its `mock-data.ts` and list all entity types, their fields, status values, and relationships. This becomes the domain model documentation.
+### Generation Rules for `e2e-exploration-domain.md`
 
-#### `docs/09-change-records/` — Generation Rules
+```
+Read: route config (all routes), each page component source (page files)
+For each route:
+  1. Route path + page component name
+  2. Data-testid selectors found in the page source
+  3. UI state scenarios (loaded/loading/empty/error — if applicable)
+  4. Exploration path: Navigate → Observe → Interact → Verify
+  5. Key assertions (3+ per page)
+Structure: One section per module/route group
+```
 
-| Action | Path | Instructions |
-|--------|------|--------------|
-| ARCHIVE | `docs/09-change-records/` | Move all existing content to `docs/09-change-records/archive/template-migration/` |
-| CREATE | `docs/09-change-records/current/` | Create `migration-record.md` documenting the migration: date, source template, target project, modules defined |
-| CREATE | `docs/09-change-records/versions/` | Create `v0.1.0-migration.md` as the first version record |
-| CREATE | `docs/09-change-records/baselines/` | Create a baseline snapshot of the post-migration project state |
+### Generation Rules for `frontend-understanding-domain.md`
 
-#### `docs/06-operations/` — Update Rules
+```
+Read: one complete module (pages + components + data models)
+For each module:
+  1. Component tree (text tree diagram from layout → page → sub-components)
+  2. Data model (TypeScript interfaces / PropTypes extracted from source)
+  3. State management (useState/useReducer/store patterns identified)
+  4. Route parameter handling (useParams, query params)
+```
 
-| File | Action | Instructions |
-|------|--------|--------------|
-| `README.md` | UPDATE | Update directory description |
-| `release-notes.md` | REPLACE | Write initial release notes: "v0.1.0 — Initial migration from frontend-skill-forge template" |
-| `troubleshooting.md` | UPDATE | Keep generic sections (build issues, lint issues), add project-specific issues as encountered |
+### Generation Rules for `incremental-coding-domain.md`
 
-#### `docs/07-evidence/` — Clear and Rebuild
-
-| Action | Instructions |
-|--------|--------------|
-| ARCHIVE | Move all existing evidence to `docs/07-evidence/archive/template-reference/` |
-| CREATE | `README.md` with the evidence directory structure for your project |
-| REBUILD | After verification runs, populate with new screenshots, traces, reports |
-
-### Documentation Generation Strategy
-
-When generating new documentation for your project, follow this order:
-
-1. **Read the template doc first** — understand its structure, section headings, and level of detail
-2. **Extract the template's section outline** — preserve the heading hierarchy
-3. **Fill with your content** — replace template-specific names, entities, modules
-4. **Update cross-references** — if a doc references another doc, verify the path is still valid
-5. **Verify consistency** — module names, entity names, and route paths must match `moduleConfig.tsx` and `router.tsx` exactly
-
-### Cross-Reference Update Map
-
-After renaming/deleting files, update these cross-references:
-
-| File | References to Update |
-|------|---------------------|
-| `docs/README.md` | Update section descriptions, file counts, directory tree |
-| `docs/00-project/project-overview.md` | Links to architecture docs, domain docs |
-| `docs/01-architecture/architecture-guide.md` | Links to module config, route architecture |
-| `docs/04-development/coding-guide.md` | Links to architecture docs, testing guide |
-| `docs/04-development/testing-guide.md` | Links to selectors, fixture format |
-
-### Verification
-```bash
-# Check no broken markdown links (relative paths):
-find docs/ -name "*.md" -exec grep -oP '\[.*?\]\(\.\.?/[^)]+\)' {} + | while read link; do
-  # verify the target file exists
-done
-
-# Verify all referenced files exist:
-ls docs/00-project/ docs/01-architecture/ docs/04-development/ docs/05-domain/ docs/06-operations/
+```
+Read: one representative, fully-implemented module
+Extract patterns:
+  1. Module directory structure template
+  2. Page component code skeleton (copyable template with {{PLACEHOLDER}} markers)
+  3. Data model/mock data format
+  4. Naming conventions cheat sheet (files, components, routes, selectors, types)
+  5. New module checklist (8 steps: config → routes → directory → data → pages → components → selectors → tests)
 ```
 
 ---
 
-## Appendix A: Project Files — Complete Action Map
+## Step 6: ADAPT — Ops Docs
 
-Legend: **K** = Keep as-is, **D** = Delete, **R** = Replace entirely, **M** = Modify (keep structure, change content)
+| File | Action |
+|------|--------|
+| `README.md` | ADAPT — update file list |
+| `release-notes.md` | REGENERATE — write initial deployment release notes |
+| `troubleshooting.md` | COPY — keep generic sections, append target-specific issues as discovered |
+
+### Release Notes Template
+
+```markdown
+# Release Notes
+
+## v0.1.0 — Methodology Deployment
+
+- **Date:** {{TODAY_DATE}}
+- **Deployed:** AI-assisted development methodology from frontend-skill-forge
+- **Documentation:** 13-subdirectory docs system deployed
+- **Skills:** 11 AI agent skill templates deployed
+- **Knowledge maps:** Route map, component map, element registry initialized
+- **Known limitations:** Knowledge maps are initial versions; will be enriched as AI agents explore more pages
+```
+
+---
+
+## Step 7: RESET — Evidence & Change Records
+
+### 7.1 Evidence (`docs/07-evidence/`)
+
+```bash
+TARGET="{{TARGET_PROJECT}}"
+
+# Archive template evidence
+mkdir -p $TARGET/docs/07-evidence/archive/template-reference
+mv $TARGET/docs/07-evidence/*.md $TARGET/docs/07-evidence/archive/template-reference/ 2>/dev/null
+
+# Create fresh README
+cat > $TARGET/docs/07-evidence/README.md << 'EOF'
+# Verification Evidence
+
+This directory stores evidence produced during AI-assisted verification:
+screenshots, Playwright traces, HTML reports, and exploration artifacts.
+
+## Subdirectories
+
+- `screenshots/` — Page screenshots from exploration sessions
+- `traces/` — Playwright trace files
+- `reports/` — HTML/JSON reports
+- `snapshots/` — Browser accessibility snapshots (markdown)
+- `archive/` — Archived evidence from previous versions
+
+## Naming Convention
+
+`{module}-{page}-{scenario}-{timestamp}.{ext}`
+EOF
+```
+
+### 7.2 Change Records (`docs/09-change-records/`)
+
+```bash
+TARGET="{{TARGET_PROJECT}}"
+
+# Archive template records
+mkdir -p $TARGET/docs/09-change-records/archive/template-history
+for dir in baselines releases summaries versions; do
+  test -d "$TARGET/docs/09-change-records/$dir" && \
+    mv "$TARGET/docs/09-change-records/$dir" "$TARGET/docs/09-change-records/archive/template-history/" 2>/dev/null
+done
+
+# Create initial version record
+mkdir -p $TARGET/docs/09-change-records/versions
+cat > $TARGET/docs/09-change-records/versions/v0.1.0-deployment.md << 'EOF'
+# v0.1.0 — Methodology Deployment
+
+- **Date:** {{TODAY_DATE}}
+- **Source:** frontend-skill-forge methodology
+- **Deployed:** docs system (13 directories), skill templates (11 skills), AI agent config
+- **Modules:** {{MODULE_COUNT}} module(s) with {{PAGE_COUNT}} page(s)
+- **Knowledge maps:** Initial versions generated
+EOF
+```
+
+---
+
+## Step 8: ADAPT — AI Agent Configuration
+
+### 8.1 Update Project-Level Instructions
+
+If the target project has a `CLAUDE.md` (or equivalent project instruction file), append:
+
+```markdown
+## AI-Assisted Development System
+
+This project uses the Frontend Skill Forge methodology. Available resources for AI agents:
+
+- **Knowledge maps:** `docs/02-harness/knowledge/frontend/` (route-map, component-map, element-registry)
+- **Skill templates:** `frontend-skill-template/` (11 executable skills)
+- **AI governance rules:** `docs/02-harness/rules/`
+- **Evidence templates:** `docs/08-frontend-agent/evidence/`
+- **Deployment guides:** `docs/MIGRATION_GUIDE_CN.md` (Chinese), `docs/MIGRATION_GUIDE_EN.md` (English)
+
+### Skill Inventory
+
+| Skill | Type | Use Case |
+|-------|------|----------|
+| frontend-auth-login | precondition | Authenticate browser session |
+| frontend-project-reader | discovery | Read project structure, maintain knowledge maps |
+| frontend-e2e-explorer | exploration | Explore pages via Playwright MCP |
+| frontend-incremental-coder | implementation | Implement frontend changes |
+| frontend-registry-stitch | analysis | Map browser elements to source code |
+| element-registry-maintainer | maintenance | Maintain element registry health |
+| skill-evolution-maintainer | maintenance | Track skill changes |
+| frontend-task-creation | planning | Create frontend tasks |
+| frontend-test-spec-generator | analysis | Generate E2E test specifications |
+| create-task-skill | action | Create tasks through UI wizard |
+```
+
+### 8.2 Check Skill Path References
+
+Search skill templates for paths that may differ in the target project:
+
+```bash
+TARGET="{{TARGET_PROJECT}}"
+
+# Check for template-specific paths in skill templates
+grep -rn "src/shell/" $TARGET/frontend-skill-template/ --include="SKILL.md"
+grep -rn "src/domains/" $TARGET/frontend-skill-template/ --include="SKILL.md"
+
+# If the target project uses different directory conventions, update these references
+```
+
+Most skill templates reference paths only in their optional **References** sections. The core workflow steps use `data-testid` selectors, which are project-agnostic.
+
+### 8.3 Update Credentials File
+
+If the target project has authentication, update the credentials file used by `frontend-auth-login`:
+
+```bash
+TARGET="{{TARGET_PROJECT}}"
+CREDS_FILE="$TARGET/frontend-skill-template/frontend-auth-login/references/credentials.json"
+
+# Update with target project's dev credentials
+# Format: { "base_url": "...", "login_url": "...", "credentials": { "username": "...", "password": "..." }, ... }
+```
+
+Also sync to runtime:
+```bash
+cp $TARGET/frontend-skill-template/frontend-auth-login/references/credentials.json \
+   $TARGET/.claude/skills/frontend-auth-login/references/credentials.json
+```
+
+---
+
+## Step 9: Deploy & Register Skill Templates
+
+### 9.1 Verify Skill Inventory
+
+Each skill directory must contain `SKILL.md`. Verify:
+
+```bash
+TARGET="{{TARGET_PROJECT}}"
+for skill in $TARGET/frontend-skill-template/*/; do
+  if [ -f "$skill/SKILL.md" ]; then
+    name=$(basename "$skill")
+    echo "OK: $name"
+  else
+    echo "MISSING SKILL.md: $skill"
+  fi
+done
+```
+
+### 9.2 Verify YAML Frontmatter
+
+Each `SKILL.md` must have valid frontmatter with these fields:
+
+```
+name: <skill-name>
+description: <one-line>
+compatibility: opencode
+metadata:
+  project: <project-name>
+  skill_type: <type>
+  authority: <template|project>
+```
+
+### 9.3 Sync to Runtime
+
+If the target project uses Claude Code:
+
+```bash
+TARGET="{{TARGET_PROJECT}}"
+for skill in $TARGET/frontend-skill-template/*/; do
+  skill_name=$(basename "$skill")
+  if [ ! -d "$TARGET/.claude/skills/$skill_name" ]; then
+    cp -r "$skill" "$TARGET/.claude/skills/$skill_name"
+    echo "Registered: $skill_name"
+  fi
+done
+```
+
+### Skill Type Reference
+
+| Type | When the skill is loaded |
+|------|--------------------------|
+| `precondition` | Automatically before exploration skills |
+| `discovery` | When analyzing project structure |
+| `exploration` | When documenting page behavior |
+| `implementation` | When modifying source code |
+| `analysis` | When correlating browser to source |
+| `maintenance` | When validating registries and logs |
+| `planning` | When creating tasks and plans |
+| `action` | When executing UI interactions |
+| `template` | Only as reference (not directly executable) |
+
+---
+
+## Step 10: Generate Knowledge Maps
+
+Knowledge maps are the bridge between AI agents and the target project's code. Generate them in this order:
+
+### 10.1 Route Map
+
+**Purpose:** Route path → page component → module affiliation
+
+**Generation:** Run `frontend-project-reader` on the target project. It parses the route config and produces `docs/02-harness/knowledge/frontend/route-map.md`.
+
+**Manual alternative:** Create a table mapping each route to its page component:
+
+```markdown
+| Route | Page Component | Module |
+|-------|---------------|--------|
+| `/login` | `LoginPage` | auth |
+| `/orders/list` | `OrderListPage` | orders |
+| ... | ... | ... |
+```
+
+### 10.2 Component Map
+
+**Purpose:** Component name → file path → props → selectors
+
+**Generation:** Run `frontend-e2e-explorer` on each route. The component discoveries from each exploration session accumulate into the component map.
+
+### 10.3 Element Registry
+
+**Purpose:** Browser DOM element → source code mapping (for `frontend-registry-stitch`)
+
+**Generation:** Run `frontend-registry-stitch` to stitch browser snapshots to source code. The registry is maintained automatically by `element-registry-maintainer`.
+
+### 10.4 State Flow Map & API Contract Map
+
+**Purpose:** Page state transitions, API endpoint → page mapping
+
+**Generation:** Run `frontend-e2e-explorer` with interaction tracing enabled. State transitions and network activity are captured and mapped.
+
+---
+
+## Step 11: Verify Deployment
+
+### 11.1 File Integrity
+
+```bash
+TARGET="{{TARGET_PROJECT}}"
+
+echo "=== Core Directories ==="
+for dir in docs/02-harness docs/03-openspec docs/08-frontend-agent frontend-skill-template .claude/skills .codex/skills; do
+  test -d "$TARGET/$dir" && echo "OK: $dir" || echo "MISSING: $dir"
+done
+
+echo "=== Skill Count ==="
+skill_count=$(ls -d $TARGET/frontend-skill-template/*/ 2>/dev/null | wc -l)
+echo "Skills: $skill_count (expected 11+)"
+
+echo "=== Doc Count ==="
+doc_count=$(find $TARGET/docs -name "*.md" 2>/dev/null | wc -l)
+echo "Documents: $doc_count"
+```
+
+### 11.2 No Template Leakage
+
+```bash
+TARGET="{{TARGET_PROJECT}}"
+
+# Check for template project name
+grep -rn "Frontend Skill Forge" $TARGET/docs/00-project/ $TARGET/docs/05-domain/ --include="*.md" && \
+  echo "ERROR: template name found" || echo "OK: no template name in project docs"
+
+grep -rn "Task Center\|Skill Library\|Workflow\|Data Insight\|System Settings" \
+  $TARGET/docs/00-project/ $TARGET/docs/05-domain/ --include="*.md" && \
+  echo "WARNING: template module names found" || echo "OK: no template modules"
+```
+
+### 11.3 End-to-End Functional Test
+
+Run a complete exploration cycle on one page to verify the methodology works:
+
+```
+1. Start target project's dev server
+2. Run frontend-auth-login (if project has auth)
+3. Run frontend-e2e-explorer on one key route
+4. Verify: evidence files created in docs/07-evidence/
+5. Verify: component discoveries logged in knowledge maps
+6. Verify: no errors or blocked-by codes in the output
+```
+
+If this cycle succeeds, the methodology is correctly deployed.
+
+---
+
+## Appendix A: Complete File Action Map
+
+Legend: **C** = COPY as-is, **A** = ADAPT (keep structure, update references), **R** = REGENERATE (from target source), **X** = RESET (archive old, create fresh)
 
 | Path | Action | Notes |
 |------|--------|-------|
-| `.claude/` | K | AI harness config |
-| `.codex/` | K | Codex skills |
-| `.gitignore` | K | |
-| `.opencode/` | K | OpenCode config |
-| `artifacts/` | K | Clean up old artifacts |
-| `dist/` | D | Will be regenerated on build |
-| `docs/00-project/` | R | Regenerate for your project |
-| `docs/01-architecture/` | M | Preserve structure, update module references |
-| `docs/02-harness/` | K | AI harness governance |
-| `docs/03-openspec/` | K | OpenSpec |
-| `docs/04-development/` | M | Update module references, toolchain details |
-| `docs/05-domain/` | R | Regenerate for your domains |
-| `docs/06-operations/` | M | Update release notes, troubleshooting |
-| `docs/07-evidence/` | R | Archive old, rebuild |
-| `docs/08-frontend-agent/` | K | Frontend AI harness |
-| `docs/09-change-records/` | R | Archive template records, start fresh |
-| `docs/README.md` | M | Update index |
-| `docs/MIGRATION_GUIDE_CN.md` | D or M | Delete or translate for your team |
-| `docs/MIGRATION_GUIDE_EN.md` | K | This guide — keep for reference |
-| `eslint.config.js` | K | |
-| `frontend-skill-template/` | K | AI skill templates |
-| `index.html` | M | Change `<title>` |
-| `node_modules/` | D | Run `npm install` after |
-| `openspec/` | M | Update specs for your project |
-| `package-lock.json` | D | Regenerated on install |
-| `package.json` | M | Update name, description, deps |
-| `playwright.config.ts` | K | Verify port |
-| `public/` | M | Replace favicon if desired |
-| `scripts/` | K | |
-| `src/adapters/` | K | Future API adapters |
-| `src/app/App.tsx` | K | Keep structure |
-| `src/app/providers.tsx` | M | Add new providers |
-| `src/app/router.tsx` | R | Replace all routes |
-| `src/assets/react.svg` | K | |
-| `src/assets/vite.svg` | K | |
-| `src/capabilities/` | K | |
-| `src/domains/auth/` | M | Replace mock with real auth |
-| `src/domains/task/` | D | Delete |
-| `src/domains/skill/` | D | Delete |
-| `src/domains/workflow/` | D | Delete |
-| `src/domains/insight/` | D | Delete |
-| `src/domains/settings/` | D | Delete |
-| `src/domains/dashboard/` | D | Delete |
-| `src/main.tsx` | K | |
-| `src/shared/ui/PlaceholderPage.tsx` | K | |
-| `src/shell/config/moduleConfig.tsx` | R | Replace modules object |
-| `src/shell/layout/GlobalShell.tsx` | K | |
-| `src/shell/layout/ModuleLayout.tsx` | K | |
-| `src/shell/navigation/ModuleSwitcher.tsx` | K | |
-| `src/shell/navigation/SidebarNavigation.tsx` | K | |
-| `src/shell/navigation/TopTabNavigation.tsx` | K | |
-| `src/testability/` | M | Update selectors, keep rest |
-| `src/testability/selectors.ts` | R | Replace entries |
-| `src/testability/fixture.ts` | K | |
-| `src/testability/evidence.ts` | K | |
-| `src/testability/element-registry/` | K | |
-| `src/variants/` | K | |
-| `tests/e2e/*` | D | Delete old, create new |
-| `tests/fixtures/*` | D | Delete old, create new |
-| `tests/helpers/fixture-loader.ts` | K | |
-| `tsconfig.json` | K | |
-| `tsconfig.app.json` | K | |
-| `tsconfig.node.json` | K | |
-| `vite.config.ts` | K | |
+| `docs/00-project/README.md` | R | Index of project docs |
+| `docs/00-project/project-overview.md` | R | From `package.json` + route config |
+| `docs/00-project/glossary.md` | R | From route config + data models |
+| `docs/00-project/current-status.md` | R | Deployment status |
+| `docs/00-project/roadmap.md` | R | Default: "TBD" |
+| `docs/01-architecture/*.md` | A | Replace template names with target |
+| `docs/02-harness/**` | C | Cross-project AI governance |
+| `docs/03-openspec/**` | C | Spec management |
+| `docs/04-development/README.md` | A | Update file list |
+| `docs/04-development/coding-guide.md` | R | From target conventions |
+| `docs/04-development/testing-guide.md` | R | From target test framework |
+| `docs/04-development/local-development.md` | R | From target setup instructions |
+| `docs/04-development/evidence-rules.md` | C | Cross-project |
+| `docs/05-domain/README.md` | R | Index |
+| `docs/05-domain/e2e-exploration-domain.md` | R | From target pages |
+| `docs/05-domain/frontend-understanding-domain.md` | R | From target components |
+| `docs/05-domain/incremental-coding-domain.md` | R | From target patterns |
+| `docs/06-operations/README.md` | A | Update file list |
+| `docs/06-operations/release-notes.md` | R | Initial deployment notes |
+| `docs/06-operations/troubleshooting.md` | C | Keep generic, append target-specific |
+| `docs/07-evidence/*` | X | Archive old, create fresh structure |
+| `docs/08-frontend-agent/**` | C | Cross-project AI harness |
+| `docs/09-change-records/*` | X | Archive old, create v0.1.0 |
+| `docs/README.md` | A | Update index |
+| `docs/MIGRATION_GUIDE_CN.md` | C | This guide |
+| `docs/MIGRATION_GUIDE_EN.md` | C | This guide |
+| `frontend-skill-template/*/` | C | All 11 skills |
+| `.claude/skills/*/` | C | Runtime skills |
+| `.codex/skills/*/` | C | Runtime skills |
 
 ---
 
@@ -948,142 +686,34 @@ Legend: **K** = Keep as-is, **D** = Delete, **R** = Replace entirely, **M** = Mo
 Run after completing all steps:
 
 ```bash
-# 1. Type-check
-npm run build
+# 1. File integrity
+test -d docs/02-harness/ && test -d docs/08-frontend-agent/ && test -d frontend-skill-template/
 
-# 2. Lint
-npm run lint
+# 2. No template leakage in project-specific docs
+grep -rn "Frontend Skill Forge" docs/00-project/ docs/05-domain/ && echo "FAIL" || echo "PASS"
 
-# 3. Start dev server and manually verify:
-#    - Login flow works (valid + invalid credentials)
-#    - Module switcher drawer shows all modules, clicking navigates correctly
-#    - Each module: top tabs navigate and update breadcrumb
-#    - Each module: sidebar menu items filter and update URL
-#    - Each list page: scenario selector cycles loaded/loading/empty/error
-#    - User dropdown shows username, logout redirects to /login
+# 3. Skill templates complete (each has SKILL.md)
+for skill in frontend-skill-template/*/; do
+  test -f "$skill/SKILL.md" || echo "MISSING: $skill"
+done
 
-# 4. E2E tests
-npm run test:e2e
+# 4. YAML frontmatter valid (check name, description, metadata fields)
+# 5. Knowledge maps reference target project (not template)
+# 6. Credentials file updated for target project
 
-# 5. Documentation
-#    - docs/README.md index is up to date
-#    - No broken internal links in docs/
-#    - All referenced modules/entities match moduleConfig.tsx
+# 7. End-to-end test:
+#    - Start dev server
+#    - Run frontend-auth-login
+#    - Run frontend-e2e-explorer on one route
+#    - Confirm evidence produced
 ```
 
 ---
 
-## Appendix C: Key Conventions (Non-Negotiable)
+## Appendix C: Key Principles
 
-When writing new code, follow these rules:
-
-1. **`verbatimModuleSyntax: true`** — type-only imports MUST use `import type { X }` syntax. Build breaks on bare type imports.
-2. **No path aliases** — all imports use relative paths from the importing file.
-3. **`data-testid` on all interactive elements** — Playwright tests depend on these. Format: `{{module-key}}-{{role}}` in kebab-case.
-4. **Scenario pattern on all data pages** — every page that displays data must support `loaded | loading | empty | error` states with a scenario selector dropdown (`data-testid="{{module-key}}-scenario-select"`).
-5. **No CSS files** — use Ant Design components and inline `style={{}}` only.
-6. **No state management library** — use React `useState` / `useReducer` for page-local state. Add a library only when there is a demonstrated need (prop drilling deeper than 3 levels, shared state across unrelated routes).
-7. **Mock data exports two variants** — `{{entities}}` (loaded) and `empty{{Entities}}` (empty), both as `const` arrays matching the same `{{Entity}}Item[]` type.
-8. **One page component = one route** — each `path` in router gets exactly one page component. Do not reuse the same page component across multiple routes.
-
----
-
-## Appendix D: Common Migration Scenarios
-
-### Adding module-level state without a state library
-
-If two pages within the same module need to share state (e.g., create form → list refresh), use URL state or lift state to `ModuleLayout`-level context:
-
-```tsx
-// src/domains/{{MODULE_KEY}}/context/{{ModuleKey}}Context.tsx
-import { createContext, useContext, useState, type ReactNode } from 'react'
-
-interface {{ModuleKey}}ContextValue {
-  refreshTrigger: number
-  triggerRefresh: () => void
-}
-
-const {{ModuleKey}}Context = createContext<{{ModuleKey}}ContextValue | null>(null)
-
-export function {{ModuleKey}}Provider({ children }: { children: ReactNode }) {
-  const [refreshTrigger, setRefreshTrigger] = useState(0)
-  return (
-    <{{ModuleKey}}Context.Provider value={{
-      refreshTrigger,
-      triggerRefresh: () => setRefreshTrigger(n => n + 1),
-    }}>
-      {children}
-    </{{ModuleKey}}Context.Provider>
-  )
-}
-
-export function use{{ModuleKey}}Context() {
-  const ctx = useContext({{ModuleKey}}Context)
-  if (!ctx) throw new Error('use{{ModuleKey}}Context must be used within {{ModuleKey}}Provider')
-  return ctx
-}
-```
-
-### Replacing scenario selectors with real data fetching
-
-When connecting to a real backend:
-
-1. Replace `Scenario` type with `QueryStatus`: `'idle' | 'pending' | 'success' | 'error'`
-2. Replace `scenario` state with data-fetching hook (e.g., `useQuery` from React Query)
-3. Map: `loading` → `isPending`, `loaded` → `isSuccess && data.length > 0`, `empty` → `isSuccess && data.length === 0`, `error` → `isError`
-4. Remove the scenario selector `<Select>` from the rendered output
-5. Keep the skeleton, error, and empty JSX branches — they now render based on query status instead of manual toggle
-
-### Adding a module without top tabs
-
-If a module has only one page, it still works with `ModuleLayout`:
-
-```tsx
-// moduleConfig.tsx
-newModule: {
-  key: 'newModule',
-  label: 'Single Page Module',
-  icon: <AppstoreOutlined />,
-  defaultRoute: '/newModule/view',
-  tabs: [
-    { key: '/newModule/view', label: 'Overview' },  // single tab
-  ],
-  sidebarMenu: [],  // empty sidebar
-}
-```
-
-The sidebar will render empty (no `Sider` visible since `SidebarNavigation` receives an empty array).
-
-### Handling non-list pages (forms, editors)
-
-Non-list pages do not need the scenario pattern. Example for a create form page:
-
-```tsx
-import { useState } from 'react'
-import { Form, Input, Button, message } from 'antd'
-import { useNavigate } from 'react-router'
-
-export function {{Entity}}CreatePage() {
-  const [submitting, setSubmitting] = useState(false)
-  const navigate = useNavigate()
-
-  const handleSubmit = async (values: Record<string, unknown>) => {
-    setSubmitting(true)
-    // API call here
-    message.success('{{Entity}} created successfully')
-    navigate('/{{module-key}}/list')
-  }
-
-  return (
-    <div data-testid="{{module-key}}-create-page">
-      <Form onFinish={handleSubmit} layout="vertical">
-        {/* form fields */}
-        <Button type="primary" htmlType="submit" loading={submitting}
-                data-testid="{{module-key}}-create-submit">
-          Create
-        </Button>
-      </Form>
-    </div>
-  )
-}
-```
+1. **COPY the governance layer verbatim.** `docs/02-harness/`, `docs/03-openspec/`, `docs/08-frontend-agent/` are designed to be technology-agnostic. Do not customize them.
+2. **Skills work via selectors, not code.** Skills use `data-testid` (or equivalent selector conventions) to interact with pages. They do NOT import or depend on the target project's source code.
+3. **Knowledge maps are living documents.** They are generated and updated by AI agents, not manually maintained. The initial versions after deployment are starting points.
+4. **Credentials never in prompts.** The `frontend-auth-login` skill reads from `references/credentials.json` — update this file for the target project's dev credentials.
+5. **One exploration at a time.** Generate knowledge maps incrementally — explore one route, verify the evidence, then proceed.
